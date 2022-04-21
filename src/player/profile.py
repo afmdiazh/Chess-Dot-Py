@@ -1,6 +1,10 @@
 
 
 class Profile:
+    """
+    Player profile
+    """
+
     def __init__(self, json):
         """
         Obtains the data from the json object that
