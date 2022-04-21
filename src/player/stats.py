@@ -1,6 +1,3 @@
-from this import d
-
-
 class Stats:
     """
     Represents the player's stats
@@ -27,14 +24,14 @@ class Stats:
                 # If a section has "last", "best" and "record" fields,
                 # generate a new Section object that will contain that data
                 if "last" and "best" and "record" in stats[section]:
-                    self.section_list.append(Section(section, stats[section]))
+                    self.section_list.append(SSection(section, stats[section]))
 
     def print_all_sections(self):
         for section in self.section_list:
             section.print_data()
 
 
-class Section:
+class SSection:
     """
     Represents a section inside the player's stats
     """
