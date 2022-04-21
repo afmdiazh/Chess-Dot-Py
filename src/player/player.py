@@ -12,5 +12,5 @@ class Player:
         """
         Generates profile and stats objects
         """
-        self.profile = Profile(profile["player"])
+        self.profile = Profile(profile)
         self.stats = Stats(stats)

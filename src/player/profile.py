@@ -10,19 +10,20 @@ class Profile:
         Obtains the data from the json object that
         contains the unprocessed profile data
         """
-        self.avatar_url = json["avatar"]
-        self.player_id = json["player_id"]
-        self.api_id = json["@id"]
-        self.profile_url = json["url"]
-        self.name = json["name"]
-        self.username = json["username"]
-        self.title = json["title"]
-        self.followers = json["followers"]
-        self.country_api_id = json["country"]
-        self.last_online = json["last_online"]
-        self.joined = json["joined"]
-        self.status = json["status"]
-        self.is_streamer = json["is_streamer"]
+        player = json["player"]
+        self.avatar_url = player["avatar"]
+        self.player_id = player["player_id"]
+        self.api_id = player["@id"]
+        self.profile_url = player["url"]
+        self.name = player["name"]
+        self.username = player["username"]
+        self.title = player["title"]
+        self.followers = player["followers"]
+        self.country_api_id = player["country"]
+        self.last_online = player["last_online"]
+        self.joined = player["joined"]
+        self.status = player["status"]
+        self.is_streamer = player["is_streamer"]
 
     def print_basic_info(self):
         """
