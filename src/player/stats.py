@@ -34,6 +34,47 @@ class Stats:
         for section in self.section_list:
             section.print_data()
 
+    def get_total_games(self):
+        """
+        Returns total games
+        """
+        return self.get_total_wins() + self.get_total_losses() + self.get_total_draws()
+
+    def get_total_wins(self):
+        """
+        Returns total wins
+        """
+        total = 0
+        for section in self.section_list:
+            total += section.wins
+        return total
+
+    def get_total_draws(self):
+        """
+        Returns total draws
+        """
+        total = 0
+        for section in self.section_list:
+            total += section.draws
+        return total
+
+    def get_total_losses(self):
+        """
+        Returns total losses
+        """
+        total = 0
+        for section in self.section_list:
+            total += section.losses
+        return total
+
+    def get_total_winrate(self):
+        """
+        Returns total winrate
+        """
+        total_games = self.get_total_games()
+        total_wins = self.get_total_wins()
+        return total_wins / total_games
+
 
 class SSection:
     """
@@ -59,7 +100,7 @@ class SSection:
         # Record: wins, loses and draws
         record = json["record"]
         self.wins = record["win"]
-        self.loses = record["loss"]
+        self.losses = record["loss"]
         self.draws = record["draw"]
 
     def print_data(self):
@@ -76,7 +117,7 @@ class SSection:
         print("#", "Game stats: ")
         print(" - Total games:", self.get_total_games())
         print(" - Wins:", self.wins)
-        print(" - Losses:", self.loses)
+        print(" - Losses:", self.losses)
         print(" - Draws:", self.draws)
         print(" - Winrate:", self.get_win_rate())
 

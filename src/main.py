@@ -35,6 +35,20 @@ class Main(Ui_MainWindow):
         """
         player = get_player(player_name)
         if player:
+
+            # Total stats
+            self.lineEditTotalGames.setText(
+                str(player.stats.get_total_games()))
+            self.lineEditTotalWins.setText(
+                str(player.stats.get_total_wins()))
+            self.lineEditTotalLosses.setText(
+                str(player.stats.get_total_losses()))
+            self.lineEditTotalDraws.setText(
+                str(player.stats.get_total_draws()))
+            self.lineEditTotalWinrate.setText(
+                str(player.stats.get_total_winrate()))
+
+            # Profile
             self.lineEditFollowers.setText(str(player.profile.followers))
             self.lineEditTitle.setText(player.profile.title)
             self.lineEditLastOnline.setText(str(player.profile.last_online))
