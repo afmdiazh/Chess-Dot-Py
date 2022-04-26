@@ -35,4 +35,10 @@ class Main(Ui_MainWindow):
         """
         player = get_player(player_name)
         if player:
-            player.print_basic_info()
+            self.lineEditFollowers.setText(str(player.profile.followers))
+            self.lineEditTitle.setText(player.profile.title)
+            self.lineEditLastOnline.setText(str(player.profile.last_online))
+            self.lineEditJoinedOn.setText(str(player.profile.joined))
+            self.lineEditUsername.setText(player.profile.username)
+            self.lineEditName.setText(player.profile.name)
+            self.lineEditStatus.setText(player.profile.status)
