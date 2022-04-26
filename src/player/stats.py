@@ -1,6 +1,7 @@
 class Stats:
     """
     Represents the player's stats
+    Located on a different file since it contains subclasses
     """
 
     def __init__(self, json):
@@ -27,6 +28,9 @@ class Stats:
                     self.section_list.append(SSection(section, stats[section]))
 
     def print_all_sections(self):
+        """
+        Prints all sections
+        """
         for section in self.section_list:
             section.print_data()
 
