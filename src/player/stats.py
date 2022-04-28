@@ -89,7 +89,10 @@ class Stats:
         """
         total_games = self.get_total_games()
         total_wins = self.get_total_wins()
-        return total_wins / total_games
+        if total_games == 0:
+            return 0
+        else:
+            return total_wins / total_games
 
 
 class SSection:
@@ -148,7 +151,10 @@ class SSection:
         Gets % of won games
         """
         total = self.get_total_games()
-        return self.wins / total
+        if total == 0:
+            return 0
+        else:
+            return self.wins / total
 
     def get_rating_string(self):
         """
