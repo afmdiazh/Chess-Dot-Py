@@ -16,6 +16,7 @@ class Main(Ui_MainWindow):
         self.setupUi(window)
         window.show()
         self.set_connections()
+        self.set_initial_state()
 
         # self.image.setPixmap(QtGui.QPixmap("../res/avatar.jpg"))
 
@@ -24,6 +25,18 @@ class Main(Ui_MainWindow):
         Connects UI elements to functions
         """
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
+
+    def set_initial_state(self):
+        """
+        Sets initial state for some UI elements
+        """
+        for index in range(4):
+            self.tabWidgetSubsection.setTabEnabled(index, False)
+        self.tabWidgetSubsection.setCurrentIndex(0)
+        self.qWidgetBlitz.setEnabled(False)
+        self.qWidgetBullet.setEnabled(False)
+        self.qWidgetRapid.setEnabled(False)
+        self.qWidgetDaily.setEnabled(False)
 
     def button_search_clicked(self):
         """
@@ -72,7 +85,10 @@ class Main(Ui_MainWindow):
 
             # Modes
             # # Daily
-            if player.stats.has_section("chess_daily"):
+            has_section = player.stats.has_section("chess_daily")
+            self.tabWidgetSubsection.setTabEnabled(0, has_section)
+            self.qWidgetDaily.setEnabled(has_section)
+            if has_section:
                 section = player.stats.get_section("chess_daily")
                 self.lineEditDailyRating.setText(section.get_rating_string())
                 self.lineEditDailyGames.setText(
@@ -81,8 +97,12 @@ class Main(Ui_MainWindow):
                 self.lineEditDailyLosses.setText(str(section.losses))
                 self.lineEditDailyDraws.setText(str(section.draws))
                 self.lineEditDailyWinrate.setText(str(section.get_win_rate()))
-            # # Daily
-            if player.stats.has_section("chess_rapid"):
+
+            # # Rapid
+            has_section = player.stats.has_section("chess_rapid")
+            self.tabWidgetSubsection.setTabEnabled(1, has_section)
+            self.qWidgetRapid.setEnabled(has_section)
+            if has_section:
                 section = player.stats.get_section("chess_rapid")
                 self.lineEditRapidRating.setText(section.get_rating_string())
                 self.lineEditRapidGames.setText(
@@ -91,8 +111,12 @@ class Main(Ui_MainWindow):
                 self.lineEditRapidLosses.setText(str(section.losses))
                 self.lineEditRapidDraws.setText(str(section.draws))
                 self.lineEditRapidWinrate.setText(str(section.get_win_rate()))
+
             # # Bullet
-            if player.stats.has_section("chess_bullet"):
+            has_section = player.stats.has_section("chess_bullet")
+            self.tabWidgetSubsection.setTabEnabled(2, has_section)
+            self.qWidgetBullet.setEnabled(has_section)
+            if has_section:
                 section = player.stats.get_section("chess_bullet")
                 self.lineEditBulletRating.setText(section.get_rating_string())
                 self.lineEditBulletGames.setText(
@@ -101,8 +125,12 @@ class Main(Ui_MainWindow):
                 self.lineEditBulletLosses.setText(str(section.losses))
                 self.lineEditBulletDraws.setText(str(section.draws))
                 self.lineEditBulletWinrate.setText(str(section.get_win_rate()))
+
             # # Blitz
-            if player.stats.has_section("chess_blitz"):
+            has_section = player.stats.has_section("chess_blitz")
+            self.tabWidgetSubsection.setTabEnabled(3, has_section)
+            self.qWidgetBlitz.setEnabled(has_section)
+            if has_section:
                 section = player.stats.get_section("chess_blitz")
                 self.lineEditBlitzRating.setText(section.get_rating_string())
                 self.lineEditBlitzGames.setText(
