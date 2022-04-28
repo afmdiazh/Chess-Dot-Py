@@ -209,78 +209,321 @@
                  <property name="currentIndex">
                   <number>0</number>
                  </property>
-                 <widget class="QWidget" name="qWidgetBase">
+                 <widget class="QWidget" name="qWidgetDaily">
                   <attribute name="title">
-                   <string>Tab 1</string>
+                   <string>Daily</string>
                   </attribute>
                   <layout class="QVBoxLayout" name="verticalLayout">
                    <item>
-                    <layout class="QGridLayout" name="gridLayout">
+                    <layout class="QGridLayout" name="gridLayoutDaily">
                      <item row="4" column="0">
-                      <widget class="QLabel" name="labelBaseDraws">
+                      <widget class="QLabel" name="labelDailyDraws">
                        <property name="text">
                         <string>Draws</string>
                        </property>
                       </widget>
                      </item>
                      <item row="5" column="0">
-                      <widget class="QLabel" name="labelBaseWinrate">
+                      <widget class="QLabel" name="labelDailyWinrate">
                        <property name="text">
                         <string>Win %</string>
                        </property>
                       </widget>
                      </item>
                      <item row="2" column="0">
-                      <widget class="QLabel" name="labelBaseWins">
+                      <widget class="QLabel" name="labelDailyWins">
                        <property name="text">
                         <string>Wins</string>
                        </property>
                       </widget>
                      </item>
                      <item row="3" column="0">
-                      <widget class="QLabel" name="labelBaseLosses">
+                      <widget class="QLabel" name="labelDailyLosses">
                        <property name="text">
                         <string>Losses</string>
                        </property>
                       </widget>
                      </item>
                      <item row="0" column="0">
-                      <widget class="QLabel" name="labelBaseGames">
+                      <widget class="QLabel" name="labelDailyGames">
                        <property name="text">
                         <string>Games</string>
                        </property>
                       </widget>
                      </item>
                      <item row="0" column="1">
-                      <widget class="QLineEdit" name="lineEditBaseGames">
+                      <widget class="QLineEdit" name="lineEditDailyGames">
                        <property name="readOnly">
                         <bool>true</bool>
                        </property>
                       </widget>
                      </item>
                      <item row="2" column="1">
-                      <widget class="QLineEdit" name="lineEditBaseWins">
+                      <widget class="QLineEdit" name="lineEditDailyWins">
                        <property name="readOnly">
                         <bool>true</bool>
                        </property>
                       </widget>
                      </item>
                      <item row="3" column="1">
-                      <widget class="QLineEdit" name="lineEditBaseLosses">
+                      <widget class="QLineEdit" name="lineEditDailyLosses">
                        <property name="readOnly">
                         <bool>true</bool>
                        </property>
                       </widget>
                      </item>
                      <item row="4" column="1">
-                      <widget class="QLineEdit" name="lineEditBaseDraws">
+                      <widget class="QLineEdit" name="lineEditDailyDraws">
                        <property name="readOnly">
                         <bool>true</bool>
                        </property>
                       </widget>
                      </item>
                      <item row="5" column="1">
-                      <widget class="QLineEdit" name="lineEditBaseWinrate">
+                      <widget class="QLineEdit" name="lineEditDailyWinrate">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="qWidgetRapid">
+                  <attribute name="title">
+                   <string>Rapid</string>
+                  </attribute>
+                  <layout class="QGridLayout" name="gridLayout_10">
+                   <item row="0" column="0">
+                    <layout class="QGridLayout" name="gridLayoutRapid">
+                     <item row="4" column="0">
+                      <widget class="QLabel" name="labelRapidDraws">
+                       <property name="text">
+                        <string>Draws</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="0">
+                      <widget class="QLabel" name="labelRapidWinrate">
+                       <property name="text">
+                        <string>Win %</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="labelRapidWins">
+                       <property name="text">
+                        <string>Wins</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="labelRapidLosses">
+                       <property name="text">
+                        <string>Losses</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="labelRapidGames">
+                       <property name="text">
+                        <string>Games</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEditRapidGames">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLineEdit" name="lineEditRapidWins">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLineEdit" name="lineEditRapidLosses">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1">
+                      <widget class="QLineEdit" name="lineEditRapidDraws">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="1">
+                      <widget class="QLineEdit" name="lineEditRapidWinrate">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="qWidgetBullet">
+                  <attribute name="title">
+                   <string>Bullet</string>
+                  </attribute>
+                  <layout class="QGridLayout" name="gridLayout_9">
+                   <item row="0" column="0">
+                    <layout class="QGridLayout" name="gridLayoutBullet">
+                     <item row="4" column="0">
+                      <widget class="QLabel" name="labelBulletDraws">
+                       <property name="text">
+                        <string>Draws</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="0">
+                      <widget class="QLabel" name="labelBulletWinrate">
+                       <property name="text">
+                        <string>Win %</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="labelBulletWins">
+                       <property name="text">
+                        <string>Wins</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="labelBulletLosses">
+                       <property name="text">
+                        <string>Losses</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="labelBulletGames">
+                       <property name="text">
+                        <string>Games</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEditBulletGames">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLineEdit" name="lineEditBulletWins">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLineEdit" name="lineEditBulletLosses">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1">
+                      <widget class="QLineEdit" name="lineEditBulletDraws">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="1">
+                      <widget class="QLineEdit" name="lineEditBulletWinrate">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="qWidgetBlitz">
+                  <attribute name="title">
+                   <string>Blitz</string>
+                  </attribute>
+                  <layout class="QGridLayout" name="gridLayout_12">
+                   <item row="0" column="0">
+                    <layout class="QGridLayout" name="gridLayoutBlitz">
+                     <item row="4" column="0">
+                      <widget class="QLabel" name="labelBitzDraws">
+                       <property name="text">
+                        <string>Draws</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="0">
+                      <widget class="QLabel" name="labelBitzWinrate">
+                       <property name="text">
+                        <string>Win %</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="labelBitzWins">
+                       <property name="text">
+                        <string>Wins</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="labelBitzLosses">
+                       <property name="text">
+                        <string>Losses</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="labelBitzGames">
+                       <property name="text">
+                        <string>Games</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEditBitzGames">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLineEdit" name="lineEditBitzWins">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLineEdit" name="lineEditBitzLosses">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1">
+                      <widget class="QLineEdit" name="lineEditBitzDraws">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="1">
+                      <widget class="QLineEdit" name="lineEditWinrateBitz">
                        <property name="readOnly">
                         <bool>true</bool>
                        </property>
@@ -301,7 +544,7 @@
                <string>Profile</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
-               <item row="0" column="0">
+               <item row="1" column="0">
                 <layout class="QGridLayout" name="gridLayoutProfile">
                  <item row="0" column="1">
                   <widget class="QLineEdit" name="lineEditFollowers">
