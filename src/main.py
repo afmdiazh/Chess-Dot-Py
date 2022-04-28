@@ -18,8 +18,6 @@ class Main(Ui_MainWindow):
         self.set_connections()
         self.set_initial_state()
 
-        # self.image.setPixmap(QtGui.QPixmap("../res/avatar.jpg"))
-
     def set_connections(self):
         """
         Connects UI elements to functions
@@ -51,7 +49,9 @@ class Main(Ui_MainWindow):
         """
         player = get_player(player_name)
 
-        if player:
+        if player == None:
+            self.set_initial_state()
+        else:
             # TODO: Avatar
             avatar = player.profile.avatar_url
 
