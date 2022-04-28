@@ -1,6 +1,6 @@
 from .interface.main_window import Ui_MainWindow
+from .interface.window_util import set_initial_state
 from .data import get_player, get_leaderboard
-from PyQt5 import QtGui
 
 
 class Main(Ui_MainWindow):
@@ -28,13 +28,7 @@ class Main(Ui_MainWindow):
         """
         Sets initial state for some UI elements
         """
-        for index in range(4):
-            self.tabWidgetSubsection.setTabEnabled(index, False)
-        self.tabWidgetSubsection.setCurrentIndex(0)
-        self.qWidgetBlitz.setEnabled(False)
-        self.qWidgetBullet.setEnabled(False)
-        self.qWidgetRapid.setEnabled(False)
-        self.qWidgetDaily.setEnabled(False)
+        set_initial_state(self)
 
     def button_search_clicked(self):
         """
