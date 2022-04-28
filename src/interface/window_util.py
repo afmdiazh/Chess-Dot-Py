@@ -1,3 +1,8 @@
+"""
+Utility functions for window
+"""
+
+
 def set_initial_state(self):
     """
     Sets initial state for some UI elements

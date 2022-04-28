@@ -1,5 +1,5 @@
 """
-Utility class for json objects
+Utility functions for json objects
 """
 
 
