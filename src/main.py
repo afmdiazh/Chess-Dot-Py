@@ -50,32 +50,22 @@ class Main(Ui_MainWindow):
             avatar = player.profile.avatar_url
 
             # Total stats
-            self.lineEditTotalGames.setText(
-                str(player.stats.get_total_games()))
-            self.lineEditTotalWins.setText(
-                str(player.stats.get_total_wins()))
-            self.lineEditTotalLosses.setText(
-                str(player.stats.get_total_losses()))
-            self.lineEditTotalDraws.setText(
-                str(player.stats.get_total_draws()))
-            self.lineEditTotalWinrate.setText(
-                str(player.stats.get_total_winrate()))
+            stats = player.stats
+            self.lineEditTotalGames.setText(str(stats.get_total_games()))
+            self.lineEditTotalWins.setText(str(stats.get_total_wins()))
+            self.lineEditTotalLosses.setText(str(stats.get_total_losses()))
+            self.lineEditTotalDraws.setText(str(stats.get_total_draws()))
+            self.lineEditTotalWinrate.setText(str(stats.get_total_winrate()))
 
             # Profile
-            self.lineEditFollowers.setText(
-                str(player.profile.followers))
-            self.lineEditTitle.setText(
-                player.profile.title)
-            self.lineEditLastOnline.setText(
-                str(player.profile.last_online))
-            self.lineEditJoinedOn.setText(
-                str(player.profile.joined))
-            self.lineEditUsername.setText(
-                player.profile.username)
-            self.lineEditName.setText(
-                player.profile.name)
-            self.lineEditStatus.setText(
-                player.profile.status)
+            profile = player.profile
+            self.lineEditFollowers.setText(str(profile.followers))
+            self.lineEditTitle.setText(profile.title)
+            self.lineEditLastOnline.setText(str(profile.last_online))
+            self.lineEditJoinedOn.setText(str(profile.joined))
+            self.lineEditUsername.setText(profile.username)
+            self.lineEditName.setText(profile.name)
+            self.lineEditStatus.setText(profile.status)
 
             # Modes
             # # Daily
