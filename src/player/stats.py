@@ -46,6 +46,16 @@ class Stats:
         """
         return section_name in self.section_list
 
+    def get_section(self, section_name):
+        """
+        Gets section by name, returns none if non-existents
+        """
+        if section_name in self.existing_sections:
+            for section in self.section_list:
+                if section.name == section_name:
+                    return section
+        return None
+
     def get_total_wins(self):
         """
         Returns total wins
