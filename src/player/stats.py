@@ -44,7 +44,7 @@ class Stats:
         """
         Returns true if section_name is in sections
         """
-        return section_name in self.section_list
+        return section_name in self.existing_sections
 
     def get_section(self, section_name):
         """
@@ -149,3 +149,11 @@ class SSection:
         """
         total = self.get_total_games()
         return self.wins / total
+
+    def get_rating_string(self):
+        """
+        Formats rating as string
+        """
+        string = "Current: " + str(self.current_rating) + \
+            " Best: " + str(self.highest_rating)
+        return string
