@@ -12,13 +12,13 @@ class Stats:
 
         # Section names, for example:
         # chess_rapid, chess_bullet, chess_blitz
-        existing_sections = stats.keys()
+        self.existing_sections = stats.keys()
 
         # Create a list of sections
         self.section_list = []
 
         # Iterates over all the sections
-        for section in existing_sections:
+        for section in self.existing_sections:
             # Only checks if it's a dictionary, since there
             # are sections (like fide) that contain only ints
             if type(stats[section]) is dict:
@@ -39,6 +39,12 @@ class Stats:
         Returns total games
         """
         return self.get_total_wins() + self.get_total_losses() + self.get_total_draws()
+
+    def has_section(self, section_name):
+        """
+        Returns true if section_name is in sections
+        """
+        return section_name in self.section_list
 
     def get_total_wins(self):
         """
@@ -97,7 +103,7 @@ class SSection:
         self.highest_rating = best["rating"]
         self.highest_date = best["date"]
 
-        # Record: wins, loses and draws
+        # Record: wins, losses and draws
         record = json["record"]
         self.wins = record["win"]
         self.losses = record["loss"]
@@ -125,7 +131,7 @@ class SSection:
         """
         Gets amount of games
         """
-        return self.wins + self.loses + self.draws
+        return self.wins + self.losses + self.draws
 
     def get_win_rate(self):
         """
