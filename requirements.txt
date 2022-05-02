@@ -1,2 +1,3 @@
 chess.com==1.7.8
 PyQt5==5.15.6
+requests==2.27.1
