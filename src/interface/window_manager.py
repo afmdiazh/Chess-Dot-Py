@@ -1,5 +1,5 @@
 """
-Utility functions for window
+Big functions to update the main window
 """
 
 from ..util import format_date
