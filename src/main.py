@@ -21,7 +21,7 @@ class Main(Ui_MainWindow):
         Initializes the window
         """
         super().__init__()
-        self.player_data_downloader = PlayerDataDownloader()
+        self.player_downloader = PlayerDownloader()
         self.setupUi(window)
         self.set_connections()
         self.set_initial_state()
@@ -35,8 +35,7 @@ class Main(Ui_MainWindow):
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
-        self.player_data_downloader.data_obtained.connect(
-            self.update_player_tab)
+        self.player_downloader.downloaded.connect(self.player_data_downloaded)
 
     def set_initial_state(self):
         """
@@ -74,13 +73,17 @@ class Main(Ui_MainWindow):
         Starts the player data download thread with the given
         player name
         """
-        self.player_data_downloader.set_player_name(player_name)
-        self.player_data_downloader.start()
+        self.player_downloader.set_player_name(player_name)
+        self.player_downloader.start()
 
-    def update_player_tab(self, data):
+    def player_data_downloaded(self, data):
         """
         Updates player tab with the data obtained from the
-        player data downloader thread
+        player downloader thread, the data item contains
+        the following fields:
+         - player: player item
+         - player_name: player name used in the search
+         - avatar: downloaded avatar image
         """
 
         player = data["player"]
@@ -177,13 +180,13 @@ class Main(Ui_MainWindow):
             self.last_loaded_player = data["player_name"]
 
 
-class PlayerDataDownloader(QtCore.QThread):
+class PlayerDownloader(QtCore.QThread):
     """
     Downloader class to obtain player data while not
     freezing the interface
     """
 
-    data_obtained = QtCore.pyqtSignal(object)
+    downloaded = QtCore.pyqtSignal(object)
 
     def __init__(self):
         """
@@ -214,4 +217,4 @@ class PlayerDataDownloader(QtCore.QThread):
         }
 
         # Emits response
-        self.data_obtained.emit(response)
+        self.downloaded.emit(response)
