@@ -204,17 +204,27 @@ class PlayerDownloader(QtCore.QThread):
         """
         Obtains the player data and emits response
         """
-        player = get_player(self.player_name)
-        avatar_url = player.profile.avatar_url
-        avatar = None
-        if avatar_url != None:
-            avatar = requests.get(avatar_url).content
-
+        # Base response
         response = {
             "player_name": self.player_name,
-            "player": player,
-            "avatar": avatar
+            "player": None,
+            "avatar": None
         }
+
+        # Obtains player
+        player = get_player(self.player_name)
+        response["player"] = player
+
+        # If player exists
+        if player:
+
+            # Downloading avatar if it exists
+            avatar_url = player.profile.avatar_url
+            if avatar_url != None:
+                try:
+                    response["avatar"] = requests.get(avatar_url).content
+                except:
+                    response["avatar"] = None
 
         # Emits response
         self.downloaded.emit(response)
