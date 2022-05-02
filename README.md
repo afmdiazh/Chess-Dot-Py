@@ -13,7 +13,7 @@ pip install requirements.txt
 Run ChessDotPy.
 
 ```bash
-python run.py
+python main.py
 ```
 
 ## Contributing
