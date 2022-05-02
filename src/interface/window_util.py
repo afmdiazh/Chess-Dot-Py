@@ -2,6 +2,8 @@
 Utility functions for window
 """
 
+from PyQt5 import QtGui, QtCore
+
 
 def set_initial_state(self):
     """
@@ -56,3 +58,6 @@ def set_initial_state(self):
     self.lineEditBlitzLosses.setText("")
     self.lineEditBlitzDraws.setText("")
     self.lineEditBlitzWinrate.setText("")
+
+    self.image.setText("")
+    self.image.setPixmap(QtGui.QPixmap("res/avatar.png"))

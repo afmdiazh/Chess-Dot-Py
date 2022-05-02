@@ -1,6 +1,10 @@
 from .interface.main_window import Ui_MainWindow
 from .interface.window_util import set_initial_state
-from .data import get_player, get_leaderboard
+from .data import get_player
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel
+from PyQt5.QtGui import QPixmap, QImage
+from PyQt5 import QtGui
+import requests
 
 
 class Main(Ui_MainWindow):
@@ -14,6 +18,7 @@ class Main(Ui_MainWindow):
         """
         super().__init__()
         self.setupUi(window)
+        window.resize(600, 500)
         window.show()
         self.set_connections()
         self.set_initial_state()
@@ -46,9 +51,6 @@ class Main(Ui_MainWindow):
         if player == None:
             self.set_initial_state()
         else:
-            # TODO: Avatar
-            avatar = player.profile.avatar_url
-
             # Total stats
             stats = player.stats
             self.lineEditTotalGames.setText(str(stats.get_total_games()))
@@ -123,3 +125,13 @@ class Main(Ui_MainWindow):
                 self.lineEditBlitzLosses.setText(str(section.losses))
                 self.lineEditBlitzDraws.setText(str(section.draws))
                 self.lineEditBlitzWinrate.setText(str(section.get_win_rate()))
+
+            # # Icon
+            avatar_url = player.profile.avatar_url
+
+            if avatar_url != None:
+                avatar_image = QImage()
+                avatar_image.loadFromData(requests.get(avatar_url).content)
+                self.image.setPixmap(QPixmap(avatar_image))
+            else:
+                self.image.setPixmap(QtGui.QPixmap("res/avatar.png"))
