@@ -1,6 +1,7 @@
 from .interface.main_window import Ui_MainWindow
 from .interface.window_util import set_initial_state
 from .data import get_player
+from .util import format_date
 
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5 import QtGui, QtCore
@@ -103,8 +104,8 @@ class Main(Ui_MainWindow):
             profile = player.profile
             self.lineEditFollowers.setText(str(profile.followers))
             self.lineEditTitle.setText(profile.title)
-            self.lineEditLastOnline.setText(str(profile.last_online))
-            self.lineEditJoinedOn.setText(str(profile.joined))
+            self.lineEditLastOnline.setText(format_date(profile.last_online))
+            self.lineEditJoinedOn.setText(format_date(profile.joined))
             self.lineEditUsername.setText(profile.username)
             self.lineEditName.setText(profile.name)
             self.lineEditStatus.setText(profile.status)

@@ -1,4 +1,4 @@
-from .. import jutil as j
+from ..util import read_field
 
 
 class Stats:
@@ -110,7 +110,7 @@ class SSection:
         self.name = name
 
         # Last: current rating
-        last = j.read_field(json, "last")
+        last = read_field(json, "last")
         if last:
             self.current_rating = last["rating"]
             self.current_date = last["date"]
@@ -119,7 +119,7 @@ class SSection:
             self.current_date = None
 
         # Best: highest rating
-        best = j.read_field(json, "best")
+        best = read_field(json, "best")
         if best:
             self.highest_rating = best["rating"]
             self.highest_date = best["date"]
@@ -128,7 +128,7 @@ class SSection:
             self.highest_date = None
 
         # Record: wins, losses and draws
-        record = j.read_field(json, "record")
+        record = read_field(json, "record")
         if record:
             self.wins = record["win"]
             self.losses = record["loss"]

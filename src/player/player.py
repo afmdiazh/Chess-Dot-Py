@@ -1,5 +1,5 @@
 from .stats import Stats
-from .. import jutil as j
+from ..util import read_field
 
 
 class Player:
@@ -27,21 +27,21 @@ class Profile:
         Obtains the data from the json object that
         contains the unprocessed profile data
         """
-        player = j.read_field(json, "player")
+        player = read_field(json, "player")
         if player:
-            self.avatar_url = j.read_field(player, "avatar")
-            self.player_id = j.read_field(player, "player_id")
-            self.api_id = j.read_field(player, "@id")
-            self.profile_url = j.read_field(player, "url")
-            self.username = j.read_field(player, "username")
-            self.name = j.read_field(player, "name")
-            self.title = j.read_field(player, "title")
-            self.followers = j.read_field(player, "followers")
-            self.country_api_id = j.read_field(player, "country")
-            self.last_online = j.read_field(player, "last_online")
-            self.joined = j.read_field(player, "joined")
-            self.status = j.read_field(player, "status")
-            self.is_streamer = j.read_field(player, "is_streamer")
+            self.avatar_url = read_field(player, "avatar")
+            self.player_id = read_field(player, "player_id")
+            self.api_id = read_field(player, "@id")
+            self.profile_url = read_field(player, "url")
+            self.username = read_field(player, "username")
+            self.name = read_field(player, "name")
+            self.title = read_field(player, "title")
+            self.followers = read_field(player, "followers")
+            self.country_api_id = read_field(player, "country")
+            self.last_online = read_field(player, "last_online")
+            self.joined = read_field(player, "joined")
+            self.status = read_field(player, "status")
+            self.is_streamer = read_field(player, "is_streamer")
 
     def print_basic_info(self):
         """
