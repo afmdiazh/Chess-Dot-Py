@@ -186,12 +186,16 @@ def remove_all_tabs(tabWidget):
         tabWidget.removeTab(i)
 
 
-def insert_tab(tabWidget, name):
+def insert_tab(tabWidget, data):
     """
     Inserts tab with any given name, containing
     a table widget with a few different placeholder
     texts
     """
+    # Get data
+    name = data.name
+    players = data.player_list
+
     # Create tab
     tab = QWidget()
     tab.setObjectName(name)
@@ -203,60 +207,33 @@ def insert_tab(tabWidget, name):
     # Create table widget
     tableWidget = QTableWidget(tab)
     tableWidget.setObjectName("tableWidget")
-    tableWidget.setColumnCount(3)
-    tableWidget.setRowCount(3)
+    tableWidget.setColumnCount(2)
+    tableWidget.setRowCount(len(players))
 
     # Horizontal
-    # # Rank
-    item = QTableWidgetItem()
-    item.setText("Rank")
-    tableWidget.setHorizontalHeaderItem(0, item)
     # # Name
     item = QTableWidgetItem()
     item.setText("Name")
-    tableWidget.setHorizontalHeaderItem(1, item)
+    tableWidget.setHorizontalHeaderItem(0, item)
     # # Score
     item = QTableWidgetItem()
     item.setText("Score")
-    tableWidget.setHorizontalHeaderItem(2, item)
+    tableWidget.setHorizontalHeaderItem(1, item)
 
-    # Vertical (loop)
-    item = QTableWidgetItem()
-    tableWidget.setVerticalHeaderItem(0, item)
+    # Vertical
+    for player in players:
+        # Index
+        index = player.rank - 1
 
-    item = QTableWidgetItem()
-    tableWidget.setVerticalHeaderItem(1, item)
+        # Name
+        item = QTableWidgetItem()
+        item.setText(player.username)
+        tableWidget.setItem(index, 0, item)
 
-    item = QTableWidgetItem()
-    tableWidget.setVerticalHeaderItem(2, item)
-
-    # Test entries
-    item = QTableWidgetItem()
-    tableWidget.setItem(0, 0, item)
-
-    item = QTableWidgetItem()
-    tableWidget.setItem(0, 1, item)
-
-    item = QTableWidgetItem()
-    tableWidget.setItem(0, 2, item)
-
-    item = QTableWidgetItem()
-    tableWidget.setItem(1, 0, item)
-
-    item = QTableWidgetItem()
-    tableWidget.setItem(1, 1, item)
-
-    item = QTableWidgetItem()
-    tableWidget.setItem(1, 2, item)
-
-    item = QTableWidgetItem()
-    tableWidget.setItem(2, 0, item)
-
-    item = QTableWidgetItem()
-    tableWidget.setItem(2, 1, item)
-
-    item = QTableWidgetItem()
-    tableWidget.setItem(2, 2, item)
+        # Score
+        item = QTableWidgetItem()
+        item.setText(str(player.score))
+        tableWidget.setItem(index, 1, item)
 
     # Add table to layout
     layout.addWidget(tableWidget)
