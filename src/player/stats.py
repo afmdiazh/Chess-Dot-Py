@@ -1,3 +1,6 @@
+from .. import jutil as j
+
+
 class Stats:
     """
     Represents the player's stats
@@ -107,20 +110,33 @@ class SSection:
         self.name = name
 
         # Last: current rating
-        last = json["last"]
-        self.current_rating = last["rating"]
-        self.current_date = last["date"]
+        last = j.read_field(json, "last")
+        if last:
+            self.current_rating = last["rating"]
+            self.current_date = last["date"]
+        else:
+            self.current_rating = None
+            self.current_date = None
 
         # Best: highest rating
-        best = json["best"]
-        self.highest_rating = best["rating"]
-        self.highest_date = best["date"]
+        best = j.read_field(json, "best")
+        if best:
+            self.highest_rating = best["rating"]
+            self.highest_date = best["date"]
+        else:
+            self.highest_rating = None
+            self.highest_date = None
 
         # Record: wins, losses and draws
-        record = json["record"]
-        self.wins = record["win"]
-        self.losses = record["loss"]
-        self.draws = record["draw"]
+        record = j.read_field(json, "record")
+        if record:
+            self.wins = record["win"]
+            self.losses = record["loss"]
+            self.draws = record["draw"]
+        else:
+            self.wins = None
+            self.losses = None
+            self.draws = None
 
     def print_data(self):
         """
