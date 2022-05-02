@@ -2,7 +2,7 @@
 Big functions to update the main window
 """
 
-from ..util import format_date
+from util import format_date
 
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *

@@ -1,12 +1,12 @@
-from .interface.main_window import Ui_MainWindow
-from .data import get_player, get_leaderboard
+from interface.main_window import Ui_MainWindow
+from data import get_player, get_leaderboard
 from PyQt5 import QtCore
 
-import src.interface.window_manager as w
+import interface.window_manager as w
 import requests
 
 
-class Main(Ui_MainWindow):
+class Window(Ui_MainWindow):
     """
     Chess-Dot-Py main class
     """

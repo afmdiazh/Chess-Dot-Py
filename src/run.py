@@ -1,9 +1,9 @@
 from PyQt5 import QtWidgets
-from src.main import Main
+from window import Window
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     window = QtWidgets.QMainWindow()
-    ui = Main(window)
+    interface = Window(window)
     sys.exit(app.exec_())
