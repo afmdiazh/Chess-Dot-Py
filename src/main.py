@@ -1,8 +1,10 @@
 from .interface.main_window import Ui_MainWindow
 from .interface.window_util import set_initial_state
 from .data import get_player
+
 from PyQt5.QtGui import QPixmap, QImage
-from PyQt5 import QtGui
+from PyQt5 import QtGui, QtCore
+
 import requests
 
 
@@ -19,11 +21,12 @@ class Main(Ui_MainWindow):
         Initializes the window
         """
         super().__init__()
+        self.player_data_downloader = PlayerDataDownloader()
         self.setupUi(window)
-        window.resize(600, 500)
-        window.show()
         self.set_connections()
         self.set_initial_state()
+        window.resize(600, 500)
+        window.show()
 
     def set_connections(self):
         """
@@ -32,6 +35,8 @@ class Main(Ui_MainWindow):
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
+        self.player_data_downloader.data_obtained.connect(
+            self.update_player_tab)
 
     def set_initial_state(self):
         """
@@ -46,7 +51,7 @@ class Main(Ui_MainWindow):
         """
         button_text = self.lineEditPlayerSearch.text().strip()
         if button_text != "":
-            self.update_player_tab(button_text)
+            self.fetch_player_data(button_text)
 
     def button_reload_clicked(self):
         """
@@ -54,7 +59,7 @@ class Main(Ui_MainWindow):
         Reloads the last searched profile if there's any
         """
         if self.last_loaded_player != None:
-            self.update_player_tab(self.last_loaded_player)
+            self.fetch_player_data(self.last_loaded_player)
 
     def button_clear_clicked(self):
         """
@@ -64,11 +69,21 @@ class Main(Ui_MainWindow):
         self.last_loaded_player = None
         self.set_initial_state()
 
-    def update_player_tab(self, player_name):
+    def fetch_player_data(self, player_name):
         """
-        Updates player tab
+        Starts the player data download thread with the given
+        player name
         """
-        player = get_player(player_name)
+        self.player_data_downloader.set_player_name(player_name)
+        self.player_data_downloader.start()
+
+    def update_player_tab(self, data):
+        """
+        Updates player tab with the data obtained from the
+        player data downloader thread
+        """
+
+        player = data["player"]
 
         if player == None:
             self.set_initial_state()
@@ -149,14 +164,54 @@ class Main(Ui_MainWindow):
                 self.lineEditBlitzWinrate.setText(str(section.get_win_rate()))
 
             # Icon
-            avatar_url = player.profile.avatar_url
+            avatar = data["avatar"]
 
-            if avatar_url != None:
+            if avatar != None:
                 avatar_image = QImage()
-                avatar_image.loadFromData(requests.get(avatar_url).content)
+                avatar_image.loadFromData(avatar)
                 self.image.setPixmap(QPixmap(avatar_image))
             else:
                 self.image.setPixmap(QtGui.QPixmap("res/avatar.png"))
 
             # Save
-            self.last_loaded_player = player_name
+            self.last_loaded_player = data["player_name"]
+
+
+class PlayerDataDownloader(QtCore.QThread):
+    """
+    Downloader class to obtain player data while not
+    freezing the interface
+    """
+
+    data_obtained = QtCore.pyqtSignal(object)
+
+    def __init__(self):
+        """
+        Constructor
+        """
+        QtCore.QThread.__init__(self)
+
+    def set_player_name(self, player_name):
+        """
+        Updates player name for download
+        """
+        self.player_name = player_name
+
+    def run(self):
+        """
+        Obtains the player data and emits response
+        """
+        player = get_player(self.player_name)
+        avatar_url = player.profile.avatar_url
+        avatar = None
+        if avatar_url != None:
+            avatar = requests.get(avatar_url).content
+
+        response = {
+            "player_name": self.player_name,
+            "player": player,
+            "avatar": avatar
+        }
+
+        # Emits response
+        self.data_obtained.emit(response)
