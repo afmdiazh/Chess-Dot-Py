@@ -1,3 +1,6 @@
+from ..util import read_field
+
+
 class Stats:
     """
     Represents the player's stats
@@ -89,7 +92,10 @@ class Stats:
         """
         total_games = self.get_total_games()
         total_wins = self.get_total_wins()
-        return total_wins / total_games
+        if total_games == 0:
+            return 0
+        else:
+            return total_wins / total_games
 
 
 class SSection:
@@ -104,20 +110,33 @@ class SSection:
         self.name = name
 
         # Last: current rating
-        last = json["last"]
-        self.current_rating = last["rating"]
-        self.current_date = last["date"]
+        last = read_field(json, "last")
+        if last:
+            self.current_rating = last["rating"]
+            self.current_date = last["date"]
+        else:
+            self.current_rating = None
+            self.current_date = None
 
         # Best: highest rating
-        best = json["best"]
-        self.highest_rating = best["rating"]
-        self.highest_date = best["date"]
+        best = read_field(json, "best")
+        if best:
+            self.highest_rating = best["rating"]
+            self.highest_date = best["date"]
+        else:
+            self.highest_rating = None
+            self.highest_date = None
 
         # Record: wins, losses and draws
-        record = json["record"]
-        self.wins = record["win"]
-        self.losses = record["loss"]
-        self.draws = record["draw"]
+        record = read_field(json, "record")
+        if record:
+            self.wins = record["win"]
+            self.losses = record["loss"]
+            self.draws = record["draw"]
+        else:
+            self.wins = None
+            self.losses = None
+            self.draws = None
 
     def print_data(self):
         """
@@ -148,7 +167,10 @@ class SSection:
         Gets % of won games
         """
         total = self.get_total_games()
-        return self.wins / total
+        if total == 0:
+            return 0
+        else:
+            return self.wins / total
 
     def get_rating_string(self):
         """
