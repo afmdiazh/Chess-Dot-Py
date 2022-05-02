@@ -1,6 +1,6 @@
 import chessdotcom as c
-from player import player
-from leaderboard import leaderboard
+from .player.player import Player
+from .leaderboard.leaderboard import Leaderboard
 
 
 def get_leaderboards_json():
@@ -55,7 +55,7 @@ def get_player(username):
     profile = get_player_profile_json(username)
     stats = get_player_stats_json(username)
     if (profile and stats):
-        return player.Player(profile, stats)
+        return Player(profile, stats)
     else:
         return None
 
@@ -67,6 +67,6 @@ def get_leaderboard():
     """
     json_data = get_leaderboards_json()
     if (json_data):
-        return leaderboard.Leaderboard(json_data)
+        return Leaderboard(json_data)
     else:
         return None
