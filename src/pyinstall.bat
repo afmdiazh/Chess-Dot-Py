@@ -1,1 +1,2 @@
 pyinstaller main.spec
+pause

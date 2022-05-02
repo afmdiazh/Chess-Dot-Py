@@ -3,13 +3,11 @@
 
 block_cipher = None
 
-extra_files = ["./res/*"]
-
 a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=extra_files,
+    datas=["./res"],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -20,6 +18,7 @@ a = Analysis(
     cipher=block_cipher,
     noarchive=False,
 )
+
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
 exe = EXE(
