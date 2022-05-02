@@ -100,7 +100,7 @@ class Main(Ui_MainWindow):
         Updates leaderboard tab with the data obtained from the
         leaderboard downloader thread.
         """
-        w.remove_all_tabs(self.tabWidgetLeaderboard)
+        self.tabWidgetLeaderboard.clear()
         for section in leaderboard.section_list:
             w.insert_tab(self.tabWidgetLeaderboard, section)
 

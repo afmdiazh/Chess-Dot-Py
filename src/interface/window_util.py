@@ -178,14 +178,6 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def remove_all_tabs(tabWidget):
-    """
-    Removes all tabs from a tabWidget
-    """
-    for i in range(tabWidget.count()):
-        tabWidget.removeTab(i)
-
-
 def insert_tab(tabWidget, data):
     """
     Inserts tab with any given name, containing
