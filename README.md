@@ -4,18 +4,33 @@ ChessDotPy is a simple app to access the Chess.com API.
 
 [README in Spanish](https://github.com/mgldz/Chess-Dot-Py/blob/main/README.es.md)
 
+## Features
+
+- Profile
+- Leaderboard
+
 ## Installation
+
+### Option 1: Executable
+
+Download as an automatically generated executable from [the actions page](https://github.com/mgldz/Chess-Dot-Py/actions/workflows/pyinstaller.yml).
+
+### Option 2: Manual install
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements.
 
 ```bash
+
 pip install requirements.txt
+
 ```
 
-Run ChessDotPy.
+Run ChessDotPy from the src folder.
 
 ```bash
-python run.py
+
+python main.py
+
 ```
 
 ## Contributing
