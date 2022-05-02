@@ -29,7 +29,7 @@ class Main(Ui_MainWindow):
 
     def set_connections(self):
         """
-        Connects UI elements to functions
+        Connects UI elements and events to functions
         """
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
@@ -98,7 +98,8 @@ class Main(Ui_MainWindow):
     def leaderboard_downloaded(self, leaderboard):
         """
         Updates leaderboard tab with the data obtained from the
-        leaderboard downloader thread.
+        leaderboard downloader thread. Adds one tab per section inside
+        the leaderboard object.
         """
         self.tabWidgetLeaderboard.clear()
         for section in leaderboard.section_list:
