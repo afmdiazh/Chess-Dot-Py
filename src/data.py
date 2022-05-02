@@ -1,6 +1,6 @@
 import chessdotcom as c
-from .player.player import Player
-from .leaderboard.leaderboard import Leaderboard
+from player.player import Player
+from leaderboard.leaderboard import Leaderboard
 
 
 def get_leaderboards_json():

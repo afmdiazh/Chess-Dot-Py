@@ -1,4 +1,4 @@
-from ..util import read_field
+from util import read_field
 
 
 class Stats:
