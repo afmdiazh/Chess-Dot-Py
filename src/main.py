@@ -1,7 +1,6 @@
 from .interface.main_window import Ui_MainWindow
 from .interface.window_util import set_initial_state
 from .data import get_player
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5 import QtGui
 import requests
@@ -11,6 +10,9 @@ class Main(Ui_MainWindow):
     """
     Chess-Dot-Py main class
     """
+
+    # Username of the last loaded player
+    last_loaded_player = None
 
     def __init__(self, window):
         """
@@ -28,6 +30,8 @@ class Main(Ui_MainWindow):
         Connects UI elements to functions
         """
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
+        self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
+        self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
 
     def set_initial_state(self):
         """
@@ -38,9 +42,27 @@ class Main(Ui_MainWindow):
     def button_search_clicked(self):
         """
         Executed when pushButtonPlayerSearch is clicked
+        Loads the profile data of the inputted text if there's any
         """
         button_text = self.lineEditPlayerSearch.text().strip()
-        self.update_player_tab(button_text)
+        if button_text != "":
+            self.update_player_tab(button_text)
+
+    def button_reload_clicked(self):
+        """
+        Executed when pushButtonPlayerReload is clicked
+        Reloads the last searched profile if there's any
+        """
+        if self.last_loaded_player != None:
+            self.update_player_tab(self.last_loaded_player)
+
+    def button_clear_clicked(self):
+        """
+        Executed when pushButtonPlayerClear is clicked
+        Clears all the profile fields
+        """
+        self.last_loaded_player = None
+        self.set_initial_state()
 
     def update_player_tab(self, player_name):
         """
@@ -126,7 +148,7 @@ class Main(Ui_MainWindow):
                 self.lineEditBlitzDraws.setText(str(section.draws))
                 self.lineEditBlitzWinrate.setText(str(section.get_win_rate()))
 
-            # # Icon
+            # Icon
             avatar_url = player.profile.avatar_url
 
             if avatar_url != None:
@@ -135,3 +157,6 @@ class Main(Ui_MainWindow):
                 self.image.setPixmap(QPixmap(avatar_image))
             else:
                 self.image.setPixmap(QtGui.QPixmap("res/avatar.png"))
+
+            # Save
+            self.last_loaded_player = player_name
