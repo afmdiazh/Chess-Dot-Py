@@ -182,9 +182,9 @@ def update_sections(self, data):
 
 def insert_tab(tabWidget, section):
     """
-    Inserts tab with any given name, containing
-    a table widget with a few different placeholder
-    texts
+    Inserts a tab to a tabWidget loading data from a section
+    The tab contains a table with player data from the section object
+    Table is returned so it can be linked to events
     """
     # Get data
     name = section.name
