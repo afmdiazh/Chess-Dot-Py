@@ -35,12 +35,18 @@ class Window(Ui_MainWindow):
         """
         Connects UI elements and events to functions
         """
+        # Buttons
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
         self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
+
+        # Downloaders
         self.player_downloader.done.connect(self.player_data_downloaded)
         self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
+
+        # Table (not a connection, assigned in manager)
+        self.table_double_clicked_event = self.table_double_clicked
 
     def set_initial_state(self):
         """
@@ -107,7 +113,22 @@ class Window(Ui_MainWindow):
         """
         self.tabWidgetLeaderboard.clear()
         for section in leaderboard.section_list:
-            w.insert_tab(self.tabWidgetLeaderboard, section)
+            table = w.insert_tab(self.tabWidgetLeaderboard, section)
+            table.itemDoubleClicked.connect(self.table_double_clicked_event)
+
+    def table_double_clicked(self, item):
+        """
+        Executed when a leaderboard table element is double clicked
+        Redirects to the player tab and loads the profile of the clicked player
+        """
+        if item.column() == 0:
+            print("Correct column")
+            username = item.text().strip()
+            if username != "":
+                print("Proper username")
+                self.tabWidgetMain.setCurrentIndex(0)
+                self.lineEditPlayerSearch.setText(username)
+                self.fetch_player_data(username)
 
 
 class PlayerDownloader(QtCore.QThread):

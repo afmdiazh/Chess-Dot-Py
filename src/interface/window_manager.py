@@ -4,6 +4,7 @@ Big functions to update the main window
 
 from util import format_date, get_resource_path
 
+from PyQt5 import QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
@@ -221,11 +222,13 @@ def insert_tab(tabWidget, section):
         # Name
         item = QTableWidgetItem()
         item.setText(player.username)
+        item.setFlags(QtCore.Qt.ItemIsEnabled)
         tableWidget.setItem(index, 0, item)
 
         # Score
         item = QTableWidgetItem()
         item.setText(str(player.score))
+        item.setFlags(QtCore.Qt.ItemIsEnabled)
         tableWidget.setItem(index, 1, item)
 
     # Add table to layout
@@ -233,3 +236,6 @@ def insert_tab(tabWidget, section):
 
     # Add tab
     tabWidget.addTab(tab, section.get_formatted_name())
+
+    # Returns the added table
+    return tableWidget
