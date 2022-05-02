@@ -201,35 +201,32 @@ def insert_tab(tabWidget, section):
     # Create table widget
     tableWidget = QTableWidget(tab)
     tableWidget.setObjectName("tableWidget")
-    tableWidget.setColumnCount(2)
     tableWidget.setRowCount(len(players))
 
     # Horizontal
-    # # Name
-    item = QTableWidgetItem()
-    item.setText("Name")
-    tableWidget.setHorizontalHeaderItem(0, item)
-    # # Score
-    item = QTableWidgetItem()
-    item.setText("Score")
-    tableWidget.setHorizontalHeaderItem(1, item)
+    fields = ["Name", "Score", "Status"]
+    tableWidget.setColumnCount(len(fields))
+
+    # Add all the fields
+    for field in fields:
+        item = QTableWidgetItem()
+        item.setText(field)
+        tableWidget.setHorizontalHeaderItem(fields.index(field), item)
 
     # Vertical
     for player in players:
-        # Index
-        index = player.rank - 1
+        # Index / rank of the player
+        index = players.index(player)
 
-        # Name
-        item = QTableWidgetItem()
-        item.setText(player.username)
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        tableWidget.setItem(index, 0, item)
+        # Values to append to the table
+        values = [player.username, str(player.score), player.status]
 
-        # Score
-        item = QTableWidgetItem()
-        item.setText(str(player.score))
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        tableWidget.setItem(index, 1, item)
+        # Loop trough value list
+        for value in values:
+            item = QTableWidgetItem()
+            item.setText(value)
+            item.setFlags(QtCore.Qt.ItemIsEnabled)
+            tableWidget.setItem(index, values.index(value), item)
 
     # Add table to layout
     layout.addWidget(tableWidget)
