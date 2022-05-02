@@ -2,6 +2,8 @@
 
 ChessDotPy is a simple app to access the Chess.com API.
 
+[README in Spanish](https://github.com/mgldz/Chess-Dot-Py/blob/main/README.es.md)
+
 ## Features
 
 - Profile
