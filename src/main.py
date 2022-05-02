@@ -2,7 +2,7 @@ from .interface.main_window import Ui_MainWindow
 from .data import get_player, get_leaderboard
 from PyQt5 import QtCore
 
-import src.interface.window_util as w
+import src.interface.window_manager as w
 import requests
 
 
