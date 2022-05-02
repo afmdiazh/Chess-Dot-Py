@@ -72,7 +72,7 @@ def set_initial_state(self):
 
     # Avatar
     self.image.setText("")
-    self.image.setPixmap(QPixmap(get_resource_path("res/avatar.png")))
+    self.image.setPixmap(QPixmap(get_resource_path("resources/avatar.png")))
 
 
 def update_sections(self, data):
@@ -172,7 +172,8 @@ def update_sections(self, data):
             avatar_image.loadFromData(avatar)
             self.image.setPixmap(QPixmap(avatar_image))
         else:
-            self.image.setPixmap(QPixmap(get_resource_path("res/avatar.png")))
+            self.image.setPixmap(
+                QPixmap(get_resource_path("resources/avatar.png")))
 
         # Save
         self.last_loaded_player = data["player_name"]
