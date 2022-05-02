@@ -178,15 +178,15 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def insert_tab(tabWidget, data):
+def insert_tab(tabWidget, section):
     """
     Inserts tab with any given name, containing
     a table widget with a few different placeholder
     texts
     """
     # Get data
-    name = data.name
-    players = data.player_list
+    name = section.name
+    players = section.player_list
 
     # Create tab
     tab = QWidget()
@@ -231,4 +231,4 @@ def insert_tab(tabWidget, data):
     layout.addWidget(tableWidget)
 
     # Add tab
-    tabWidget.addTab(tab, name)
+    tabWidget.addTab(tab, section.get_formatted_name())

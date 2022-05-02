@@ -59,6 +59,15 @@ class LSection:
         for player in self.player_list:
             player.print_data()
 
+    def get_formatted_name(self):
+        """
+        Obtains formatted name
+         - Sets first letter to uppercase
+         - Replaces underscores with spaces
+        """
+        formatted = self.name.capitalize().replace("_", " ")
+        return formatted
+
 
 class LPlayer:
     """
