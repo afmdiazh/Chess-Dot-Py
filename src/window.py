@@ -1,6 +1,8 @@
 from interface.main_window import Ui_MainWindow
+from util import get_resource_path
+
 from data import get_player, get_leaderboard
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtGui
 
 import interface.window_manager as w
 import requests
@@ -8,7 +10,7 @@ import requests
 
 class Window(Ui_MainWindow):
     """
-    Chess-Dot-Py main class
+    Chess-Dot-Py main window
     """
 
     # Username of the last loaded player
@@ -24,6 +26,8 @@ class Window(Ui_MainWindow):
         self.setupUi(window)
         self.set_connections()
         self.set_initial_state()
+        window.setWindowIcon(QtGui.QIcon(
+            get_resource_path('resources/icon.png')))
         window.resize(600, 500)
         window.show()
 
