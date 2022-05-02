@@ -10,14 +10,29 @@ class Leaderboard:
         leaderboards = json["leaderboards"]
 
         # Get all the section names
-        section_names = leaderboards.keys()
+        self.section_names = leaderboards.keys()
 
         # List of sections
         self.section_list = []
 
         # Generate objects for all sections
-        for section in section_names:
+        for section in self.section_names:
             self.section_list.append(LSection(section, leaderboards[section]))
+
+    def print_data(self):
+        """
+        Prints data of all sections
+        """
+        print("Showing loaderboard data")
+        for section in self.section_list:
+            section.print_data()
+
+    def print_section_names(self):
+        """
+        Prints all section names
+        """
+        for section in self.section_list:
+            print(section.name)
 
 
 class LSection:
@@ -35,6 +50,14 @@ class LSection:
         # Generate objects for all players
         for player in json:
             self.player_list.append(LPlayer(player))
+
+    def print_data(self):
+        """
+        Prints data of all players
+        """
+        print("Showing section data:", self.name)
+        for player in self.player_list:
+            player.print_data()
 
 
 class LPlayer:
@@ -61,3 +84,11 @@ class LPlayer:
             self.name = json["name"]
         else:
             self.name = "Unknown"
+
+    def print_data(self):
+        """
+        Prints data
+        """
+        print("Showing player data:", self.name)
+        print(self.username)
+        print(self.score)
