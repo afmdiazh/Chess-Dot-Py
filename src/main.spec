@@ -34,7 +34,7 @@ a = Analysis(
     noarchive=False,
 )
 
-a.datas += extra_datas('res')
+a.datas += extra_datas('resources')
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
@@ -45,7 +45,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='main',
+    name='chess-dot-py',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -58,4 +58,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+	icon="resources/icon.ico"
 )
