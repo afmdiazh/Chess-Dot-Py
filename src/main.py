@@ -1,11 +1,8 @@
 from .interface.main_window import Ui_MainWindow
-from .interface.window_util import set_initial_state
-from .data import get_player
-from .util import format_date
+from .data import get_player, get_leaderboard
+from PyQt5 import QtCore
 
-from PyQt5.QtGui import QPixmap, QImage
-from PyQt5 import QtGui, QtCore
-
+import src.interface.window_util as w
 import requests
 
 
@@ -23,6 +20,7 @@ class Main(Ui_MainWindow):
         """
         super().__init__()
         self.player_downloader = PlayerDownloader()
+        self.leaderboard_downloader = LeaderboardDownloader()
         self.setupUi(window)
         self.set_connections()
         self.set_initial_state()
@@ -36,13 +34,15 @@ class Main(Ui_MainWindow):
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
-        self.player_downloader.downloaded.connect(self.player_data_downloaded)
+        self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
+        self.player_downloader.done.connect(self.player_data_downloaded)
+        self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
 
     def set_initial_state(self):
         """
         Sets initial state for some UI elements
         """
-        set_initial_state(self)
+        w.set_initial_state(self)
 
     def button_search_clicked(self):
         """
@@ -69,6 +69,13 @@ class Main(Ui_MainWindow):
         self.last_loaded_player = None
         self.set_initial_state()
 
+    def button_lb_clicked(self):
+        """
+        Executed when pushButtonLBUpdate is clicked
+        Updates the leaderboard data
+        """
+        self.leaderboard_downloader.start()
+
     def fetch_player_data(self, player_name):
         """
         Starts the player data download thread with the given
@@ -86,99 +93,18 @@ class Main(Ui_MainWindow):
          - player_name: player name used in the search
          - avatar: downloaded avatar image
         """
+        w.update_sections(self, data)
 
-        player = data["player"]
-
-        if player == None:
-            self.set_initial_state()
-        else:
-            # Total stats
-            stats = player.stats
-            self.lineEditTotalGames.setText(str(stats.get_total_games()))
-            self.lineEditTotalWins.setText(str(stats.get_total_wins()))
-            self.lineEditTotalLosses.setText(str(stats.get_total_losses()))
-            self.lineEditTotalDraws.setText(str(stats.get_total_draws()))
-            self.lineEditTotalWinrate.setText(str(stats.get_total_winrate()))
-
-            # Profile
-            profile = player.profile
-            self.lineEditFollowers.setText(str(profile.followers))
-            self.lineEditTitle.setText(profile.title)
-            self.lineEditLastOnline.setText(format_date(profile.last_online))
-            self.lineEditJoinedOn.setText(format_date(profile.joined))
-            self.lineEditUsername.setText(profile.username)
-            self.lineEditName.setText(profile.name)
-            self.lineEditStatus.setText(profile.status)
-
-            # Modes
-            # # Daily
-            has_section = player.stats.has_section("chess_daily")
-            self.tabWidgetSubsection.setTabEnabled(0, has_section)
-            self.qWidgetDaily.setEnabled(has_section)
-            if has_section:
-                section = player.stats.get_section("chess_daily")
-                self.lineEditDailyRating.setText(section.get_rating_string())
-                self.lineEditDailyGames.setText(
-                    str(section.get_total_games()))
-                self.lineEditDailyWins.setText(str(section.wins))
-                self.lineEditDailyLosses.setText(str(section.losses))
-                self.lineEditDailyDraws.setText(str(section.draws))
-                self.lineEditDailyWinrate.setText(str(section.get_win_rate()))
-
-            # # Rapid
-            has_section = player.stats.has_section("chess_rapid")
-            self.tabWidgetSubsection.setTabEnabled(1, has_section)
-            self.qWidgetRapid.setEnabled(has_section)
-            if has_section:
-                section = player.stats.get_section("chess_rapid")
-                self.lineEditRapidRating.setText(section.get_rating_string())
-                self.lineEditRapidGames.setText(
-                    str(section.get_total_games()))
-                self.lineEditRapidWins.setText(str(section.wins))
-                self.lineEditRapidLosses.setText(str(section.losses))
-                self.lineEditRapidDraws.setText(str(section.draws))
-                self.lineEditRapidWinrate.setText(str(section.get_win_rate()))
-
-            # # Bullet
-            has_section = player.stats.has_section("chess_bullet")
-            self.tabWidgetSubsection.setTabEnabled(2, has_section)
-            self.qWidgetBullet.setEnabled(has_section)
-            if has_section:
-                section = player.stats.get_section("chess_bullet")
-                self.lineEditBulletRating.setText(section.get_rating_string())
-                self.lineEditBulletGames.setText(
-                    str(section.get_total_games()))
-                self.lineEditBulletWins.setText(str(section.wins))
-                self.lineEditBulletLosses.setText(str(section.losses))
-                self.lineEditBulletDraws.setText(str(section.draws))
-                self.lineEditBulletWinrate.setText(str(section.get_win_rate()))
-
-            # # Blitz
-            has_section = player.stats.has_section("chess_blitz")
-            self.tabWidgetSubsection.setTabEnabled(3, has_section)
-            self.qWidgetBlitz.setEnabled(has_section)
-            if has_section:
-                section = player.stats.get_section("chess_blitz")
-                self.lineEditBlitzRating.setText(section.get_rating_string())
-                self.lineEditBlitzGames.setText(
-                    str(section.get_total_games()))
-                self.lineEditBlitzWins.setText(str(section.wins))
-                self.lineEditBlitzLosses.setText(str(section.losses))
-                self.lineEditBlitzDraws.setText(str(section.draws))
-                self.lineEditBlitzWinrate.setText(str(section.get_win_rate()))
-
-            # Icon
-            avatar = data["avatar"]
-
-            if avatar != None:
-                avatar_image = QImage()
-                avatar_image.loadFromData(avatar)
-                self.image.setPixmap(QPixmap(avatar_image))
-            else:
-                self.image.setPixmap(QtGui.QPixmap("res/avatar.png"))
-
-            # Save
-            self.last_loaded_player = data["player_name"]
+    def leaderboard_downloaded(self, leaderboard):
+        """
+        Updates leaderboard tab with the data obtained from the
+        leaderboard downloader thread.
+        """
+        # leaderboard.print_data()
+        # leaderboard.print_section_names()
+        w.remove_all_tabs(self.tabWidgetLeaderboard)
+        for name in leaderboard.section_names:
+            w.insert_tab(self.tabWidgetLeaderboard, name)
 
 
 class PlayerDownloader(QtCore.QThread):
@@ -187,7 +113,7 @@ class PlayerDownloader(QtCore.QThread):
     freezing the interface
     """
 
-    downloaded = QtCore.pyqtSignal(object)
+    done = QtCore.pyqtSignal(object)
 
     def __init__(self):
         """
@@ -228,4 +154,25 @@ class PlayerDownloader(QtCore.QThread):
                     response["avatar"] = None
 
         # Emits response
-        self.downloaded.emit(response)
+        self.done.emit(response)
+
+
+class LeaderboardDownloader(QtCore.QThread):
+    """
+    Downloader class to obtain leaderboard data
+    """
+
+    done = QtCore.pyqtSignal(object)
+
+    def __init__(self):
+        """
+        Constructor
+        """
+        QtCore.QThread.__init__(self)
+
+    def run(self):
+        """
+        Obtains the leaderboard data and emits response
+        """
+        leaderboard = get_leaderboard()
+        self.done.emit(leaderboard)
