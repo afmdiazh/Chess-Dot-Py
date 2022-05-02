@@ -1394,6 +1394,18 @@
          <attribute name="title">
           <string>Leaderboard</string>
          </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="pushButtonLBUpdate">
+            <property name="text">
+             <string>Update</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTabWidget" name="tabWidgetLeaderboard"/>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>
