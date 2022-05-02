@@ -2,7 +2,7 @@
 Big functions to update the main window
 """
 
-from util import format_date
+from util import format_date, get_resource_path
 
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -72,7 +72,7 @@ def set_initial_state(self):
 
     # Avatar
     self.image.setText("")
-    self.image.setPixmap(QPixmap("res/avatar.png"))
+    self.image.setPixmap(QPixmap(get_resource_path("res/avatar.png")))
 
 
 def update_sections(self, data):
@@ -172,7 +172,7 @@ def update_sections(self, data):
             avatar_image.loadFromData(avatar)
             self.image.setPixmap(QPixmap(avatar_image))
         else:
-            self.image.setPixmap(QPixmap("res/avatar.png"))
+            self.image.setPixmap(QPixmap(get_resource_path("res/avatar.png")))
 
         # Save
         self.last_loaded_player = data["player_name"]
