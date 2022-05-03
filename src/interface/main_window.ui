@@ -60,6 +60,16 @@
           <string>Player</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonPlayerSearch">
+            <property name="locale">
+             <locale language="English" country="UnitedStates"/>
+            </property>
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLineEdit" name="lineEditPlayerSearch">
             <property name="locale">
@@ -70,7 +80,27 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="5">
+          <item row="0" column="4">
+           <widget class="QPushButton" name="pushButtonPlayerClear">
+            <property name="locale">
+             <locale language="English" country="UnitedStates"/>
+            </property>
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="pushButtonPlayerReload">
+            <property name="locale">
+             <locale language="English" country="UnitedStates"/>
+            </property>
+            <property name="text">
+             <string>Reload</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="6">
            <layout class="QHBoxLayout" name="horizontalLayoutPlayer">
             <item>
              <widget class="QGroupBox" name="groupBoxStats">
@@ -1254,7 +1284,7 @@
                 <number>2</number>
                </property>
                <property name="verticalSpacing">
-                <number>6</number>
+                <number>12</number>
                </property>
                <item row="1" column="0">
                 <layout class="QGridLayout" name="gridLayoutProfile">
@@ -1469,33 +1499,22 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="3">
-           <widget class="QPushButton" name="pushButtonPlayerClear">
-            <property name="locale">
-             <locale language="English" country="UnitedStates"/>
-            </property>
-            <property name="text">
-             <string>Clear</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonPlayerReload">
-            <property name="locale">
-             <locale language="English" country="UnitedStates"/>
-            </property>
-            <property name="text">
-             <string>Reload</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
-           <widget class="QPushButton" name="pushButtonPlayerSearch">
-            <property name="locale">
-             <locale language="English" country="UnitedStates"/>
+           <widget class="QLabel" name="loadingPlayer">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
             </property>
             <property name="text">
-             <string>Search</string>
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap>../resources/loading.gif</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1505,15 +1524,8 @@
          <attribute name="title">
           <string>Leaderboard</string>
          </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QPushButton" name="pushButtonLBUpdate">
-            <property name="text">
-             <string>Update</string>
-            </property>
-           </widget>
-          </item>
-          <item>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="3" column="0">
            <widget class="QTabWidget" name="tabWidgetLeaderboard">
             <property name="elideMode">
              <enum>Qt::ElideNone</enum>
@@ -1525,6 +1537,42 @@
              <bool>true</bool>
             </property>
            </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayoutLeaderboard">
+            <item>
+             <widget class="QPushButton" name="pushButtonLBUpdate">
+              <property name="text">
+               <string>Update</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="loadingLeaderboard">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap>../resources/loading.gif</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -1589,7 +1637,6 @@
   <tabstop>lineEditUsername</tabstop>
   <tabstop>lineEditName</tabstop>
   <tabstop>lineEditStatus</tabstop>
-  <tabstop>pushButtonLBUpdate</tabstop>
   <tabstop>tabWidgetLeaderboard</tabstop>
  </tabstops>
  <resources/>

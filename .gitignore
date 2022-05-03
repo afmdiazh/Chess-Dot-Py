@@ -129,3 +129,6 @@ dmypy.json
 
 # Other
 test/
+
+# Visual studio code
+vscode/
