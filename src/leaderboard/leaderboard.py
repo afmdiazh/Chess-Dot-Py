@@ -1,5 +1,8 @@
-from util import read_field
 import os.path
+import emoji
+
+from util import read_field
+
 
 class Leaderboard:
     """
@@ -89,7 +92,7 @@ class LPlayer:
         self.country_api_id = read_field(json, "country")
         self.status = read_field(json, "status")
         self.avatar_url = read_field(json, "avatar")
-        self.flair = read_field(json, "flair")
+        self.flair = read_field(json, "flair_code")
         self.name = read_field(json, "name", "Unknown")
         self.wins = read_field(json, "win_count")
         self.losses = read_field(json, "loss_count")
@@ -113,9 +116,8 @@ class LPlayer:
     def get_flair(self):
         """
         Returns flair (emoji)
-        TODO: Convert emoji name to emoji
         """
-        return self.flair
+        return emoji.emojize(":%s:" % self.flair)
 
     def get_formatted_stats(self):
         """

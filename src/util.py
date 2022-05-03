@@ -7,7 +7,7 @@ import os
 import sys
 
 
-def read_field(json, field, default_value = None):
+def read_field(json, field, default_value=None):
     """
     Reads a field from a json object
     If the field doesn't exist, returns None

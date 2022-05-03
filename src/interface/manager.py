@@ -80,6 +80,7 @@ def set_initial_state(self):
     self.loadingPlayer.setPixmap(self.empty_image)
     self.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
 
+
 def update_sections(self, data):
     """
     Updates player tab with the data obtained from the
@@ -211,7 +212,15 @@ def insert_lb_tab(tabWidget, section):
     tableWidget.setRowCount(len(players))
 
     # Horizontal
-    fields = ["Username", "Name", "Score", "Stats", "Country"]
+    fields = [
+        "Username",
+        "Name",
+        "Score",
+        "Stats",
+        "Country",
+        "Flair"
+    ]
+
     tableWidget.setColumnCount(len(fields))
 
     # Add all the fields
@@ -226,7 +235,14 @@ def insert_lb_tab(tabWidget, section):
         index = players.index(player)
 
         # Values to append to the table
-        values = [player.username, player.name, str(player.score), player.get_formatted_stats(), player.get_country()]
+        values = [
+            player.username,
+            player.name,
+            str(player.score),
+            player.get_formatted_stats(),
+            player.get_country(),
+            player.get_flair()
+        ]
 
         # Loop trough value list
         for value in values:
