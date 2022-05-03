@@ -378,7 +378,10 @@
                   <locale language="English" country="UnitedStates"/>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>3</number>
+                 </property>
+                 <property name="usesScrollButtons">
+                  <bool>false</bool>
                  </property>
                  <widget class="QWidget" name="qWidgetDaily">
                   <attribute name="title">
@@ -1512,7 +1515,7 @@
                      <string/>
                     </property>
                     <property name="pixmap">
-                     <pixmap>../../res/avatar.png</pixmap>
+                     <pixmap>../resources/avatar.png</pixmap>
                     </property>
                     <property name="scaledContents">
                      <bool>true</bool>
@@ -1597,6 +1600,52 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>tabWidgetMain</tabstop>
+  <tabstop>lineEditPlayerSearch</tabstop>
+  <tabstop>pushButtonPlayerSearch</tabstop>
+  <tabstop>pushButtonPlayerReload</tabstop>
+  <tabstop>pushButtonPlayerClear</tabstop>
+  <tabstop>tabWidgetSubsection</tabstop>
+  <tabstop>lineEditDailyRating</tabstop>
+  <tabstop>lineEditDailyGames</tabstop>
+  <tabstop>lineEditDailyWins</tabstop>
+  <tabstop>lineEditDailyLosses</tabstop>
+  <tabstop>lineEditDailyWinrate</tabstop>
+  <tabstop>lineEditDailyDraws</tabstop>
+  <tabstop>lineEditRapidRating</tabstop>
+  <tabstop>lineEditRapidGames</tabstop>
+  <tabstop>lineEditRapidWins</tabstop>
+  <tabstop>lineEditRapidLosses</tabstop>
+  <tabstop>lineEditRapidDraws</tabstop>
+  <tabstop>lineEditRapidWinrate</tabstop>
+  <tabstop>lineEditBulletRating</tabstop>
+  <tabstop>lineEditBulletGames</tabstop>
+  <tabstop>lineEditBulletWins</tabstop>
+  <tabstop>lineEditBulletLosses</tabstop>
+  <tabstop>lineEditBulletDraws</tabstop>
+  <tabstop>lineEditBulletWinrate</tabstop>
+  <tabstop>lineEditBlitzRating</tabstop>
+  <tabstop>lineEditBlitzGames</tabstop>
+  <tabstop>lineEditBlitzWins</tabstop>
+  <tabstop>lineEditBlitzLosses</tabstop>
+  <tabstop>lineEditBlitzDraws</tabstop>
+  <tabstop>lineEditBlitzWinrate</tabstop>
+  <tabstop>lineEditTotalGames</tabstop>
+  <tabstop>lineEditTotalWins</tabstop>
+  <tabstop>lineEditTotalLosses</tabstop>
+  <tabstop>lineEditTotalDraws</tabstop>
+  <tabstop>lineEditTotalWinrate</tabstop>
+  <tabstop>lineEditFollowers</tabstop>
+  <tabstop>lineEditTitle</tabstop>
+  <tabstop>lineEditLastOnline</tabstop>
+  <tabstop>lineEditJoinedOn</tabstop>
+  <tabstop>lineEditUsername</tabstop>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditStatus</tabstop>
+  <tabstop>pushButtonLBUpdate</tabstop>
+  <tabstop>tabWidgetLeaderboard</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
