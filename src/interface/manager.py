@@ -96,7 +96,7 @@ def update_sections(self, data):
         self.lineEditTotalWins.setText(str(stats.get_total_wins()))
         self.lineEditTotalLosses.setText(str(stats.get_total_losses()))
         self.lineEditTotalDraws.setText(str(stats.get_total_draws()))
-        self.lineEditTotalWinrate.setText(str(stats.get_total_winrate()))
+        self.lineEditTotalWinrate.setText(stats.get_total_winrate())
 
         # Profile
         profile = player.profile
@@ -121,7 +121,7 @@ def update_sections(self, data):
             self.lineEditDailyWins.setText(str(section.wins))
             self.lineEditDailyLosses.setText(str(section.losses))
             self.lineEditDailyDraws.setText(str(section.draws))
-            self.lineEditDailyWinrate.setText(str(section.get_win_rate()))
+            self.lineEditDailyWinrate.setText(section.get_win_rate())
 
         # # Rapid
         has_section = player.stats.has_section("chess_rapid")
@@ -135,7 +135,7 @@ def update_sections(self, data):
             self.lineEditRapidWins.setText(str(section.wins))
             self.lineEditRapidLosses.setText(str(section.losses))
             self.lineEditRapidDraws.setText(str(section.draws))
-            self.lineEditRapidWinrate.setText(str(section.get_win_rate()))
+            self.lineEditRapidWinrate.setText(section.get_win_rate())
 
         # # Bullet
         has_section = player.stats.has_section("chess_bullet")
@@ -149,7 +149,7 @@ def update_sections(self, data):
             self.lineEditBulletWins.setText(str(section.wins))
             self.lineEditBulletLosses.setText(str(section.losses))
             self.lineEditBulletDraws.setText(str(section.draws))
-            self.lineEditBulletWinrate.setText(str(section.get_win_rate()))
+            self.lineEditBulletWinrate.setText(section.get_win_rate())
 
         # # Blitz
         has_section = player.stats.has_section("chess_blitz")
@@ -163,7 +163,7 @@ def update_sections(self, data):
             self.lineEditBlitzWins.setText(str(section.wins))
             self.lineEditBlitzLosses.setText(str(section.losses))
             self.lineEditBlitzDraws.setText(str(section.draws))
-            self.lineEditBlitzWinrate.setText(str(section.get_win_rate()))
+            self.lineEditBlitzWinrate.setText(section.get_win_rate())
 
         # Icon
         avatar = data["avatar"]

@@ -93,9 +93,9 @@ class Stats:
         total_games = self.get_total_games()
         total_wins = self.get_total_wins()
         if total_games == 0:
-            return 0
+            return "0%"
         else:
-            return total_wins / total_games
+            return str(round(total_wins / total_games * 100, 2)) + "%"
 
 
 class SSection:
@@ -168,9 +168,9 @@ class SSection:
         """
         total = self.get_total_games()
         if total == 0:
-            return 0
+            return "0%"
         else:
-            return self.wins / total
+            return str(round(self.wins / total * 100, 2)) + "%"
 
     def get_rating_string(self):
         """
