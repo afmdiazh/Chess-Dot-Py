@@ -204,7 +204,7 @@ def insert_lb_tab(tabWidget, section):
     tableWidget.setRowCount(len(players))
 
     # Horizontal
-    fields = ["Name", "Score", "Status"]
+    fields = ["Username", "Name", "Score", "Stats", "Country"]
     tableWidget.setColumnCount(len(fields))
 
     # Add all the fields
@@ -219,7 +219,7 @@ def insert_lb_tab(tabWidget, section):
         index = players.index(player)
 
         # Values to append to the table
-        values = [player.username, str(player.score), player.status]
+        values = [player.username, player.name, str(player.score), player.get_formatted_stats(), player.get_country()]
 
         # Loop trough value list
         for value in values:
@@ -227,6 +227,11 @@ def insert_lb_tab(tabWidget, section):
             item.setText(value)
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             tableWidget.setItem(index, values.index(value), item)
+
+    # Resize columns
+    header = tableWidget.horizontalHeader()
+    for i in range(len(fields)):
+        header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
     # Add table to layout
     layout.addWidget(tableWidget)
