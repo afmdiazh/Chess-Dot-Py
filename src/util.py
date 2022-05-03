@@ -57,5 +57,6 @@ def find_emoji(string):
     # Not found
     return "chess_pawn"
 
+# Load emoji list
 with open(get_resource_path("resources/emoji.json")) as f:
     emojis = json.load(f)
