@@ -74,7 +74,10 @@ def set_initial_state(self):
 
     # Avatar
     self.image.setText("")
-    self.image.setPixmap(QPixmap(get_resource_path("resources/avatar.png")))
+    self.image.setPixmap(self.default_avatar)
+
+    # Loading icon
+    self.loadingPlayer.setPixmap(self.empty_image)
 
 
 def update_sections(self, data):
