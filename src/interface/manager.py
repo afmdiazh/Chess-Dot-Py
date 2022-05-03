@@ -16,6 +16,7 @@ def set_initial_state(self):
     # Subsections
     for index in range(4):
         self.tabWidgetSubsection.setTabEnabled(index, False)
+        self.tabWidgetSubsection.setTabVisible(index, False)
 
     self.tabWidgetSubsection.setCurrentIndex(0)
     self.qWidgetBlitz.setEnabled(False)
@@ -112,6 +113,7 @@ def update_sections(self, data):
         # # Daily
         has_section = player.stats.has_section("chess_daily")
         self.tabWidgetSubsection.setTabEnabled(0, has_section)
+        self.tabWidgetSubsection.setTabVisible(0, has_section)
         self.qWidgetDaily.setEnabled(has_section)
         if has_section:
             section = player.stats.get_section("chess_daily")
@@ -126,6 +128,7 @@ def update_sections(self, data):
         # # Rapid
         has_section = player.stats.has_section("chess_rapid")
         self.tabWidgetSubsection.setTabEnabled(1, has_section)
+        self.tabWidgetSubsection.setTabVisible(1, has_section)
         self.qWidgetRapid.setEnabled(has_section)
         if has_section:
             section = player.stats.get_section("chess_rapid")
@@ -140,6 +143,7 @@ def update_sections(self, data):
         # # Bullet
         has_section = player.stats.has_section("chess_bullet")
         self.tabWidgetSubsection.setTabEnabled(2, has_section)
+        self.tabWidgetSubsection.setTabVisible(2, has_section)
         self.qWidgetBullet.setEnabled(has_section)
         if has_section:
             section = player.stats.get_section("chess_bullet")
@@ -154,6 +158,7 @@ def update_sections(self, data):
         # # Blitz
         has_section = player.stats.has_section("chess_blitz")
         self.tabWidgetSubsection.setTabEnabled(3, has_section)
+        self.tabWidgetSubsection.setTabVisible(3, has_section)
         self.qWidgetBlitz.setEnabled(has_section)
         if has_section:
             section = player.stats.get_section("chess_blitz")
