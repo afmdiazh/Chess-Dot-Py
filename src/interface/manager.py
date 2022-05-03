@@ -4,6 +4,7 @@ Big functions to update the main window
 
 from util import format_date, get_resource_path
 
+from PyQt5 import QtCore
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
@@ -179,11 +180,11 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def insert_tab(tabWidget, section):
+def insert_lb_tab(tabWidget, section):
     """
-    Inserts tab with any given name, containing
-    a table widget with a few different placeholder
-    texts
+    Inserts a tab to a tabWidget loading data from a section
+    The tab contains a table with player data from the section object
+    Table is returned so it can be linked to events
     """
     # Get data
     name = section.name
@@ -200,36 +201,38 @@ def insert_tab(tabWidget, section):
     # Create table widget
     tableWidget = QTableWidget(tab)
     tableWidget.setObjectName("tableWidget")
-    tableWidget.setColumnCount(2)
     tableWidget.setRowCount(len(players))
 
     # Horizontal
-    # # Name
-    item = QTableWidgetItem()
-    item.setText("Name")
-    tableWidget.setHorizontalHeaderItem(0, item)
-    # # Score
-    item = QTableWidgetItem()
-    item.setText("Score")
-    tableWidget.setHorizontalHeaderItem(1, item)
+    fields = ["Name", "Score", "Status"]
+    tableWidget.setColumnCount(len(fields))
+
+    # Add all the fields
+    for field in fields:
+        item = QTableWidgetItem()
+        item.setText(field)
+        tableWidget.setHorizontalHeaderItem(fields.index(field), item)
 
     # Vertical
     for player in players:
-        # Index
-        index = player.rank - 1
+        # Index / rank of the player
+        index = players.index(player)
 
-        # Name
-        item = QTableWidgetItem()
-        item.setText(player.username)
-        tableWidget.setItem(index, 0, item)
+        # Values to append to the table
+        values = [player.username, str(player.score), player.status]
 
-        # Score
-        item = QTableWidgetItem()
-        item.setText(str(player.score))
-        tableWidget.setItem(index, 1, item)
+        # Loop trough value list
+        for value in values:
+            item = QTableWidgetItem()
+            item.setText(value)
+            item.setFlags(QtCore.Qt.ItemIsEnabled)
+            tableWidget.setItem(index, values.index(value), item)
 
     # Add table to layout
     layout.addWidget(tableWidget)
 
     # Add tab
     tabWidget.addTab(tab, section.get_formatted_name())
+
+    # Returns the added table
+    return tableWidget
