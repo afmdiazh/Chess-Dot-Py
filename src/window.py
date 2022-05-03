@@ -26,9 +26,8 @@ class Window(Ui_MainWindow):
         self.setupUi(window)
         self.set_connections()
         self.set_initial_state()
-        window.setWindowIcon(QtGui.QIcon(
-            get_resource_path('resources/icon.png')))
-        window.resize(600, 500)
+        window.setWindowIcon(QtGui.QIcon(get_resource_path('resources/icon.png')))
+        window.resize(700, 600)
         window.show()
 
     def set_connections(self):
