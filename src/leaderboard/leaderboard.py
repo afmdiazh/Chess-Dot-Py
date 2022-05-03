@@ -90,7 +90,7 @@ class LPlayer:
         self.status = read_field(json, "status")
         self.avatar_url = read_field(json, "avatar")
         self.flair = read_field(json, "flair")
-        self.name = read_field(json, "name")
+        self.name = read_field(json, "name", "Unknown")
         self.wins = read_field(json, "win_count")
         self.losses = read_field(json, "loss_count")
         self.draws = read_field(json, "draw_count")
