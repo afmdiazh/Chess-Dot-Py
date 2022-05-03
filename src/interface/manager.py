@@ -181,8 +181,7 @@ def update_sections(self, data):
             avatar_image.loadFromData(avatar)
             self.image.setPixmap(QPixmap(avatar_image))
         else:
-            self.image.setPixmap(
-                QPixmap(get_resource_path("resources/avatar.png")))
+            self.image.setPixmap(self.default_avatar)
 
         # Save
         self.last_loaded_player = data["player_name"]

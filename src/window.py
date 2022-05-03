@@ -113,7 +113,7 @@ class Window(Ui_MainWindow):
         Starts the player data download thread with the given
         player name
         """
-        self.update_player_loading_icon(True)
+        self.update_loading_icon(self.loadingPlayer, self.player_loading, True)
         self.player_downloader.set_player_name(player_name)
         self.player_downloader.start()
 
@@ -127,7 +127,7 @@ class Window(Ui_MainWindow):
          - avatar: downloaded avatar image
         """
         m.update_sections(self, data)
-        self.update_player_loading_icon(False)
+        self.update_loading_icon(self.loadingPlayer, self.player_loading, False)
 
     def leaderboard_downloaded(self, leaderboard):
         """
@@ -152,16 +152,16 @@ class Window(Ui_MainWindow):
                 self.lineEditPlayerSearch.setText(username)
                 self.fetch_player_data(username)
 
-    def update_player_loading_icon(self, enabled):
+    def update_loading_icon(self, label, loading, enabled):
         """
         Update loading icon
         """
         if enabled:
-            self.loadingPlayer.setMovie(self.player_loading)
-            self.player_loading.start()
+            label.setMovie(loading)
+            loading.start()
         else:
-            self.player_loading.stop()
-            self.loadingPlayer.setPixmap(self.check_mark)
+            loading.stop()
+            label.setPixmap(self.check_mark)
 
 
 
