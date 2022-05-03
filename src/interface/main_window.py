@@ -234,6 +234,7 @@ class Ui_MainWindow(object):
         self.gridLayoutDaily.addWidget(self.lineEditDailyGames, 1, 1, 1, 1)
         self.lineEditDailyRating = QtWidgets.QLineEdit(self.qWidgetDaily)
         self.lineEditDailyRating.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
+        self.lineEditDailyRating.setReadOnly(True)
         self.lineEditDailyRating.setObjectName("lineEditDailyRating")
         self.gridLayoutDaily.addWidget(self.lineEditDailyRating, 0, 1, 1, 1)
         self.labelDailyRating = QtWidgets.QLabel(self.qWidgetDaily)
