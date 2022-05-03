@@ -96,7 +96,7 @@ def update_sections(self, data):
         self.lineEditTotalWins.setText(str(stats.get_total_wins()))
         self.lineEditTotalLosses.setText(str(stats.get_total_losses()))
         self.lineEditTotalDraws.setText(str(stats.get_total_draws()))
-        self.lineEditTotalWinrate.setText(str(stats.get_total_winrate()))
+        self.lineEditTotalWinrate.setText(stats.get_total_winrate())
 
         # Profile
         profile = player.profile
@@ -121,7 +121,7 @@ def update_sections(self, data):
             self.lineEditDailyWins.setText(str(section.wins))
             self.lineEditDailyLosses.setText(str(section.losses))
             self.lineEditDailyDraws.setText(str(section.draws))
-            self.lineEditDailyWinrate.setText(str(section.get_win_rate()))
+            self.lineEditDailyWinrate.setText(section.get_win_rate())
 
         # # Rapid
         has_section = player.stats.has_section("chess_rapid")
@@ -135,7 +135,7 @@ def update_sections(self, data):
             self.lineEditRapidWins.setText(str(section.wins))
             self.lineEditRapidLosses.setText(str(section.losses))
             self.lineEditRapidDraws.setText(str(section.draws))
-            self.lineEditRapidWinrate.setText(str(section.get_win_rate()))
+            self.lineEditRapidWinrate.setText(section.get_win_rate())
 
         # # Bullet
         has_section = player.stats.has_section("chess_bullet")
@@ -149,7 +149,7 @@ def update_sections(self, data):
             self.lineEditBulletWins.setText(str(section.wins))
             self.lineEditBulletLosses.setText(str(section.losses))
             self.lineEditBulletDraws.setText(str(section.draws))
-            self.lineEditBulletWinrate.setText(str(section.get_win_rate()))
+            self.lineEditBulletWinrate.setText(section.get_win_rate())
 
         # # Blitz
         has_section = player.stats.has_section("chess_blitz")
@@ -163,7 +163,7 @@ def update_sections(self, data):
             self.lineEditBlitzWins.setText(str(section.wins))
             self.lineEditBlitzLosses.setText(str(section.losses))
             self.lineEditBlitzDraws.setText(str(section.draws))
-            self.lineEditBlitzWinrate.setText(str(section.get_win_rate()))
+            self.lineEditBlitzWinrate.setText(section.get_win_rate())
 
         # Icon
         avatar = data["avatar"]
@@ -204,7 +204,7 @@ def insert_lb_tab(tabWidget, section):
     tableWidget.setRowCount(len(players))
 
     # Horizontal
-    fields = ["Name", "Score", "Status"]
+    fields = ["Username", "Name", "Score", "Stats", "Country"]
     tableWidget.setColumnCount(len(fields))
 
     # Add all the fields
@@ -219,7 +219,7 @@ def insert_lb_tab(tabWidget, section):
         index = players.index(player)
 
         # Values to append to the table
-        values = [player.username, str(player.score), player.status]
+        values = [player.username, player.name, str(player.score), player.get_formatted_stats(), player.get_country()]
 
         # Loop trough value list
         for value in values:
@@ -227,6 +227,11 @@ def insert_lb_tab(tabWidget, section):
             item.setText(value)
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             tableWidget.setItem(index, values.index(value), item)
+
+    # Resize columns
+    header = tableWidget.horizontalHeader()
+    for i in range(len(fields)):
+        header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
     # Add table to layout
     layout.addWidget(tableWidget)
