@@ -1,3 +1,6 @@
+from util import read_field
+import os.path
+
 class Leaderboard:
     """
     Represents the game's leaderboard
@@ -78,21 +81,19 @@ class LPlayer:
         """
         Obtains the player data from json
         """
-        self.player_id = json["player_id"]
-        self.api_id = json["@id"]
-        self.username = json["username"]
-        self.score = json["score"]
-        self.rank = json["rank"]
-        self.country_api_id = json["country"]
-        self.status = json["status"]
-        self.avatar_url = json["avatar"]
-
-        # In some cases, players don't have
-        # a defined name
-        if "name" in json:
-            self.name = json["name"]
-        else:
-            self.name = "Unknown"
+        self.player_id = read_field(json, "player_id")
+        self.api_id = read_field(json, "@id")
+        self.username = read_field(json, "username")
+        self.score = read_field(json, "score")
+        self.rank = read_field(json, "rank")
+        self.country_api_id = read_field(json, "country")
+        self.status = read_field(json, "status")
+        self.avatar_url = read_field(json, "avatar")
+        self.flair = read_field(json, "flair")
+        self.name = read_field(json, "name", "Unknown")
+        self.wins = read_field(json, "win_count")
+        self.losses = read_field(json, "loss_count")
+        self.draws = read_field(json, "draw_count")
 
     def print_data(self):
         """
@@ -101,3 +102,24 @@ class LPlayer:
         print("Showing player data:", self.name)
         print(self.username)
         print(self.score)
+
+    def get_country(self):
+        """
+        Returns country code
+        """
+        if self.country_api_id == None: return "?"
+        return os.path.basename(self.country_api_id)
+
+    def get_flair(self):
+        """
+        Returns flair (emoji)
+        TODO: Convert emoji name to emoji
+        """
+        return self.flair
+
+    def get_formatted_stats(self):
+        """
+        Returns a formatted string with the format
+        W: wins, L: losses, D: draws
+        """
+        return "W: %d L: %d D: %d" % (self.wins, self.losses, self.draws)

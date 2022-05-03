@@ -7,7 +7,7 @@ import os
 import sys
 
 
-def read_field(json, field):
+def read_field(json, field, default_value = None):
     """
     Reads a field from a json object
     If the field doesn't exist, returns None
@@ -15,7 +15,7 @@ def read_field(json, field):
     if field in json:
         return json[field]
     else:
-        return None
+        return default_value
 
 
 def format_date(ms):

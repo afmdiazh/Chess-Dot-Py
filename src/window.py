@@ -7,7 +7,6 @@ from PyQt5 import QtCore, QtGui
 import interface.manager as m
 import requests
 
-
 class Window(Ui_MainWindow):
     """
     Chess-Dot-Py main window
@@ -133,10 +132,8 @@ class Window(Ui_MainWindow):
         Redirects to the player tab and loads the profile of the clicked player
         """
         if item.column() == 0:
-            print("Correct column")
             username = item.text().strip()
             if username != "":
-                print("Proper username")
                 self.tabWidgetMain.setCurrentIndex(0)
                 self.lineEditPlayerSearch.setText(username)
                 self.fetch_player_data(username)
