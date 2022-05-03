@@ -2,7 +2,6 @@
 Utility functions
 """
 
-
 import datetime
 import os
 import sys
@@ -29,6 +28,10 @@ def format_date(ms):
 
 
 def get_resource_path(relative_path):
+    """
+    Obtains the path of a resource, needed for getting
+    files from the compiled executable after pyinstaller
+    """
     try:
         base_path = sys._MEIPASS
     except Exception:

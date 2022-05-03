@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>500</height>
+    <width>700</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -81,6 +81,24 @@
                <string>Stats</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_5">
+               <property name="leftMargin">
+                <number>2</number>
+               </property>
+               <property name="topMargin">
+                <number>2</number>
+               </property>
+               <property name="rightMargin">
+                <number>2</number>
+               </property>
+               <property name="bottomMargin">
+                <number>2</number>
+               </property>
+               <property name="horizontalSpacing">
+                <number>2</number>
+               </property>
+               <property name="verticalSpacing">
+                <number>6</number>
+               </property>
                <item row="1" column="0">
                 <layout class="QGridLayout" name="gridLayoutStats">
                  <item row="0" column="0">
@@ -92,16 +110,24 @@
                     <string>Total</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_2">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="labelGames">
-                      <property name="locale">
-                       <locale language="English" country="UnitedStates"/>
-                      </property>
-                      <property name="text">
-                       <string>Games</string>
-                      </property>
-                     </widget>
-                    </item>
+                    <property name="leftMargin">
+                     <number>2</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>2</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>2</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>2</number>
+                    </property>
+                    <property name="horizontalSpacing">
+                     <number>20</number>
+                    </property>
+                    <property name="verticalSpacing">
+                     <number>12</number>
+                    </property>
                     <item row="0" column="1">
                      <widget class="QLineEdit" name="lineEditTotalGames">
                       <property name="locale">
@@ -113,22 +139,6 @@
                      </widget>
                     </item>
                     <item row="1" column="0">
-                     <spacer name="verticalSpacer_7">
-                      <property name="locale">
-                       <locale language="English" country="UnitedStates"/>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>34</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="2" column="0">
                      <widget class="QLabel" name="labelWins">
                       <property name="palette">
                        <palette>
@@ -175,7 +185,17 @@
                       </property>
                      </widget>
                     </item>
-                    <item row="2" column="1">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="labelGames">
+                      <property name="locale">
+                       <locale language="English" country="UnitedStates"/>
+                      </property>
+                      <property name="text">
+                       <string>Games</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
                      <widget class="QLineEdit" name="lineEditTotalWins">
                       <property name="locale">
                        <locale language="English" country="UnitedStates"/>
@@ -186,95 +206,6 @@
                      </widget>
                     </item>
                     <item row="3" column="0">
-                     <spacer name="verticalSpacer_9">
-                      <property name="locale">
-                       <locale language="English" country="UnitedStates"/>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>34</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="4" column="0">
-                     <widget class="QLabel" name="labelLosses">
-                      <property name="palette">
-                       <palette>
-                        <active>
-                         <colorrole role="WindowText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>170</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                        </active>
-                        <inactive>
-                         <colorrole role="WindowText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>170</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                        </inactive>
-                        <disabled>
-                         <colorrole role="WindowText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>120</red>
-                            <green>120</green>
-                            <blue>120</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                        </disabled>
-                       </palette>
-                      </property>
-                      <property name="locale">
-                       <locale language="English" country="UnitedStates"/>
-                      </property>
-                      <property name="text">
-                       <string>Losses</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QLineEdit" name="lineEditTotalLosses">
-                      <property name="locale">
-                       <locale language="English" country="UnitedStates"/>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="0">
-                     <spacer name="verticalSpacer_8">
-                      <property name="locale">
-                       <locale language="English" country="UnitedStates"/>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>35</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="6" column="0">
                      <widget class="QLabel" name="labelDraws">
                       <property name="palette">
                        <palette>
@@ -321,7 +252,64 @@
                       </property>
                      </widget>
                     </item>
-                    <item row="6" column="1">
+                    <item row="2" column="1">
+                     <widget class="QLineEdit" name="lineEditTotalLosses">
+                      <property name="locale">
+                       <locale language="English" country="UnitedStates"/>
+                      </property>
+                      <property name="readOnly">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="labelLosses">
+                      <property name="palette">
+                       <palette>
+                        <active>
+                         <colorrole role="WindowText">
+                          <brush brushstyle="SolidPattern">
+                           <color alpha="255">
+                            <red>170</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                           </color>
+                          </brush>
+                         </colorrole>
+                        </active>
+                        <inactive>
+                         <colorrole role="WindowText">
+                          <brush brushstyle="SolidPattern">
+                           <color alpha="255">
+                            <red>170</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                           </color>
+                          </brush>
+                         </colorrole>
+                        </inactive>
+                        <disabled>
+                         <colorrole role="WindowText">
+                          <brush brushstyle="SolidPattern">
+                           <color alpha="255">
+                            <red>120</red>
+                            <green>120</green>
+                            <blue>120</blue>
+                           </color>
+                          </brush>
+                         </colorrole>
+                        </disabled>
+                       </palette>
+                      </property>
+                      <property name="locale">
+                       <locale language="English" country="UnitedStates"/>
+                      </property>
+                      <property name="text">
+                       <string>Losses</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
                      <widget class="QLineEdit" name="lineEditTotalDraws">
                       <property name="locale">
                        <locale language="English" country="UnitedStates"/>
@@ -331,23 +319,7 @@
                       </property>
                      </widget>
                     </item>
-                    <item row="7" column="0">
-                     <spacer name="verticalSpacer_10">
-                      <property name="locale">
-                       <locale language="English" country="UnitedStates"/>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>34</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="8" column="0">
+                    <item row="4" column="0">
                      <widget class="QLabel" name="labelWinrate">
                       <property name="locale">
                        <locale language="English" country="UnitedStates"/>
@@ -357,7 +329,7 @@
                       </property>
                      </widget>
                     </item>
-                    <item row="8" column="1">
+                    <item row="4" column="1">
                      <widget class="QLineEdit" name="lineEditTotalWinrate">
                       <property name="locale">
                        <locale language="English" country="UnitedStates"/>
@@ -380,6 +352,9 @@
                  <property name="currentIndex">
                   <number>0</number>
                  </property>
+                 <property name="usesScrollButtons">
+                  <bool>false</bool>
+                 </property>
                  <widget class="QWidget" name="qWidgetDaily">
                   <attribute name="title">
                    <string>Daily</string>
@@ -387,6 +362,9 @@
                   <layout class="QGridLayout" name="gridLayout">
                    <item row="0" column="0">
                     <layout class="QGridLayout" name="gridLayoutDaily">
+                     <property name="horizontalSpacing">
+                      <number>20</number>
+                     </property>
                      <item row="5" column="0">
                       <widget class="QLabel" name="labelDailyDraws">
                        <property name="palette">
@@ -626,6 +604,9 @@
                   <layout class="QGridLayout" name="gridLayout_10">
                    <item row="0" column="0">
                     <layout class="QGridLayout" name="gridLayoutRapid">
+                     <property name="horizontalSpacing">
+                      <number>20</number>
+                     </property>
                      <item row="5" column="1">
                       <widget class="QLineEdit" name="lineEditRapidDraws">
                        <property name="readOnly">
@@ -828,6 +809,9 @@
                   <layout class="QGridLayout" name="gridLayout_9">
                    <item row="0" column="0">
                     <layout class="QGridLayout" name="gridLayoutBullet">
+                     <property name="horizontalSpacing">
+                      <number>20</number>
+                     </property>
                      <item row="6" column="0">
                       <widget class="QLabel" name="labelBulletWinrate">
                        <property name="text">
@@ -1030,6 +1014,9 @@
                   <layout class="QGridLayout" name="gridLayout_12">
                    <item row="0" column="0">
                     <layout class="QGridLayout" name="gridLayoutBlitz">
+                     <property name="horizontalSpacing">
+                      <number>20</number>
+                     </property>
                      <item row="5" column="0">
                       <widget class="QLabel" name="labelBlitzDraws">
                        <property name="palette">
@@ -1242,54 +1229,32 @@
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
+               <property name="leftMargin">
+                <number>2</number>
+               </property>
+               <property name="topMargin">
+                <number>2</number>
+               </property>
+               <property name="rightMargin">
+                <number>2</number>
+               </property>
+               <property name="bottomMargin">
+                <number>2</number>
+               </property>
+               <property name="horizontalSpacing">
+                <number>2</number>
+               </property>
+               <property name="verticalSpacing">
+                <number>6</number>
+               </property>
                <item row="1" column="0">
                 <layout class="QGridLayout" name="gridLayoutProfile">
-                 <item row="0" column="1">
-                  <widget class="QLineEdit" name="lineEditFollowers">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QLineEdit" name="lineEditTitle">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="labelLastOnline">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="text">
-                    <string>Last online</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0">
-                  <spacer name="verticalSpacer_3">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
+                 <property name="horizontalSpacing">
+                  <number>20</number>
+                 </property>
+                 <property name="verticalSpacing">
+                  <number>12</number>
+                 </property>
                  <item row="0" column="0">
                   <widget class="QLabel" name="labelFollowers">
                    <property name="locale">
@@ -1300,7 +1265,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0">
+                 <item row="3" column="0">
                   <widget class="QLabel" name="labelJoinedOn">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
@@ -1310,23 +1275,17 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0">
-                  <spacer name="verticalSpacer_4">
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="labelLastOnline">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
                    </property>
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                   <property name="text">
+                    <string>Last online</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
+                  </widget>
                  </item>
-                 <item row="10" column="0">
+                 <item row="5" column="0">
                   <widget class="QLabel" name="labelName">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
@@ -1336,59 +1295,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="0">
-                  <widget class="QLabel" name="labelStatus">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="text">
-                    <string>Status</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="8" column="0">
-                  <widget class="QLabel" name="labelUsername">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="text">
-                    <string>Username</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="9" column="0">
-                  <spacer name="verticalSpacer_5">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="11" column="0">
-                  <spacer name="verticalSpacer_6">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="2" column="0">
+                 <item row="1" column="0">
                   <widget class="QLabel" name="labelTitle">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
@@ -1398,59 +1305,27 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
-                  <spacer name="verticalSpacer">
+                 <item row="6" column="0">
+                  <widget class="QLabel" name="labelStatus">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
                    </property>
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                   <property name="text">
+                    <string>Status</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
+                  </widget>
                  </item>
-                 <item row="3" column="0">
-                  <spacer name="verticalSpacer_2">
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="labelUsername">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
                    </property>
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                   <property name="text">
+                    <string>Username</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
+                  </widget>
                  </item>
                  <item row="4" column="1">
-                  <widget class="QLineEdit" name="lineEditLastOnline">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="1">
-                  <widget class="QLineEdit" name="lineEditJoinedOn">
-                   <property name="locale">
-                    <locale language="English" country="UnitedStates"/>
-                   </property>
-                   <property name="readOnly">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="8" column="1">
                   <widget class="QLineEdit" name="lineEditUsername">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
@@ -1460,7 +1335,37 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="1">
+                 <item row="6" column="1">
+                  <widget class="QLineEdit" name="lineEditStatus">
+                   <property name="locale">
+                    <locale language="English" country="UnitedStates"/>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLineEdit" name="lineEditJoinedOn">
+                   <property name="locale">
+                    <locale language="English" country="UnitedStates"/>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLineEdit" name="lineEditLastOnline">
+                   <property name="locale">
+                    <locale language="English" country="UnitedStates"/>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
                   <widget class="QLineEdit" name="lineEditName">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
@@ -1470,8 +1375,18 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="1">
-                  <widget class="QLineEdit" name="lineEditStatus">
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="lineEditTitle">
+                   <property name="locale">
+                    <locale language="English" country="UnitedStates"/>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLineEdit" name="lineEditFollowers">
                    <property name="locale">
                     <locale language="English" country="UnitedStates"/>
                    </property>
@@ -1487,7 +1402,25 @@
                  <property name="locale">
                   <locale language="English" country="UnitedStates"/>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_3">
+                  <property name="spacing">
+                   <number>2</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>2</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>2</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>2</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>2</number>
+                  </property>
                   <item>
                    <widget class="QLabel" name="image">
                     <property name="sizePolicy">
@@ -1512,7 +1445,7 @@
                      <string/>
                     </property>
                     <property name="pixmap">
-                     <pixmap>../../res/avatar.png</pixmap>
+                     <pixmap>../resources/avatar.png</pixmap>
                     </property>
                     <property name="scaledContents">
                      <bool>true</bool>
@@ -1590,13 +1523,59 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>700</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>tabWidgetMain</tabstop>
+  <tabstop>lineEditPlayerSearch</tabstop>
+  <tabstop>pushButtonPlayerSearch</tabstop>
+  <tabstop>pushButtonPlayerReload</tabstop>
+  <tabstop>pushButtonPlayerClear</tabstop>
+  <tabstop>tabWidgetSubsection</tabstop>
+  <tabstop>lineEditDailyRating</tabstop>
+  <tabstop>lineEditDailyGames</tabstop>
+  <tabstop>lineEditDailyWins</tabstop>
+  <tabstop>lineEditDailyLosses</tabstop>
+  <tabstop>lineEditDailyWinrate</tabstop>
+  <tabstop>lineEditDailyDraws</tabstop>
+  <tabstop>lineEditRapidRating</tabstop>
+  <tabstop>lineEditRapidGames</tabstop>
+  <tabstop>lineEditRapidWins</tabstop>
+  <tabstop>lineEditRapidLosses</tabstop>
+  <tabstop>lineEditRapidDraws</tabstop>
+  <tabstop>lineEditRapidWinrate</tabstop>
+  <tabstop>lineEditBulletRating</tabstop>
+  <tabstop>lineEditBulletGames</tabstop>
+  <tabstop>lineEditBulletWins</tabstop>
+  <tabstop>lineEditBulletLosses</tabstop>
+  <tabstop>lineEditBulletDraws</tabstop>
+  <tabstop>lineEditBulletWinrate</tabstop>
+  <tabstop>lineEditBlitzRating</tabstop>
+  <tabstop>lineEditBlitzGames</tabstop>
+  <tabstop>lineEditBlitzWins</tabstop>
+  <tabstop>lineEditBlitzLosses</tabstop>
+  <tabstop>lineEditBlitzDraws</tabstop>
+  <tabstop>lineEditBlitzWinrate</tabstop>
+  <tabstop>lineEditTotalGames</tabstop>
+  <tabstop>lineEditTotalWins</tabstop>
+  <tabstop>lineEditTotalLosses</tabstop>
+  <tabstop>lineEditTotalDraws</tabstop>
+  <tabstop>lineEditTotalWinrate</tabstop>
+  <tabstop>lineEditFollowers</tabstop>
+  <tabstop>lineEditTitle</tabstop>
+  <tabstop>lineEditLastOnline</tabstop>
+  <tabstop>lineEditJoinedOn</tabstop>
+  <tabstop>lineEditUsername</tabstop>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditStatus</tabstop>
+  <tabstop>pushButtonLBUpdate</tabstop>
+  <tabstop>tabWidgetLeaderboard</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

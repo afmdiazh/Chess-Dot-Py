@@ -4,7 +4,7 @@ from util import get_resource_path
 from data import get_player, get_leaderboard
 from PyQt5 import QtCore, QtGui
 
-import interface.window_manager as w
+import interface.manager as m
 import requests
 
 
@@ -26,27 +26,44 @@ class Window(Ui_MainWindow):
         self.setupUi(window)
         self.set_connections()
         self.set_initial_state()
-        window.setWindowIcon(QtGui.QIcon(
-            get_resource_path('resources/icon.png')))
-        window.resize(600, 500)
+        window.setWindowIcon(QtGui.QIcon(get_resource_path('resources/icon.png')))
+        window.resize(700, 600)
         window.show()
 
     def set_connections(self):
         """
         Connects UI elements and events to functions
         """
+        # Buttons
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
         self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
+
+        # Key presses
+        self.lineEditPlayerSearch.returnPressed.connect(self.search_enter_pressed)
+
+        # Downloaders
         self.player_downloader.done.connect(self.player_data_downloaded)
         self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
+
+        # Table (not a connection, assigned in manager)
+        self.table_double_clicked_event = self.table_double_clicked
 
     def set_initial_state(self):
         """
         Sets initial state for some UI elements
         """
-        w.set_initial_state(self)
+        m.set_initial_state(self)
+
+    def search_enter_pressed(self):
+        """
+        Executed when enter is pressed inside the search text edit
+        Loads the profile data of the inputted text if there's any
+        """
+        button_text = self.lineEditPlayerSearch.text().strip()
+        if button_text != "":
+            self.fetch_player_data(button_text)
 
     def button_search_clicked(self):
         """
@@ -97,7 +114,7 @@ class Window(Ui_MainWindow):
          - player_name: player name used in the search
          - avatar: downloaded avatar image
         """
-        w.update_sections(self, data)
+        m.update_sections(self, data)
 
     def leaderboard_downloaded(self, leaderboard):
         """
@@ -107,7 +124,22 @@ class Window(Ui_MainWindow):
         """
         self.tabWidgetLeaderboard.clear()
         for section in leaderboard.section_list:
-            w.insert_tab(self.tabWidgetLeaderboard, section)
+            table = m.insert_lb_tab(self.tabWidgetLeaderboard, section)
+            table.itemDoubleClicked.connect(self.table_double_clicked_event)
+
+    def table_double_clicked(self, item):
+        """
+        Executed when a leaderboard table element is double clicked
+        Redirects to the player tab and loads the profile of the clicked player
+        """
+        if item.column() == 0:
+            print("Correct column")
+            username = item.text().strip()
+            if username != "":
+                print("Proper username")
+                self.tabWidgetMain.setCurrentIndex(0)
+                self.lineEditPlayerSearch.setText(username)
+                self.fetch_player_data(username)
 
 
 class PlayerDownloader(QtCore.QThread):
