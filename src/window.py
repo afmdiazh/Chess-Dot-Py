@@ -2,6 +2,7 @@ from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
 from data import get_player, get_leaderboard
+from PyQt5.QtGui import QMovie, QPixmap
 from PyQt5 import QtCore, QtGui
 
 import interface.manager as m
@@ -23,9 +24,10 @@ class Window(Ui_MainWindow):
         self.player_downloader = PlayerDownloader()
         self.leaderboard_downloader = LeaderboardDownloader()
         self.setupUi(window)
+        self.load_files()
         self.set_connections()
         self.set_initial_state()
-        window.setWindowIcon(QtGui.QIcon(get_resource_path('resources/icon.png')))
+        window.setWindowIcon(self.window_icon)
         window.resize(700, 600)
         window.show()
 
@@ -49,11 +51,24 @@ class Window(Ui_MainWindow):
         # Table (not a connection, assigned in manager)
         self.table_double_clicked_event = self.table_double_clicked
 
+    def load_files(self):
+        """
+        Loads files needed for the interface
+        """
+        self.player_loading = QMovie(get_resource_path("resources/loading.gif"))
+        self.leaderboard_loading = QMovie(get_resource_path("resources/loading.gif"))
+        self.check_mark = QPixmap(get_resource_path("resources/checkmark.png"))
+        self.window_icon = QtGui.QIcon(get_resource_path("resources/icon.png"))
+        self.empty_image = QPixmap(get_resource_path("resources/empty.png"))
+        self.default_avatar = QPixmap(get_resource_path("resources/avatar.png"))
+
     def set_initial_state(self):
         """
         Sets initial state for some UI elements
         """
         m.set_initial_state(self)
+        self.loadingLeaderboard.setPixmap(self.empty_image)
+        self.loadingLeaderboard.setMaximumSize(QtCore.QSize(0, 0))
 
     def search_enter_pressed(self):
         """
@@ -94,6 +109,7 @@ class Window(Ui_MainWindow):
         Executed when pushButtonLBUpdate is clicked
         Updates the leaderboard data
         """
+        self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
         self.leaderboard_downloader.start()
 
     def fetch_player_data(self, player_name):
@@ -101,6 +117,7 @@ class Window(Ui_MainWindow):
         Starts the player data download thread with the given
         player name
         """
+        self.update_loading_icon(self.loadingPlayer, self.player_loading, True)
         self.player_downloader.set_player_name(player_name)
         self.player_downloader.start()
 
@@ -114,6 +131,7 @@ class Window(Ui_MainWindow):
          - avatar: downloaded avatar image
         """
         m.update_sections(self, data)
+        self.update_loading_icon(self.loadingPlayer, self.player_loading, False)
 
     def leaderboard_downloaded(self, leaderboard):
         """
@@ -125,6 +143,7 @@ class Window(Ui_MainWindow):
         for section in leaderboard.section_list:
             table = m.insert_lb_tab(self.tabWidgetLeaderboard, section)
             table.itemDoubleClicked.connect(self.table_double_clicked_event)
+        self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, False, True)
 
     def table_double_clicked(self, item):
         """
@@ -137,6 +156,23 @@ class Window(Ui_MainWindow):
                 self.tabWidgetMain.setCurrentIndex(0)
                 self.lineEditPlayerSearch.setText(username)
                 self.fetch_player_data(username)
+
+    def update_loading_icon(self, label, loading, enabled, clear = False):
+        """
+        Update loading icon
+        """
+        label.setMaximumSize(QtCore.QSize(20, 20))
+        if enabled:
+            label.setMovie(loading)
+            loading.start()
+        else:
+            loading.stop()
+            if clear:
+                label.setPixmap(self.empty_image)
+                label.setMaximumSize(QtCore.QSize(0, 0))
+            else:
+                label.setPixmap(self.check_mark)
+
 
 
 class PlayerDownloader(QtCore.QThread):
