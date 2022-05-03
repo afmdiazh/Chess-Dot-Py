@@ -78,7 +78,7 @@ def set_initial_state(self):
 
     # Loading icon
     self.loadingPlayer.setPixmap(self.empty_image)
-
+    self.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
 
 def update_sections(self, data):
     """

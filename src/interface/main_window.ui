@@ -47,7 +47,7 @@
          <locale language="English" country="UnitedStates"/>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="qWidgetPlayer">
          <property name="maximumSize">
@@ -1525,14 +1525,7 @@
           <string>Leaderboard</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <widget class="QPushButton" name="pushButtonLBUpdate">
-            <property name="text">
-             <string>Update</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QTabWidget" name="tabWidgetLeaderboard">
             <property name="elideMode">
              <enum>Qt::ElideNone</enum>
@@ -1546,17 +1539,40 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelLeaderboard">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayoutLeaderboard">
+            <item>
+             <widget class="QPushButton" name="pushButtonLBUpdate">
+              <property name="text">
+               <string>Update</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="loadingLeaderboard">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap>../resources/loading.gif</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -1621,7 +1637,6 @@
   <tabstop>lineEditUsername</tabstop>
   <tabstop>lineEditName</tabstop>
   <tabstop>lineEditStatus</tabstop>
-  <tabstop>pushButtonLBUpdate</tabstop>
   <tabstop>tabWidgetLeaderboard</tabstop>
  </tabstops>
  <resources/>
