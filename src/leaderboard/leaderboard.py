@@ -1,7 +1,7 @@
 import os.path
 import emoji
 
-from util import read_field
+from util import find_emoji, read_field
 
 
 class Leaderboard:
@@ -117,7 +117,9 @@ class LPlayer:
         """
         Returns flair (emoji)
         """
-        return emoji.emojize(":%s:" % self.flair)
+        if self.flair == None: return ""
+        flair = find_emoji(self.flair)
+        return emoji.emojize(":%s:" % flair)
 
     def get_formatted_stats(self):
         """
