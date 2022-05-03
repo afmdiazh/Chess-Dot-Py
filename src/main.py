@@ -1,6 +1,7 @@
 import sys
-from PyQt5 import QtWidgets
 from window import Window
+from PyQt5 import QtWidgets
+from util import get_resource_path
 from qt_material import apply_stylesheet
 
 if __name__ == "__main__":
@@ -13,7 +14,8 @@ if __name__ == "__main__":
     }
 
     # Apply theme
-    apply_stylesheet(app, theme='dark_amber.xml', extra=extra)
+    theme_path = get_resource_path("resources/dark_amber.xml")
+    apply_stylesheet(app, theme=theme_path, extra=extra)
     
     # Create window
     window = QtWidgets.QMainWindow()
