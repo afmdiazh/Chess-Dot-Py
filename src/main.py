@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     # Extra properties for theme
     extra = {
-    'density_scale': '-2',
+    'density_scale': '-1',
     }
 
     # Apply theme
