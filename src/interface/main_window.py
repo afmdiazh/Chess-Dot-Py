@@ -498,7 +498,7 @@ class Ui_MainWindow(object):
         self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBoxProfile)
         self.gridLayout_4.setContentsMargins(2, 2, 2, 2)
         self.gridLayout_4.setHorizontalSpacing(2)
-        self.gridLayout_4.setVerticalSpacing(6)
+        self.gridLayout_4.setVerticalSpacing(12)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.gridLayoutProfile = QtWidgets.QGridLayout()
         self.gridLayoutProfile.setHorizontalSpacing(20)
