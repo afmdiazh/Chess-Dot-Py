@@ -41,6 +41,9 @@ class Window(Ui_MainWindow):
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
         self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
 
+        # Key presses
+        self.lineEditPlayerSearch.returnPressed.connect(self.search_enter_pressed)
+
         # Downloaders
         self.player_downloader.done.connect(self.player_data_downloaded)
         self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
@@ -53,6 +56,15 @@ class Window(Ui_MainWindow):
         Sets initial state for some UI elements
         """
         m.set_initial_state(self)
+
+    def search_enter_pressed(self):
+        """
+        Executed when enter is pressed inside the search text edit
+        Loads the profile data of the inputted text if there's any
+        """
+        button_text = self.lineEditPlayerSearch.text().strip()
+        if button_text != "":
+            self.fetch_player_data(button_text)
 
     def button_search_clicked(self):
         """
