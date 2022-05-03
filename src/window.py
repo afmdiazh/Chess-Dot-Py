@@ -4,7 +4,7 @@ from util import get_resource_path
 from data import get_player, get_leaderboard
 from PyQt5 import QtCore, QtGui
 
-import interface.window_manager as w
+import interface.manager as m
 import requests
 
 
@@ -52,7 +52,7 @@ class Window(Ui_MainWindow):
         """
         Sets initial state for some UI elements
         """
-        w.set_initial_state(self)
+        m.set_initial_state(self)
 
     def button_search_clicked(self):
         """
@@ -103,7 +103,7 @@ class Window(Ui_MainWindow):
          - player_name: player name used in the search
          - avatar: downloaded avatar image
         """
-        w.update_sections(self, data)
+        m.update_sections(self, data)
 
     def leaderboard_downloaded(self, leaderboard):
         """
@@ -113,7 +113,7 @@ class Window(Ui_MainWindow):
         """
         self.tabWidgetLeaderboard.clear()
         for section in leaderboard.section_list:
-            table = w.insert_tab(self.tabWidgetLeaderboard, section)
+            table = m.insert_lb_tab(self.tabWidgetLeaderboard, section)
             table.itemDoubleClicked.connect(self.table_double_clicked_event)
 
     def table_double_clicked(self, item):

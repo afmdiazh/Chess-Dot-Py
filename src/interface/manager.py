@@ -180,7 +180,7 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def insert_tab(tabWidget, section):
+def insert_lb_tab(tabWidget, section):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
