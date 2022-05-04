@@ -266,8 +266,7 @@ def insert_lb_tab(tabWidget, section, self):
         image_label_list.append(label)
 
     # Update images on thread
-    thread = threading.Thread(target=download_images, args=(image_label_list, players,))
-    thread.start()
+    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, players,))
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -282,6 +281,9 @@ def insert_lb_tab(tabWidget, section, self):
 
     # Add event
     tableWidget.itemDoubleClicked.connect(self.table_double_clicked_event)
+
+    # Return thread
+    return thread
 
 def download_images(labels, players):
     """
