@@ -1,0 +1,5 @@
+chess.com==1.7.8
+PyQt5==5.15.6
+qt_material==2.11
+requests==2.27.1
+emoji==1.7.0

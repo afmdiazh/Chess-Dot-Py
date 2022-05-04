@@ -600,6 +600,9 @@
                        <property name="locale">
                         <locale language="English" country="UnitedStates"/>
                        </property>
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
                       </widget>
                      </item>
                      <item row="0" column="0">
@@ -835,7 +838,11 @@
                       </widget>
                      </item>
                      <item row="0" column="1">
-                      <widget class="QLineEdit" name="lineEditRapidRating"/>
+                      <widget class="QLineEdit" name="lineEditRapidRating">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>
@@ -1040,7 +1047,11 @@
                       </widget>
                      </item>
                      <item row="0" column="1">
-                      <widget class="QLineEdit" name="lineEditBulletRating"/>
+                      <widget class="QLineEdit" name="lineEditBulletRating">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>
@@ -1245,7 +1256,11 @@
                       </widget>
                      </item>
                      <item row="0" column="1">
-                      <widget class="QLineEdit" name="lineEditBlitzRating"/>
+                      <widget class="QLineEdit" name="lineEditBlitzRating">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>

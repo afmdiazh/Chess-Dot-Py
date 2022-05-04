@@ -1,3 +1,4 @@
+import threading
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
@@ -16,6 +17,9 @@ class Window(Ui_MainWindow):
     # Username of the last loaded player
     last_loaded_player = None
 
+    # Last image downloader thread
+    last_image_downloader_thread = None
+
     def __init__(self, window):
         """
         Initializes the window
@@ -23,6 +27,7 @@ class Window(Ui_MainWindow):
         super().__init__()
         self.player_downloader = PlayerDownloader()
         self.leaderboard_downloader = LeaderboardDownloader()
+        self.image_threads = []
         self.setupUi(window)
         self.load_files()
         self.set_connections()
@@ -109,8 +114,9 @@ class Window(Ui_MainWindow):
         Executed when pushButtonLBUpdate is clicked
         Updates the leaderboard data
         """
-        self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
-        self.leaderboard_downloader.start()
+        if not self.last_image_downloader_thread or not self.last_image_downloader_thread.is_alive():
+            self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
+            self.leaderboard_downloader.start()
 
     def fetch_player_data(self, player_name):
         """
@@ -139,11 +145,42 @@ class Window(Ui_MainWindow):
         leaderboard downloader thread. Adds one tab per section inside
         the leaderboard object.
         """
+        # Clear leaderboard widget
         self.tabWidgetLeaderboard.clear()
+        
+        # Thread list
+        self.image_threads.clear()
+
+        # Add the tabs
         for section in leaderboard.section_list:
-            table = m.insert_lb_tab(self.tabWidgetLeaderboard, section)
-            table.itemDoubleClicked.connect(self.table_double_clicked_event)
+            self.image_threads.append(m.insert_lb_tab(self.tabWidgetLeaderboard, section, self))
+
+        # Start the threads
+        thread = threading.Thread(target=self.start_image_threads, daemon=True, args=())
+        thread.start()
+
+        # Save as last
+        self.last_image_downloader_thread = thread
+
+    def start_image_threads(self):
+        """
+        Executes all the image downloading threads at once
+        Joins them so when they all end the loading icon stops
+        """
+        # Start the threads to update images
+        for thread in self.image_threads:
+            thread.start()
+
+        # Join threads
+        for thread in self.image_threads:
+            thread.join()
+
+        # Update loading icon when the threads are finished
         self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, False, True)
+
+        # Remove all threads
+        self.image_threads.clear()
+
 
     def table_double_clicked(self, item):
         """

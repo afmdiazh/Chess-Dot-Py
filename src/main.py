@@ -10,13 +10,13 @@ if __name__ == "__main__":
 
     # Extra properties for theme
     extra = {
-    'density_scale': '-1',
+        'density_scale': '-1',
     }
 
     # Apply theme
     theme_path = get_resource_path("resources/dark_amber.xml")
     apply_stylesheet(app, theme=theme_path, extra=extra)
-    
+
     # Create window
     window = QtWidgets.QMainWindow()
     interface = Window(window)

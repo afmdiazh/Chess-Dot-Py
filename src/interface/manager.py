@@ -2,9 +2,11 @@
 Big functions to update the main window
 """
 
-from util import format_date, get_resource_path
+import threading
+import requests
 
-from PyQt5 import QtCore
+from util import format_date
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
@@ -18,11 +20,14 @@ def set_initial_state(self):
         self.tabWidgetSubsection.setTabEnabled(index, False)
         self.tabWidgetSubsection.setTabVisible(index, False)
 
-    self.tabWidgetSubsection.setCurrentIndex(0)
+    # Disable
     self.qWidgetBlitz.setEnabled(False)
     self.qWidgetBullet.setEnabled(False)
     self.qWidgetRapid.setEnabled(False)
     self.qWidgetDaily.setEnabled(False)
+
+    # Change index
+    self.tabWidgetSubsection.setCurrentIndex(0)
 
     # Stats
     self.lineEditTotalGames.setText("")
@@ -79,6 +84,7 @@ def set_initial_state(self):
     # Loading icon
     self.loadingPlayer.setPixmap(self.empty_image)
     self.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
+
 
 def update_sections(self, data):
     """
@@ -187,7 +193,7 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def insert_lb_tab(tabWidget, section):
+def insert_lb_tab(tabWidget, section, self):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
@@ -211,8 +217,21 @@ def insert_lb_tab(tabWidget, section):
     tableWidget.setRowCount(len(players))
 
     # Horizontal
-    fields = ["Username", "Name", "Score", "Stats", "Country"]
+    fields = [
+        "Username",
+        "Name",
+        "Score",
+        "Stats",
+        "Country",
+        "Flair",
+        "Image"
+    ]
+
+    # Column amount
     tableWidget.setColumnCount(len(fields))
+
+    # Image index
+    image_index = fields.index("Image")
 
     # Add all the fields
     for field in fields:
@@ -220,20 +239,42 @@ def insert_lb_tab(tabWidget, section):
         item.setText(field)
         tableWidget.setHorizontalHeaderItem(fields.index(field), item)
 
+    # Label list for images
+    image_label_list = []
+
     # Vertical
     for player in players:
         # Index / rank of the player
         index = players.index(player)
 
         # Values to append to the table
-        values = [player.username, player.name, str(player.score), player.get_formatted_stats(), player.get_country()]
+        values = [
+            player.username,
+            player.name,
+            str(player.score),
+            player.get_formatted_stats(),
+            player.get_country(),
+            player.get_flair()
+        ]
 
         # Loop trough value list
         for value in values:
             item = QTableWidgetItem()
             item.setText(value)
             item.setFlags(QtCore.Qt.ItemIsEnabled)
+            item.setTextAlignment(QtCore.Qt.AlignCenter)
             tableWidget.setItem(index, values.index(value), item)
+
+        # Profile picture
+        label = QtWidgets.QLabel("")
+        label.setMaximumSize(QtCore.QSize(20, 20))
+        label.setScaledContents(True)
+        label.setAlignment(QtCore.Qt.AlignCenter)
+        tableWidget.setCellWidget(index, image_index, label)
+        image_label_list.append(label)
+
+    # Update images on thread
+    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, players,))
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -246,5 +287,25 @@ def insert_lb_tab(tabWidget, section):
     # Add tab
     tabWidget.addTab(tab, section.get_formatted_name())
 
-    # Returns the added table
-    return tableWidget
+    # Add event
+    tableWidget.itemDoubleClicked.connect(self.table_double_clicked_event)
+
+    # Return thread
+    return thread
+
+def download_images(labels, players):
+    """
+    Downloads player image and assigns it to a label
+    """
+    for player in players:
+        try:
+            # Download image
+            image = requests.get(player.avatar_url).content
+            avatar_image = QImage()
+            avatar_image.loadFromData(image)
+            avatar_pixmap = QPixmap(avatar_image)
+            # Assign pixmap to label by index
+            index = players.index(player)
+            labels[index].setPixmap(avatar_pixmap)
+        except:
+            pass

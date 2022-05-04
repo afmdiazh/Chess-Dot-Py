@@ -1,0 +1,21 @@
+{
+    "diamond": "gem_stone",
+    "crown": "crown",
+    "queen": "crown",
+    "king": "crown",
+    "flag": "white_flag",
+    "knight": "crossed_swords",
+    "peace": "v",
+    "tv": "television",
+    "star": "star",
+    "nothing": "white_flag",
+    "cup": "cup_with_straw",
+    "clover": "four_leaf_clover",
+    "earth": "globe_showing_Americas",
+    "heart": "red_heart",
+    "love": "red_heart",
+    "rainbow": "rainbow",
+    "pawn": "chess_pawn",
+    "smike": "smiling_face_with_smiling_eyes",
+    "league": "castle"
+}
