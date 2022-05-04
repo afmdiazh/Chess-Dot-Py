@@ -1,4 +1,3 @@
-from pdb import runcall
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
