@@ -295,11 +295,14 @@ def download_images(labels, players):
     Downloads player image and assigns it to a label
     """
     for player in players:
-        # Download image
-        image = requests.get(player.avatar_url).content
-        avatar_image = QImage()
-        avatar_image.loadFromData(image)
-        avatar_pixmap = QPixmap(avatar_image)
-        # Assign pixmap to label by index
-        index = players.index(player)
-        labels[index].setPixmap(avatar_pixmap)
+        try:
+            # Download image
+            image = requests.get(player.avatar_url).content
+            avatar_image = QImage()
+            avatar_image.loadFromData(image)
+            avatar_pixmap = QPixmap(avatar_image)
+            # Assign pixmap to label by index
+            index = players.index(player)
+            labels[index].setPixmap(avatar_pixmap)
+        except:
+            pass
