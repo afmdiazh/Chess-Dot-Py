@@ -119,6 +119,8 @@ def update_sections(self, data):
         self.lineEditStatus.setText(profile.status)
 
         # Modes
+        current_tab = self.tabWidgetSubsection.currentIndex()
+
         # # Daily
         has_section = player.stats.has_section("chess_daily")
         self.tabWidgetSubsection.setTabEnabled(0, has_section)
@@ -179,6 +181,10 @@ def update_sections(self, data):
             self.lineEditBlitzDraws.setText(str(section.draws))
             self.lineEditBlitzWinrate.setText(section.get_win_rate())
 
+        # # Change if needed
+        if not self.tabWidgetSubsection.isTabVisible(current_tab):
+            self.tabWidgetSubsection.setCurrentIndex(0)   
+
         # Icon
         avatar = data["avatar"]
 
@@ -197,7 +203,7 @@ def insert_lb_tab(tabWidget, section, self):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
-    Table is returned so it can be linked to events
+    Thread is returned so it can be executed to download the profile pictures
     """
     # Get data
     name = section.name
@@ -214,17 +220,21 @@ def insert_lb_tab(tabWidget, section, self):
     # Create table widget
     tableWidget = QTableWidget(tab)
     tableWidget.setObjectName("tableWidget")
+    tableWidget.setSortingEnabled(True)
+    tableWidget.horizontalHeader().setSectionsClickable(True)
+    tableWidget.verticalHeader().setVisible(False)
     tableWidget.setRowCount(len(players))
 
     # Horizontal
     fields = [
+        "Rank",
+        "Image",
         "Username",
         "Name",
         "Score",
         "Stats",
         "Country",
-        "Flair",
-        "Image"
+        "Flair"
     ]
 
     # Column amount
@@ -232,6 +242,9 @@ def insert_lb_tab(tabWidget, section, self):
 
     # Image index
     image_index = fields.index("Image")
+
+    # Username index for clicking event
+    self.username_item_column_index = fields.index("Username")
 
     # Add all the fields
     for field in fields:
@@ -241,6 +254,7 @@ def insert_lb_tab(tabWidget, section, self):
 
     # Label list for images
     image_label_list = []
+    image_url_list = []
 
     # Vertical
     for player in players:
@@ -249,9 +263,10 @@ def insert_lb_tab(tabWidget, section, self):
 
         # Values to append to the table
         values = [
+            index + 1,
             player.username,
             player.name,
-            str(player.score),
+            player.score,
             player.get_formatted_stats(),
             player.get_country(),
             player.get_flair()
@@ -259,22 +274,44 @@ def insert_lb_tab(tabWidget, section, self):
 
         # Loop trough value list
         for value in values:
+            value_index = values.index(value)
+            if value_index >= image_index: value_index += 1
             item = QTableWidgetItem()
-            item.setText(value)
+            item.setData(QtCore.Qt.DisplayRole, value)
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             item.setTextAlignment(QtCore.Qt.AlignCenter)
-            tableWidget.setItem(index, values.index(value), item)
+            tableWidget.setItem(index, value_index, item)
 
         # Profile picture
+        # # Create a frame to hold the layout
+        img_frame = QtWidgets.QWidget()
+
+        # # Create a layout to hold the label
+        img_layout = QtWidgets.QGridLayout()
+        img_layout.setContentsMargins(0, 0, 0, 0)
+
+        # # Create a label to hold the image
         label = QtWidgets.QLabel("")
         label.setMaximumSize(QtCore.QSize(20, 20))
         label.setScaledContents(True)
-        label.setAlignment(QtCore.Qt.AlignCenter)
-        tableWidget.setCellWidget(index, image_index, label)
+
+        # # Set label to layout and djust stretch
+        img_layout.addWidget(label, 0, 1)
+        img_layout.setColumnStretch(0, 1)
+        img_layout.setColumnStretch(2, 1)
+
+        # # Set layout to frame
+        img_frame.setLayout(img_layout)
+
+        # # Add frame to the table
+        tableWidget.setCellWidget(index, image_index, img_frame)
+
+        # # Add data to lists
         image_label_list.append(label)
+        image_url_list.append(player.avatar_url)
 
     # Update images on thread
-    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, players,))
+    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, image_url_list,))
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -293,19 +330,18 @@ def insert_lb_tab(tabWidget, section, self):
     # Return thread
     return thread
 
-def download_images(labels, players):
+def download_images(labels, urls):
     """
     Downloads player image and assigns it to a label
     """
-    for player in players:
+    for i in range(len(urls)):
         try:
             # Download image
-            image = requests.get(player.avatar_url).content
+            image = requests.get(urls[i]).content
             avatar_image = QImage()
             avatar_image.loadFromData(image)
             avatar_pixmap = QPixmap(avatar_image)
             # Assign pixmap to label by index
-            index = players.index(player)
-            labels[index].setPixmap(avatar_pixmap)
+            labels[i].setPixmap(avatar_pixmap)
         except:
             pass
