@@ -230,6 +230,9 @@ def insert_lb_tab(tabWidget, section, self):
     # Column amount
     tableWidget.setColumnCount(len(fields))
 
+    # Image index
+    image_index = fields.index("Image")
+
     # Add all the fields
     for field in fields:
         item = QTableWidgetItem()
@@ -267,7 +270,7 @@ def insert_lb_tab(tabWidget, section, self):
         label.setMaximumSize(QtCore.QSize(20, 20))
         label.setScaledContents(True)
         label.setAlignment(QtCore.Qt.AlignCenter)
-        tableWidget.setCellWidget(index, fields.index("Image"), label)
+        tableWidget.setCellWidget(index, image_index, label)
         image_label_list.append(label)
 
     # Update images on thread

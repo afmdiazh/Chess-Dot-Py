@@ -1,3 +1,4 @@
+import threading
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
@@ -23,6 +24,7 @@ class Window(Ui_MainWindow):
         super().__init__()
         self.player_downloader = PlayerDownloader()
         self.leaderboard_downloader = LeaderboardDownloader()
+        self.image_threads = []
         self.setupUi(window)
         self.load_files()
         self.set_connections()
@@ -110,6 +112,7 @@ class Window(Ui_MainWindow):
         Updates the leaderboard data
         """
         self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
+        self.pushButtonLBUpdate.setEnabled = False
         self.leaderboard_downloader.start()
 
     def fetch_player_data(self, player_name):
@@ -143,18 +146,38 @@ class Window(Ui_MainWindow):
         self.tabWidgetLeaderboard.clear()
         
         # Thread list
-        self.image_threads = []
+        self.image_threads.clear()
 
         # Add the tabs
         for section in leaderboard.section_list:
             self.image_threads.append(m.insert_lb_tab(self.tabWidgetLeaderboard, section, self))
 
+        # Start the threads
+        thread = threading.Thread(target=self.start_image_threads, daemon=True, args=())
+        thread.start()
+
+    def start_image_threads(self):
+        """
+        Executes all the image downloading threads at once
+        Joins them so when they all end the loading icon stops
+        """
         # Start the threads to update images
         for thread in self.image_threads:
             thread.start()
 
-        # Update loading icon
+        # Join threads
+        for thread in self.image_threads:
+            thread.join()
+
+        # Update loading icon when the threads are finished
         self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, False, True)
+
+        # Enable update button back
+        self.pushButtonLBUpdate.setEnabled = True
+
+        # Remove all threads
+        self.image_threads.clear()
+
 
     def table_double_clicked(self, item):
         """
