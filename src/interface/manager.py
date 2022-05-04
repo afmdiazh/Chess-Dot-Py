@@ -220,10 +220,14 @@ def insert_lb_tab(tabWidget, section, self):
     # Create table widget
     tableWidget = QTableWidget(tab)
     tableWidget.setObjectName("tableWidget")
+    tableWidget.setSortingEnabled(True)
+    tableWidget.horizontalHeader().setSectionsClickable(True)
+    tableWidget.verticalHeader().setVisible(False)
     tableWidget.setRowCount(len(players))
 
     # Horizontal
     fields = [
+        "Rank",
         "Image",
         "Username",
         "Name",
@@ -256,9 +260,10 @@ def insert_lb_tab(tabWidget, section, self):
 
         # Values to append to the table
         values = [
+            index + 1,
             player.username,
             player.name,
-            str(player.score),
+            player.score,
             player.get_formatted_stats(),
             player.get_country(),
             player.get_flair()
@@ -269,7 +274,7 @@ def insert_lb_tab(tabWidget, section, self):
             value_index = values.index(value)
             if value_index >= image_index: value_index += 1
             item = QTableWidgetItem()
-            item.setText(value)
+            item.setData(QtCore.Qt.DisplayRole, value)
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             item.setTextAlignment(QtCore.Qt.AlignCenter)
             tableWidget.setItem(index, value_index, item)
