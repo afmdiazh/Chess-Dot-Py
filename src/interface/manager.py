@@ -224,13 +224,13 @@ def insert_lb_tab(tabWidget, section, self):
 
     # Horizontal
     fields = [
+        "Image",
         "Username",
         "Name",
         "Score",
         "Stats",
         "Country",
-        "Flair",
-        "Image"
+        "Flair"
     ]
 
     # Column amount
@@ -266,11 +266,13 @@ def insert_lb_tab(tabWidget, section, self):
 
         # Loop trough value list
         for value in values:
+            value_index = values.index(value)
+            if value_index >= image_index: value_index += 1
             item = QTableWidgetItem()
             item.setText(value)
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             item.setTextAlignment(QtCore.Qt.AlignCenter)
-            tableWidget.setItem(index, values.index(value), item)
+            tableWidget.setItem(index, value_index, item)
 
         # Profile picture
         # # Create a frame to hold the layout
