@@ -20,6 +20,9 @@ class Window(Ui_MainWindow):
     # Last image downloader thread
     last_image_downloader_thread = None
 
+    # Username index in leaderboard
+    username_item_column_index = -1
+
     def __init__(self, window):
         """
         Initializes the window
@@ -187,7 +190,7 @@ class Window(Ui_MainWindow):
         Executed when a leaderboard table element is double clicked
         Redirects to the player tab and loads the profile of the clicked player
         """
-        if item.column() == 0:
+        if item.column() == self.username_item_column_index:
             username = item.text().strip()
             if username != "":
                 self.tabWidgetMain.setCurrentIndex(0)

@@ -243,6 +243,9 @@ def insert_lb_tab(tabWidget, section, self):
     # Image index
     image_index = fields.index("Image")
 
+    # Username index for clicking event
+    self.username_item_column_index = fields.index("Username")
+
     # Add all the fields
     for field in fields:
         item = QTableWidgetItem()
