@@ -382,6 +382,9 @@
                </item>
                <item row="0" column="0">
                 <widget class="QTabWidget" name="tabWidgetSubsection">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
                  <property name="locale">
                   <locale language="English" country="UnitedStates"/>
                  </property>
@@ -1263,6 +1266,23 @@
                       </widget>
                      </item>
                     </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tab">
+                  <attribute name="title">
+                   <string>Game-mode stats</string>
+                  </attribute>
+                  <layout class="QGridLayout" name="gridLayout_7">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="labelNoData">
+                     <property name="text">
+                      <string>No data</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </widget>

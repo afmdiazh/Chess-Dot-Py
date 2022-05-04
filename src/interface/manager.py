@@ -20,6 +20,10 @@ def set_initial_state(self):
         self.tabWidgetSubsection.setTabEnabled(index, False)
         self.tabWidgetSubsection.setTabVisible(index, False)
 
+    # Last
+    self.tabWidgetSubsection.setTabEnabled(4, True)
+    self.tabWidgetSubsection.setTabVisible(4, True)
+
     # Disable
     self.qWidgetBlitz.setEnabled(False)
     self.qWidgetBullet.setEnabled(False)
@@ -27,7 +31,7 @@ def set_initial_state(self):
     self.qWidgetDaily.setEnabled(False)
 
     # Change index
-    self.tabWidgetSubsection.setCurrentIndex(0)
+    self.tabWidgetSubsection.setCurrentIndex(self.find_first_subsection_tab())
 
     # Stats
     self.lineEditTotalGames.setText("")
@@ -119,6 +123,7 @@ def update_sections(self, data):
         self.lineEditStatus.setText(profile.status)
 
         # Modes
+        has_at_least_one = False
         current_tab = self.tabWidgetSubsection.currentIndex()
 
         # # Daily
@@ -127,6 +132,7 @@ def update_sections(self, data):
         self.tabWidgetSubsection.setTabVisible(0, has_section)
         self.qWidgetDaily.setEnabled(has_section)
         if has_section:
+            has_at_least_one = True
             section = player.stats.get_section("chess_daily")
             self.lineEditDailyRating.setText(section.get_rating_string())
             self.lineEditDailyGames.setText(
@@ -142,6 +148,7 @@ def update_sections(self, data):
         self.tabWidgetSubsection.setTabVisible(1, has_section)
         self.qWidgetRapid.setEnabled(has_section)
         if has_section:
+            has_at_least_one = True
             section = player.stats.get_section("chess_rapid")
             self.lineEditRapidRating.setText(section.get_rating_string())
             self.lineEditRapidGames.setText(
@@ -157,6 +164,7 @@ def update_sections(self, data):
         self.tabWidgetSubsection.setTabVisible(2, has_section)
         self.qWidgetBullet.setEnabled(has_section)
         if has_section:
+            has_at_least_one = True
             section = player.stats.get_section("chess_bullet")
             self.lineEditBulletRating.setText(section.get_rating_string())
             self.lineEditBulletGames.setText(
@@ -172,6 +180,7 @@ def update_sections(self, data):
         self.tabWidgetSubsection.setTabVisible(3, has_section)
         self.qWidgetBlitz.setEnabled(has_section)
         if has_section:
+            has_at_least_one = True
             section = player.stats.get_section("chess_blitz")
             self.lineEditBlitzRating.setText(section.get_rating_string())
             self.lineEditBlitzGames.setText(
@@ -180,6 +189,10 @@ def update_sections(self, data):
             self.lineEditBlitzLosses.setText(str(section.losses))
             self.lineEditBlitzDraws.setText(str(section.draws))
             self.lineEditBlitzWinrate.setText(section.get_win_rate())
+
+        # # If no sections
+        self.tabWidgetSubsection.setTabEnabled(4, not has_at_least_one)
+        self.tabWidgetSubsection.setTabVisible(4, not has_at_least_one)
 
         # # Change if needed
         if not self.tabWidgetSubsection.isTabVisible(current_tab):

@@ -217,7 +217,7 @@ class Window(Ui_MainWindow):
         """
         Finds the first enable tab inside the subsection widget
         """
-        for i in range(4):
+        for i in range(5):
             if self.tabWidgetSubsection.isTabVisible(i):
                 return i
         return 0
