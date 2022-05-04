@@ -256,12 +256,14 @@ def insert_lb_tab(tabWidget, section, self):
             item = QTableWidgetItem()
             item.setText(value)
             item.setFlags(QtCore.Qt.ItemIsEnabled)
+            item.setTextAlignment(QtCore.Qt.AlignCenter)
             tableWidget.setItem(index, values.index(value), item)
 
         # Profile picture
         label = QtWidgets.QLabel("")
         label.setMaximumSize(QtCore.QSize(20, 20))
         label.setScaledContents(True)
+        label.setAlignment(QtCore.Qt.AlignCenter)
         tableWidget.setCellWidget(index, fields.index("Image"), label)
         image_label_list.append(label)
 
