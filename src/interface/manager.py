@@ -119,6 +119,8 @@ def update_sections(self, data):
         self.lineEditStatus.setText(profile.status)
 
         # Modes
+        current_tab = self.tabWidgetSubsection.currentIndex()
+
         # # Daily
         has_section = player.stats.has_section("chess_daily")
         self.tabWidgetSubsection.setTabEnabled(0, has_section)
@@ -178,6 +180,10 @@ def update_sections(self, data):
             self.lineEditBlitzLosses.setText(str(section.losses))
             self.lineEditBlitzDraws.setText(str(section.draws))
             self.lineEditBlitzWinrate.setText(section.get_win_rate())
+
+        # # Change if needed
+        if not self.tabWidgetSubsection.isTabVisible(current_tab):
+            self.tabWidgetSubsection.setCurrentIndex(0)   
 
         # Icon
         avatar = data["avatar"]
