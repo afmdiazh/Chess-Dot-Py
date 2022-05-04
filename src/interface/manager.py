@@ -273,13 +273,30 @@ def insert_lb_tab(tabWidget, section, self):
             tableWidget.setItem(index, values.index(value), item)
 
         # Profile picture
+        # # Create a frame to hold the layout
+        img_frame = QtWidgets.QWidget()
+
+        # # Create a layout to hold the label
+        img_layout = QtWidgets.QGridLayout()
+        img_layout.setContentsMargins(0, 0, 0, 0)
+
+        # # Create a label to hold the image
         label = QtWidgets.QLabel("")
         label.setMaximumSize(QtCore.QSize(20, 20))
         label.setScaledContents(True)
-        label.setAlignment(QtCore.Qt.AlignCenter)
-        tableWidget.setCellWidget(index, image_index, label)
 
-        # Add to lists
+        # # Set label to layout and djust stretch
+        img_layout.addWidget(label, 0, 1)
+        img_layout.setColumnStretch(0, 1)
+        img_layout.setColumnStretch(2, 1)
+
+        # # Set layout to frame
+        img_frame.setLayout(img_layout)
+
+        # # Add frame to the table
+        tableWidget.setCellWidget(index, image_index, img_frame)
+
+        # # Add data to lists
         image_label_list.append(label)
         image_url_list.append(player.avatar_url)
 
