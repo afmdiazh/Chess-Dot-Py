@@ -17,6 +17,9 @@ class Window(Ui_MainWindow):
     # Username of the last loaded player
     last_loaded_player = None
 
+    # Last image downloader thread
+    last_image_downloader_thread = None
+
     def __init__(self, window):
         """
         Initializes the window
@@ -111,9 +114,10 @@ class Window(Ui_MainWindow):
         Executed when pushButtonLBUpdate is clicked
         Updates the leaderboard data
         """
-        self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
-        self.pushButtonLBUpdate.setEnabled = False
-        self.leaderboard_downloader.start()
+        if not self.last_image_downloader_thread or not self.last_image_downloader_thread.is_alive():
+            self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
+            self.pushButtonLBUpdate.setEnabled = False
+            self.leaderboard_downloader.start()
 
     def fetch_player_data(self, player_name):
         """
@@ -155,6 +159,9 @@ class Window(Ui_MainWindow):
         # Start the threads
         thread = threading.Thread(target=self.start_image_threads, daemon=True, args=())
         thread.start()
+
+        # Save as last
+        self.last_image_downloader_thread = thread
 
     def start_image_threads(self):
         """
