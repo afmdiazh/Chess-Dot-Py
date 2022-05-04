@@ -2,9 +2,10 @@
 Big functions to update the main window
 """
 
-from util import format_date, get_resource_path
+import requests
+from util import format_date
 
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
@@ -188,7 +189,7 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def insert_lb_tab(tabWidget, section):
+def insert_lb_tab(tabWidget, section, self, download_images = False):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
@@ -221,6 +222,11 @@ def insert_lb_tab(tabWidget, section):
         "Flair"
     ]
 
+    # Download image setting
+    if download_images:
+        fields.append("Image")
+
+    # Column amount
     tableWidget.setColumnCount(len(fields))
 
     # Add all the fields
@@ -251,6 +257,24 @@ def insert_lb_tab(tabWidget, section):
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             tableWidget.setItem(index, values.index(value), item)
 
+        if download_images:
+            # Profile picture
+            label = QtWidgets.QLabel("")
+            label.setMaximumSize(QtCore.QSize(20, 20))
+            label.setScaledContents(True)
+            tableWidget.setCellWidget(index, fields.index("Image"), label)
+
+            # Add downloader
+            image_downloader = ImageDownloader()
+            image_downloader.set_elements(label, player.avatar_url)
+            self.image_downloader_list.append(image_downloader)
+
+    if download_images:
+        # Start all downloaders
+        for downloader in self.image_downloader_list:
+            downloader.start()
+
+
     # Resize columns
     header = tableWidget.horizontalHeader()
     for i in range(len(fields)):
@@ -262,5 +286,31 @@ def insert_lb_tab(tabWidget, section):
     # Add tab
     tabWidget.addTab(tab, section.get_formatted_name())
 
-    # Returns the added table
-    return tableWidget
+    # Add event
+    tableWidget.itemDoubleClicked.connect(self.table_double_clicked_event)
+
+
+class ImageDownloader(QtCore.QThread):
+    """
+    Downloader class to obtain profile pictures
+    """
+
+    def __init__(self):
+        """
+        Constructor
+        """
+        QtCore.QThread.__init__(self)
+
+    def set_elements(self, label, url):
+        self.label = label
+        self.url = url
+        
+    def run(self):
+        """
+        Obtains the leaderboard data and emits response
+        """
+        image = requests.get(self.url).content
+        avatar_image = QImage()
+        avatar_image.loadFromData(image)
+        avatar_pixmap = QPixmap(avatar_image)
+        self.label.setPixmap(avatar_pixmap)

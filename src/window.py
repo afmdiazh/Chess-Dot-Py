@@ -1,3 +1,4 @@
+from pdb import runcall
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
@@ -23,6 +24,7 @@ class Window(Ui_MainWindow):
         super().__init__()
         self.player_downloader = PlayerDownloader()
         self.leaderboard_downloader = LeaderboardDownloader()
+        self.image_downloader_list = []
         self.setupUi(window)
         self.load_files()
         self.set_connections()
@@ -139,10 +141,12 @@ class Window(Ui_MainWindow):
         leaderboard downloader thread. Adds one tab per section inside
         the leaderboard object.
         """
+        # Clear image downloader list
+        self.image_downloader_list.clear()
+        # Clear leaderboard widget
         self.tabWidgetLeaderboard.clear()
         for section in leaderboard.section_list:
-            table = m.insert_lb_tab(self.tabWidgetLeaderboard, section)
-            table.itemDoubleClicked.connect(self.table_double_clicked_event)
+            m.insert_lb_tab(self.tabWidgetLeaderboard, section, self)
         self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, False, True)
 
     def table_double_clicked(self, item):
