@@ -20,11 +20,14 @@ def set_initial_state(self):
         self.tabWidgetSubsection.setTabEnabled(index, False)
         self.tabWidgetSubsection.setTabVisible(index, False)
 
-    self.tabWidgetSubsection.setCurrentIndex(0)
+    # Disable
     self.qWidgetBlitz.setEnabled(False)
     self.qWidgetBullet.setEnabled(False)
     self.qWidgetRapid.setEnabled(False)
     self.qWidgetDaily.setEnabled(False)
+
+    # Change index
+    self.tabWidgetSubsection.setCurrentIndex(0)
 
     # Stats
     self.lineEditTotalGames.setText("")
