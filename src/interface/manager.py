@@ -183,7 +183,7 @@ def update_sections(self, data):
 
         # # Change if needed
         if not self.tabWidgetSubsection.isTabVisible(current_tab):
-            self.tabWidgetSubsection.setCurrentIndex(0)   
+            self.tabWidgetSubsection.setCurrentIndex(self.find_first_subsection_tab())   
 
         # Icon
         avatar = data["avatar"]

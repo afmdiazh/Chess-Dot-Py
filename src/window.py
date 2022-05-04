@@ -213,6 +213,15 @@ class Window(Ui_MainWindow):
             else:
                 label.setPixmap(self.check_mark)
 
+    def find_first_subsection_tab(self):
+        """
+        Finds the first enable tab inside the subsection widget
+        """
+        for i in range(4):
+            if self.tabWidgetSubsection.isTabVisible(i):
+                return i
+        return 0
+
 
 
 class PlayerDownloader(QtCore.QThread):
