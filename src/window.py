@@ -116,7 +116,6 @@ class Window(Ui_MainWindow):
         """
         if not self.last_image_downloader_thread or not self.last_image_downloader_thread.is_alive():
             self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
-            self.pushButtonLBUpdate.setEnabled = False
             self.leaderboard_downloader.start()
 
     def fetch_player_data(self, player_name):
@@ -178,9 +177,6 @@ class Window(Ui_MainWindow):
 
         # Update loading icon when the threads are finished
         self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, False, True)
-
-        # Enable update button back
-        self.pushButtonLBUpdate.setEnabled = True
 
         # Remove all threads
         self.image_threads.clear()
