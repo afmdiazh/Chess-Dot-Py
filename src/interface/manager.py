@@ -203,7 +203,7 @@ def insert_lb_tab(tabWidget, section, self):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
-    Table is returned so it can be linked to events
+    Thread is returned so it can be executed to download the profile pictures
     """
     # Get data
     name = section.name
@@ -247,6 +247,7 @@ def insert_lb_tab(tabWidget, section, self):
 
     # Label list for images
     image_label_list = []
+    image_url_list = []
 
     # Vertical
     for player in players:
@@ -277,10 +278,13 @@ def insert_lb_tab(tabWidget, section, self):
         label.setScaledContents(True)
         label.setAlignment(QtCore.Qt.AlignCenter)
         tableWidget.setCellWidget(index, image_index, label)
+
+        # Add to lists
         image_label_list.append(label)
+        image_url_list.append(player.avatar_url)
 
     # Update images on thread
-    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, players,))
+    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, image_url_list,))
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -299,19 +303,18 @@ def insert_lb_tab(tabWidget, section, self):
     # Return thread
     return thread
 
-def download_images(labels, players):
+def download_images(labels, urls):
     """
     Downloads player image and assigns it to a label
     """
-    for player in players:
+    for i in range(len(urls)):
         try:
             # Download image
-            image = requests.get(player.avatar_url).content
+            image = requests.get(urls[i]).content
             avatar_image = QImage()
             avatar_image.loadFromData(image)
             avatar_pixmap = QPixmap(avatar_image)
             # Assign pixmap to label by index
-            index = players.index(player)
-            labels[index].setPixmap(avatar_pixmap)
+            labels[i].setPixmap(avatar_pixmap)
         except:
             pass
