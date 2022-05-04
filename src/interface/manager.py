@@ -2,6 +2,7 @@
 Big functions to update the main window
 """
 
+import threading
 import requests
 from util import format_date
 
@@ -189,7 +190,7 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def insert_lb_tab(tabWidget, section, self, download_images = False):
+def insert_lb_tab(tabWidget, section, self):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
@@ -219,12 +220,9 @@ def insert_lb_tab(tabWidget, section, self, download_images = False):
         "Score",
         "Stats",
         "Country",
-        "Flair"
+        "Flair",
+        "Image"
     ]
-
-    # Download image setting
-    if download_images:
-        fields.append("Image")
 
     # Column amount
     tableWidget.setColumnCount(len(fields))
@@ -234,6 +232,9 @@ def insert_lb_tab(tabWidget, section, self, download_images = False):
         item = QTableWidgetItem()
         item.setText(field)
         tableWidget.setHorizontalHeaderItem(fields.index(field), item)
+
+    # Label list for images
+    image_label_list = []
 
     # Vertical
     for player in players:
@@ -257,23 +258,16 @@ def insert_lb_tab(tabWidget, section, self, download_images = False):
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             tableWidget.setItem(index, values.index(value), item)
 
-        if download_images:
-            # Profile picture
-            label = QtWidgets.QLabel("")
-            label.setMaximumSize(QtCore.QSize(20, 20))
-            label.setScaledContents(True)
-            tableWidget.setCellWidget(index, fields.index("Image"), label)
+        # Profile picture
+        label = QtWidgets.QLabel("")
+        label.setMaximumSize(QtCore.QSize(20, 20))
+        label.setScaledContents(True)
+        tableWidget.setCellWidget(index, fields.index("Image"), label)
+        image_label_list.append(label)
 
-            # Add downloader
-            image_downloader = ImageDownloader()
-            image_downloader.set_elements(label, player.avatar_url)
-            self.image_downloader_list.append(image_downloader)
-
-    if download_images:
-        # Start all downloaders
-        for downloader in self.image_downloader_list:
-            downloader.start()
-
+    # Update images on thread
+    thread = threading.Thread(target=download_images, args=(image_label_list, players,))
+    thread.start()
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -289,28 +283,16 @@ def insert_lb_tab(tabWidget, section, self, download_images = False):
     # Add event
     tableWidget.itemDoubleClicked.connect(self.table_double_clicked_event)
 
-
-class ImageDownloader(QtCore.QThread):
+def download_images(labels, players):
     """
-    Downloader class to obtain profile pictures
+    Downloads player image and assigns it to a label
     """
-
-    def __init__(self):
-        """
-        Constructor
-        """
-        QtCore.QThread.__init__(self)
-
-    def set_elements(self, label, url):
-        self.label = label
-        self.url = url
-        
-    def run(self):
-        """
-        Obtains the leaderboard data and emits response
-        """
-        image = requests.get(self.url).content
+    for player in players:
+        # Download image
+        image = requests.get(player.avatar_url).content
         avatar_image = QImage()
         avatar_image.loadFromData(image)
         avatar_pixmap = QPixmap(avatar_image)
-        self.label.setPixmap(avatar_pixmap)
+        # Assign pixmap to label by index
+        index = players.index(player)
+        labels[index].setPixmap(avatar_pixmap)
