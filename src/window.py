@@ -1,14 +1,17 @@
 import threading
 import webbrowser
-from interface.main_window import Ui_MainWindow
-from util import get_resource_path
+import requests
 
+import interface.manager as m
+
+from util import get_resource_path
+from const import default_avatar_url
 from data import get_player, get_leaderboard
+from interface.main_window import Ui_MainWindow
+
 from PyQt5.QtGui import QMovie, QPixmap
 from PyQt5 import QtCore, QtGui
 
-import interface.manager as m
-import requests
 
 class Window(Ui_MainWindow):
     """
@@ -77,6 +80,9 @@ class Window(Ui_MainWindow):
         # GIFs
         self.loading = QMovie(get_resource_path("resources/loading.gif"))
         self.loading.start()
+
+        # Other
+        self.player_downloader.set_default_profile_picture(self.default_avatar)
 
     def set_initial_state(self):
         """
@@ -249,6 +255,7 @@ class PlayerDownloader(QtCore.QThread):
     """
 
     done = QtCore.pyqtSignal(object)
+    default_profile_picture = None
 
     def __init__(self):
         """
@@ -261,6 +268,12 @@ class PlayerDownloader(QtCore.QThread):
         Updates player name for download
         """
         self.player_name = player_name
+
+    def set_default_profile_picture(self, profile_picture: object):
+        """
+        Sets default profile picture image
+        """
+        self.default_profile_picture = profile_picture
 
     def run(self):
         """
@@ -283,10 +296,13 @@ class PlayerDownloader(QtCore.QThread):
             # Downloading avatar if it exists
             avatar_url = player.profile.avatar_url
             if avatar_url != None:
-                try:
-                    response["avatar"] = requests.get(avatar_url).content
-                except:
-                    response["avatar"] = None
+                if avatar_url == default_avatar_url and self.default_profile_picture != None:
+                    response["avatar"] = self.default_profile_picture
+                else:
+                    try:
+                        response["avatar"] = requests.get(avatar_url).content
+                    except:
+                        response["avatar"] = None
 
         # Emits response
         self.done.emit(response)

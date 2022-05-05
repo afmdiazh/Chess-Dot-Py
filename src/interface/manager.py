@@ -6,6 +6,8 @@ import threading
 import requests
 
 from util import format_date
+from const import default_avatar_url
+
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -349,8 +351,9 @@ def download_images(labels: list, urls: list, default_image: object):
     """
     for i in range(len(urls)):
         try:
-            if urls[i] == "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif":
+            if urls[i] == default_avatar_url:
                 # If it's default avatar
+                print("Not downloading default avatar")
                 labels[i].setPixmap(default_image)
             else:
                 # Download image
