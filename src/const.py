@@ -1,5 +1,5 @@
 """
-Contains constants
+Constants used in other files
 """
 
 # URL of the default Chess.com avatar
