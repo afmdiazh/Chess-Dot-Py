@@ -1,4 +1,5 @@
 import threading
+import webbrowser
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
@@ -48,6 +49,9 @@ class Window(Ui_MainWindow):
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
         self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
+
+        # Clicks
+        self.image.mouseDoubleClickEvent = self.avatar_double_clicked
 
         # Key presses
         self.lineEditPlayerSearch.returnPressed.connect(self.search_enter_pressed)
@@ -103,6 +107,14 @@ class Window(Ui_MainWindow):
         """
         if self.last_loaded_player != None:
             self.fetch_player_data(self.last_loaded_player)
+
+    def avatar_double_clicked(self, item):
+        """
+        Executed when a player's avatar is double clicked
+        Opens the webbrowser and loads the player's profile
+        """
+        if self.last_loaded_player != None:
+            webbrowser.open("https://www.chess.com/es/member/%s" % self.last_loaded_player)
 
     def button_clear_clicked(self):
         """
