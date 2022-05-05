@@ -353,7 +353,6 @@ def download_images(labels: list, urls: list, default_image: object):
         try:
             if urls[i] == default_avatar_url:
                 # If it's default avatar
-                print("Not downloading default avatar")
                 labels[i].setPixmap(default_image)
             else:
                 # Download image
