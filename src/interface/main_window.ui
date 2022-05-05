@@ -399,7 +399,7 @@
                  </property>
                  <widget class="QWidget" name="qWidgetDaily">
                   <attribute name="title">
-                   <string>Daily</string>
+                   <string>Daily ☀</string>
                   </attribute>
                   <layout class="QGridLayout" name="gridLayout">
                    <item row="0" column="0">
@@ -644,7 +644,7 @@
                  </widget>
                  <widget class="QWidget" name="qWidgetRapid">
                   <attribute name="title">
-                   <string>Rapid</string>
+                   <string>Rapid ⌛</string>
                   </attribute>
                   <layout class="QGridLayout" name="gridLayout_10">
                    <item row="0" column="0">
@@ -853,7 +853,7 @@
                  </widget>
                  <widget class="QWidget" name="qWidgetBullet">
                   <attribute name="title">
-                   <string>Bullet</string>
+                   <string>Bullet 🚅</string>
                   </attribute>
                   <layout class="QGridLayout" name="gridLayout_9">
                    <item row="0" column="0">
@@ -1062,7 +1062,7 @@
                  </widget>
                  <widget class="QWidget" name="qWidgetBlitz">
                   <attribute name="title">
-                   <string>Blitz</string>
+                   <string>Blitz 🌩</string>
                   </attribute>
                   <layout class="QGridLayout" name="gridLayout_12">
                    <item row="0" column="0">
