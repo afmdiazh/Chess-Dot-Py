@@ -67,12 +67,15 @@ class Window(Ui_MainWindow):
         """
         Loads files needed for the interface
         """
-        self.player_loading = QMovie(get_resource_path("resources/loading.gif"))
-        self.leaderboard_loading = QMovie(get_resource_path("resources/loading.gif"))
+        # Images
         self.check_mark = QPixmap(get_resource_path("resources/checkmark.png"))
         self.window_icon = QtGui.QIcon(get_resource_path("resources/icon.png"))
         self.empty_image = QPixmap(get_resource_path("resources/empty.png"))
         self.default_avatar = QPixmap(get_resource_path("resources/avatar.png"))
+
+        # GIFs
+        self.loading = QMovie(get_resource_path("resources/loading.gif"))
+        self.loading.start()
 
     def set_initial_state(self):
         """
@@ -130,7 +133,7 @@ class Window(Ui_MainWindow):
         Updates the leaderboard data
         """
         if not self.last_image_downloader_thread or not self.last_image_downloader_thread.is_alive():
-            self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
+            self.update_loading_icon(self.loadingLeaderboard, True)
             self.leaderboard_downloader.start()
 
     def fetch_player_data(self, player_name: str):
@@ -138,7 +141,7 @@ class Window(Ui_MainWindow):
         Starts the player data download thread with the given
         player name
         """
-        self.update_loading_icon(self.loadingPlayer, self.player_loading, True)
+        self.update_loading_icon(self.loadingPlayer, True)
         self.player_downloader.set_player_name(player_name)
         self.player_downloader.start()
 
@@ -152,7 +155,7 @@ class Window(Ui_MainWindow):
          - avatar: downloaded avatar image
         """
         m.update_sections(self, data)
-        self.update_loading_icon(self.loadingPlayer, self.player_loading, False)
+        self.update_loading_icon(self.loadingPlayer, False)
 
     def leaderboard_downloaded(self, leaderboard: object):
         """
@@ -191,7 +194,7 @@ class Window(Ui_MainWindow):
             thread.join()
 
         # Update loading icon when the threads are finished
-        self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, False, True)
+        self.update_loading_icon(self.loadingLeaderboard, False, True)
 
         # Remove all threads
         self.image_threads.clear()
@@ -209,16 +212,18 @@ class Window(Ui_MainWindow):
                 self.lineEditPlayerSearch.setText(username)
                 self.fetch_player_data(username)
 
-    def update_loading_icon(self, label: object, loading: object, enabled: bool, clear: bool = False):
+    def update_loading_icon(self, label: object, enabled: bool, clear: bool = False):
         """
-        Update loading icon
+        Updates loading icon for the given label
+        If enabled is true, sets the loading GIF
+        If else, sets the checkmark or disables the label
         """
         label.setMaximumSize(QtCore.QSize(20, 20))
         if enabled:
-            label.setMovie(loading)
-            loading.start()
+            label.setMovie(self.loading)
+            # self.loading.start()
         else:
-            loading.stop()
+            # self.loading.stop()
             if clear:
                 label.setPixmap(self.empty_image)
                 label.setMaximumSize(QtCore.QSize(0, 0))
