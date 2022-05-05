@@ -81,9 +81,6 @@ class Window(Ui_MainWindow):
         self.loading = QMovie(get_resource_path("resources/loading.gif"))
         self.loading.start()
 
-        # Other
-        self.player_downloader.set_default_profile_picture(self.default_avatar)
-
     def set_initial_state(self):
         """
         Sets initial state for some UI elements
@@ -269,12 +266,6 @@ class PlayerDownloader(QtCore.QThread):
         """
         self.player_name = player_name
 
-    def set_default_profile_picture(self, profile_picture: object):
-        """
-        Sets default profile picture image
-        """
-        self.default_profile_picture = profile_picture
-
     def run(self):
         """
         Obtains the player data and emits response
@@ -296,8 +287,8 @@ class PlayerDownloader(QtCore.QThread):
             # Downloading avatar if it exists
             avatar_url = player.profile.avatar_url
             if avatar_url != None:
-                if avatar_url == default_avatar_url and self.default_profile_picture != None:
-                    response["avatar"] = self.default_profile_picture
+                if avatar_url == default_avatar_url:
+                    response["avatar"] = None
                 else:
                     try:
                         response["avatar"] = requests.get(avatar_url).content
