@@ -324,7 +324,7 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
         image_url_list.append(player.avatar_url)
 
     # Update images on thread
-    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, image_url_list,))
+    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, image_url_list, self.default_avatar_bg,))
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -343,18 +343,23 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
     # Return thread
     return thread
 
-def download_images(labels: list, urls: list):
+def download_images(labels: list, urls: list, default_image: object):
     """
     Downloads player image and assigns it to a label
     """
     for i in range(len(urls)):
         try:
-            # Download image
-            image = requests.get(urls[i]).content
-            avatar_image = QImage()
-            avatar_image.loadFromData(image)
-            avatar_pixmap = QPixmap(avatar_image)
-            # Assign pixmap to label by index
-            labels[i].setPixmap(avatar_pixmap)
+            if urls[i] == "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif":
+                # If it's default avatar
+                labels[i].setPixmap(default_image)
+            else:
+                # Download image
+                image = requests.get(urls[i]).content
+                # To Pixmap
+                avatar_image = QImage()
+                avatar_image.loadFromData(image)
+                avatar_pixmap = QPixmap(avatar_image)
+                # Set
+                labels[i].setPixmap(avatar_pixmap)
         except:
             pass

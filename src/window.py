@@ -72,6 +72,7 @@ class Window(Ui_MainWindow):
         self.window_icon = QtGui.QIcon(get_resource_path("resources/icon.png"))
         self.empty_image = QPixmap(get_resource_path("resources/empty.png"))
         self.default_avatar = QPixmap(get_resource_path("resources/avatar.png"))
+        self.default_avatar_bg = QPixmap(get_resource_path("resources/avatar_bg.png"))
 
         # GIFs
         self.loading = QMovie(get_resource_path("resources/loading.gif"))
