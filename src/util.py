@@ -9,7 +9,7 @@ import json
 
 emojis = None
 
-def read_field(json, field, default_value = None):
+def read_field(json: dict, field: str, default_value: any = None):
     """
     Reads a field from a json object
     If the field doesn't exist, returns None
@@ -20,7 +20,7 @@ def read_field(json, field, default_value = None):
         return default_value
 
 
-def format_date(ms):
+def format_date(ms: int):
     """
     Converts date format from miliseconds
     to a readable string
@@ -29,7 +29,7 @@ def format_date(ms):
     return date.strftime("%m/%d/%Y, %H:%M:%S")
 
 
-def get_resource_path(relative_path):
+def get_resource_path(relative_path: str):
     """
     Obtains the path of a resource, needed for getting
     files from the compiled executable after pyinstaller
@@ -41,7 +41,7 @@ def get_resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-def find_emoji(string):
+def find_emoji(string: str):
     """
     Tries to find emoji from Chess.com emoji
     """

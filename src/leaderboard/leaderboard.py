@@ -9,7 +9,7 @@ class Leaderboard:
     Represents the game's leaderboard
     """
 
-    def __init__(self, json):
+    def __init__(self, json: dict):
         """
         Generates a list of section items
         """
@@ -46,7 +46,7 @@ class LSection:
     Represents one section inside the game's leaderboard
     """
 
-    def __init__(self, name, json):
+    def __init__(self, name: str, json: dict):
         """
         Generates a list of leaderboard player items
         """
@@ -80,7 +80,7 @@ class LPlayer:
     Represents one player inside a leaderboard section
     """
 
-    def __init__(self, json):
+    def __init__(self, json: dict):
         """
         Obtains the player data from json
         """

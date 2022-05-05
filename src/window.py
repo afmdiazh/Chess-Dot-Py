@@ -133,7 +133,7 @@ class Window(Ui_MainWindow):
             self.update_loading_icon(self.loadingLeaderboard, self.leaderboard_loading, True)
             self.leaderboard_downloader.start()
 
-    def fetch_player_data(self, player_name):
+    def fetch_player_data(self, player_name: str):
         """
         Starts the player data download thread with the given
         player name
@@ -142,7 +142,7 @@ class Window(Ui_MainWindow):
         self.player_downloader.set_player_name(player_name)
         self.player_downloader.start()
 
-    def player_data_downloaded(self, data):
+    def player_data_downloaded(self, data: dict):
         """
         Updates player tab with the data obtained from the
         player downloader thread, the data item contains
@@ -154,7 +154,7 @@ class Window(Ui_MainWindow):
         m.update_sections(self, data)
         self.update_loading_icon(self.loadingPlayer, self.player_loading, False)
 
-    def leaderboard_downloaded(self, leaderboard):
+    def leaderboard_downloaded(self, leaderboard: object):
         """
         Updates leaderboard tab with the data obtained from the
         leaderboard downloader thread. Adds one tab per section inside
@@ -197,7 +197,7 @@ class Window(Ui_MainWindow):
         self.image_threads.clear()
 
 
-    def table_double_clicked(self, item):
+    def table_double_clicked(self, item: object):
         """
         Executed when a leaderboard table element is double clicked
         Redirects to the player tab and loads the profile of the clicked player
@@ -209,7 +209,7 @@ class Window(Ui_MainWindow):
                 self.lineEditPlayerSearch.setText(username)
                 self.fetch_player_data(username)
 
-    def update_loading_icon(self, label, loading, enabled, clear = False):
+    def update_loading_icon(self, label: object, loading: object, enabled: bool, clear: bool = False):
         """
         Update loading icon
         """
@@ -250,7 +250,7 @@ class PlayerDownloader(QtCore.QThread):
         """
         QtCore.QThread.__init__(self)
 
-    def set_player_name(self, player_name):
+    def set_player_name(self, player_name: str):
         """
         Updates player name for download
         """

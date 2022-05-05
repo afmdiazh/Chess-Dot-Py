@@ -7,7 +7,7 @@ class Stats:
     Located on a different file since it contains subclasses
     """
 
-    def __init__(self, json):
+    def __init__(self, json: dict):
         """
         Creates sections from the json
         """
@@ -43,13 +43,13 @@ class Stats:
         """
         return self.get_total_wins() + self.get_total_losses() + self.get_total_draws()
 
-    def has_section(self, section_name):
+    def has_section(self, section_name: str):
         """
         Returns true if section_name is in sections
         """
         return section_name in self.existing_sections
 
-    def get_section(self, section_name):
+    def get_section(self, section_name: str):
         """
         Gets section by name, returns none if non-existents
         """
@@ -103,7 +103,7 @@ class SSection:
     Represents a section inside the player's stats
     """
 
-    def __init__(self, name, json):
+    def __init__(self, name: str, json: dict):
         """
         Obtains the data from the json section
         """

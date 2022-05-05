@@ -11,7 +11,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
-def set_initial_state(self):
+def set_initial_state(self: object):
     """
     Sets initial state for some UI elements
     """
@@ -90,7 +90,7 @@ def set_initial_state(self):
     self.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
 
 
-def update_sections(self, data):
+def update_sections(self: object, data: dict):
     """
     Updates player tab with the data obtained from the
     player downloader thread, the data item contains
@@ -212,7 +212,7 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def insert_lb_tab(tabWidget, section, self):
+def insert_lb_tab(tabWidget: object, section: object, self: object):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
@@ -343,7 +343,7 @@ def insert_lb_tab(tabWidget, section, self):
     # Return thread
     return thread
 
-def download_images(labels, urls):
+def download_images(labels: list, urls: list):
     """
     Downloads player image and assigns it to a label
     """
