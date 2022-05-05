@@ -6,12 +6,14 @@ import threading
 import requests
 
 from util import format_date
+from const import default_avatar_url
+
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
-def set_initial_state(self):
+def set_initial_state(self: object):
     """
     Sets initial state for some UI elements
     """
@@ -20,6 +22,10 @@ def set_initial_state(self):
         self.tabWidgetSubsection.setTabEnabled(index, False)
         self.tabWidgetSubsection.setTabVisible(index, False)
 
+    # Last
+    self.tabWidgetSubsection.setTabEnabled(4, True)
+    self.tabWidgetSubsection.setTabVisible(4, True)
+
     # Disable
     self.qWidgetBlitz.setEnabled(False)
     self.qWidgetBullet.setEnabled(False)
@@ -27,7 +33,7 @@ def set_initial_state(self):
     self.qWidgetDaily.setEnabled(False)
 
     # Change index
-    self.tabWidgetSubsection.setCurrentIndex(0)
+    self.tabWidgetSubsection.setCurrentIndex(self.find_first_subsection_tab())
 
     # Stats
     self.lineEditTotalGames.setText("")
@@ -86,7 +92,7 @@ def set_initial_state(self):
     self.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
 
 
-def update_sections(self, data):
+def update_sections(self: object, data: dict):
     """
     Updates player tab with the data obtained from the
     player downloader thread, the data item contains
@@ -119,6 +125,7 @@ def update_sections(self, data):
         self.lineEditStatus.setText(profile.status)
 
         # Modes
+        has_at_least_one = False
         current_tab = self.tabWidgetSubsection.currentIndex()
 
         # # Daily
@@ -127,6 +134,7 @@ def update_sections(self, data):
         self.tabWidgetSubsection.setTabVisible(0, has_section)
         self.qWidgetDaily.setEnabled(has_section)
         if has_section:
+            has_at_least_one = True
             section = player.stats.get_section("chess_daily")
             self.lineEditDailyRating.setText(section.get_rating_string())
             self.lineEditDailyGames.setText(
@@ -142,6 +150,7 @@ def update_sections(self, data):
         self.tabWidgetSubsection.setTabVisible(1, has_section)
         self.qWidgetRapid.setEnabled(has_section)
         if has_section:
+            has_at_least_one = True
             section = player.stats.get_section("chess_rapid")
             self.lineEditRapidRating.setText(section.get_rating_string())
             self.lineEditRapidGames.setText(
@@ -157,6 +166,7 @@ def update_sections(self, data):
         self.tabWidgetSubsection.setTabVisible(2, has_section)
         self.qWidgetBullet.setEnabled(has_section)
         if has_section:
+            has_at_least_one = True
             section = player.stats.get_section("chess_bullet")
             self.lineEditBulletRating.setText(section.get_rating_string())
             self.lineEditBulletGames.setText(
@@ -172,6 +182,7 @@ def update_sections(self, data):
         self.tabWidgetSubsection.setTabVisible(3, has_section)
         self.qWidgetBlitz.setEnabled(has_section)
         if has_section:
+            has_at_least_one = True
             section = player.stats.get_section("chess_blitz")
             self.lineEditBlitzRating.setText(section.get_rating_string())
             self.lineEditBlitzGames.setText(
@@ -181,9 +192,13 @@ def update_sections(self, data):
             self.lineEditBlitzDraws.setText(str(section.draws))
             self.lineEditBlitzWinrate.setText(section.get_win_rate())
 
+        # # If no sections
+        self.tabWidgetSubsection.setTabEnabled(4, not has_at_least_one)
+        self.tabWidgetSubsection.setTabVisible(4, not has_at_least_one)
+
         # # Change if needed
         if not self.tabWidgetSubsection.isTabVisible(current_tab):
-            self.tabWidgetSubsection.setCurrentIndex(0)   
+            self.tabWidgetSubsection.setCurrentIndex(self.find_first_subsection_tab())   
 
         # Icon
         avatar = data["avatar"]
@@ -199,7 +214,7 @@ def update_sections(self, data):
         self.last_loaded_player = data["player_name"]
 
 
-def insert_lb_tab(tabWidget, section, self):
+def insert_lb_tab(tabWidget: object, section: object, self: object):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
@@ -311,7 +326,7 @@ def insert_lb_tab(tabWidget, section, self):
         image_url_list.append(player.avatar_url)
 
     # Update images on thread
-    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, image_url_list,))
+    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, image_url_list, self.default_avatar_bg,))
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -330,18 +345,24 @@ def insert_lb_tab(tabWidget, section, self):
     # Return thread
     return thread
 
-def download_images(labels, urls):
+def download_images(labels: list, urls: list, default_image: object):
     """
     Downloads player image and assigns it to a label
     """
     for i in range(len(urls)):
         try:
-            # Download image
-            image = requests.get(urls[i]).content
-            avatar_image = QImage()
-            avatar_image.loadFromData(image)
-            avatar_pixmap = QPixmap(avatar_image)
-            # Assign pixmap to label by index
-            labels[i].setPixmap(avatar_pixmap)
+            if urls[i] == default_avatar_url:
+                # If it's default avatar
+                print("Not downloading default avatar")
+                labels[i].setPixmap(default_image)
+            else:
+                # Download image
+                image = requests.get(urls[i]).content
+                # To Pixmap
+                avatar_image = QImage()
+                avatar_image.loadFromData(image)
+                avatar_pixmap = QPixmap(avatar_image)
+                # Set
+                labels[i].setPixmap(avatar_pixmap)
         except:
             pass

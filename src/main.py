@@ -14,7 +14,7 @@ if __name__ == "__main__":
     }
 
     # Apply theme
-    theme_path = get_resource_path("resources/dark_amber.xml")
+    theme_path = get_resource_path("resources/theme.xml")
     apply_stylesheet(app, theme=theme_path, extra=extra)
 
     # Create window

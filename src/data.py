@@ -14,7 +14,7 @@ def get_leaderboards_json():
         return None
 
 
-def get_player_profile_json(username):
+def get_player_profile_json(username: str):
     """
     Obtain player profile as a json object
     Returns none if it fails to get the data
@@ -25,7 +25,7 @@ def get_player_profile_json(username):
         return None
 
 
-def get_player_stats_json(username):
+def get_player_stats_json(username: str):
     """
     Obtain player stats as a json object
     Returns none if it fails to get the data
@@ -36,7 +36,7 @@ def get_player_stats_json(username):
         return None
 
 
-def get_player_online_status_json(username):
+def get_player_online_status_json(username: str):
     """
     Obtains player's online status as a boolean
     Returns none if it fails to get the data
@@ -47,7 +47,7 @@ def get_player_online_status_json(username):
         return None
 
 
-def get_player(username):
+def get_player(username: str):
     """
     Generates a player object containing the profile data and stats
     Returns none if the data couldn't be gathered

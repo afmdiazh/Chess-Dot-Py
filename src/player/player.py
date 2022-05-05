@@ -7,7 +7,7 @@ class Player:
     Represents a player, contains the profile and stats data
     """
 
-    def __init__(self, profile, stats):
+    def __init__(self, profile: dict, stats: dict):
         """
         Generates profile and stats objects
         Takes the data from the profile and stats json objects
@@ -22,7 +22,7 @@ class Profile:
     Player profile
     """
 
-    def __init__(self, json):
+    def __init__(self, json: dict):
         """
         Obtains the data from the json object that
         contains the unprocessed profile data
