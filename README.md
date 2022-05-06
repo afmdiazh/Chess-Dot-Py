@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/logo.png"
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/logo.png"
 height="130"></p>
 
 <p align="center">ChessDotPy is a simple app to access the <a href="https://www.chess.com/">Chess.com</a> API</p>
@@ -75,9 +75,9 @@ Double clicking any column name will change the default sorting by that column.
 
 ## Screenshots
 
-<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/s1.png"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s1.png"></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/s2.png"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s2.png"></p>
 
 ## Modules used
 
