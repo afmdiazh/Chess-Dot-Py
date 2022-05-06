@@ -105,6 +105,7 @@ def update_sections(self: object, data: dict):
 
     if player == None:
         self.set_initial_state()
+        show_popup_window("Error", "Couldn't load player", "Error")
     else:
         # Total stats
         stats = player.stats
@@ -365,3 +366,14 @@ def download_images(labels: list, urls: list, default_image: object):
                 labels[i].setPixmap(avatar_pixmap)
         except:
             pass
+
+def show_popup_window(text: str = "text", informative_text: str = "informative_text", title: str = "title", icon: any = QMessageBox.Critical):
+    """
+    Generates a pop-up window
+    """
+    window = QMessageBox()
+    window.setIcon(icon)
+    window.setText(text)
+    window.setInformativeText(informative_text)
+    window.setWindowTitle(title)
+    window.exec_()

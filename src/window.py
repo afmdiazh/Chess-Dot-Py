@@ -167,22 +167,26 @@ class Window(Ui_MainWindow):
         leaderboard downloader thread. Adds one tab per section inside
         the leaderboard object.
         """
-        # Clear leaderboard widget
-        self.tabWidgetLeaderboard.clear()
-        
-        # Thread list
-        self.image_threads.clear()
+        # Only executed if downloaded properly
+        if not leaderboard:
+            m.show_popup_window("Error", "Couldn't load leaderboard", "Error")
+        else:
+            # Clear leaderboard widget
+            self.tabWidgetLeaderboard.clear()
+            
+            # Thread list
+            self.image_threads.clear()
 
-        # Add the tabs
-        for section in leaderboard.section_list:
-            self.image_threads.append(m.insert_lb_tab(self.tabWidgetLeaderboard, section, self))
+            # Add the tabs
+            for section in leaderboard.section_list:
+                self.image_threads.append(m.insert_lb_tab(self.tabWidgetLeaderboard, section, self))
 
-        # Start the threads
-        thread = threading.Thread(target=self.start_image_threads, daemon=True, args=())
-        thread.start()
+            # Start the threads
+            thread = threading.Thread(target=self.start_image_threads, daemon=True, args=())
+            thread.start()
 
-        # Save as last
-        self.last_image_downloader_thread = thread
+            # Save as last
+            self.last_image_downloader_thread = thread
 
     def start_image_threads(self):
         """
