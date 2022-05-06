@@ -1,4 +1,6 @@
-<h1 align="center">Chess-Dot-Py</h1>
+<h1 align="center">Chess-Dot-Py
+
+</h1>
 
 <p align="center">
 ChessDotPy is a simple app to access the <a href="https://www.chess.com/">Chess.com</a> API
