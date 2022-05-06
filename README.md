@@ -1,6 +1,5 @@
-<h1 align="center">Chess-Dot-Py</h1>
-
-<p align="center"> </p>
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/logo.png"
+height="130"></p>
 
 <p align="center">ChessDotPy is a simple app to access the <a href="https://www.chess.com/">Chess.com</a> API</p>
 
@@ -73,6 +72,12 @@ To load the leaderboard data, head to the Leaderboard tab and press "Update". Af
 Double clicking the player's username will redirect to the Player tab and will load the player's profile.
 
 Double clicking any column name will change the default sorting by that column.
+
+## Screenshots
+
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/s1.png"></p>
+
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/s2.png"></p>
 
 ## Modules used
 
