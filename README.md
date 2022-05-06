@@ -1,7 +1,7 @@
 <h1 align="center">Chess-Dot-Py</h1>
 
 <p align="center">
-ChessDotPy is a simple app to access the Chess.com API</p>
+ChessDotPy is a simple app to access the [Chess.com](https://www.chess.com/ "Chess.com") API</p>
 <p align="center">[README in Spanish](https://github.com/mgldz/Chess-Dot-Py/blob/main/README.es.md)</p>
 <p align="center">![GitHub top language](https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py) ![GitHub last commit](https://img.shields.io/github/last-commit/mgldz/Chess-Dot-Py)
 <a  href="https://github.com/mgldz/Chess-Dot-Py/stargazers"><img  src="https://img.shields.io/github/stars/mgldz/Chess-Dot-Py"  alt="Stars Badge"/> </a><a  href="https://github.com/mgldz/Chess-Dot-Py/network/members"><img  src="https://img.shields.io/github/forks/mgldz/Chess-Dot-Py"  alt="Forks Badge"/> </a><a  href="https://github.com/mgldz/Chess-Dot-Py/pulls"><img  src="https://img.shields.io/github/issues-pr/mgldz/Chess-Dot-Py"  alt="Pull Requests Badge"/></a><a  href="https://github.com/mgldz/Chess-Dot-Py/issues"> <img  src="https://img.shields.io/github/issues/mgldz/Chess-Dot-Py"  alt="Issues Badge"/></a><a  href="https://github.com/mgldz/Chess-Dot-Py/graphs/contributors"> <img  alt="GitHub contributors"  src="https://img.shields.io/github/contributors/mgldz/Chess-Dot-Py?color=2b9348"></a> <a  href="https://github.com/mgldz/Chess-Dot-Py/blob/master/LICENSE"><img  src="https://img.shields.io/github/license/mgldz/Chess-Dot-Py?color=2b9348"  alt="License Badge"/></a>
@@ -19,7 +19,7 @@ The interface is divided in sections:
 
   - Profile
 
-  - Stats
+  - Stats (also divided in categories)
 
 - Leaderboard:
 
@@ -45,7 +45,7 @@ Keep in mind that the automatically generated executables in the actions page mi
 
 1. Install [Python](https://www.python.org/downloads/)
 
-2. Download the repository or execute the command `git clone https://github.com/mgldz/Chess-Dot-Py` to clone the repository locally
+2. Download the repository or execute the command `git clone https://github.com/mgldz/Chess-Dot-Py` (requires git) to clone the repository locally
 
 3. Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required libraries.
 
@@ -72,6 +72,11 @@ To load the leaderboard data, head to the Leaderboard tab and press "Update". Af
 Double clicking the player's username will redirect to the Player tab and will load the player's profile.
 
 Double clicking any column name will change the default sorting by that column.
+
+## Modules used
+
+- [Chess.com](https://pypi.org/project/chess.com/ "Chess.com") - API Wrapper for Chess.com
+- [PyQt5](https://pypi.org/project/PyQt5/ "PyQt5") - Graphic interface
 
 ## Contributing
 
