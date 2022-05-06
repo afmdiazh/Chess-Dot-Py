@@ -1,33 +1,36 @@
-# Chess-Dot-Py
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/logo.png"
+height="130"></p>
 
-![GitHub top language](https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py)
-<a href="https://github.com/mgldz/Chess-Dot-Py/stargazers"><img src="https://img.shields.io/github/stars/mgldz/Chess-Dot-Py" alt="Stars Badge"/></a>
-<a href="https://github.com/mgldz/Chess-Dot-Py/network/members"><img src="https://img.shields.io/github/forks/mgldz/Chess-Dot-Py" alt="Forks Badge"/></a>
-<a href="https://github.com/mgldz/Chess-Dot-Py/pulls"><img src="https://img.shields.io/github/issues-pr/mgldz/Chess-Dot-Py" alt="Pull Requests Badge"/></a>
-<a href="https://github.com/mgldz/Chess-Dot-Py/issues"><img src="https://img.shields.io/github/issues/mgldz/Chess-Dot-Py" alt="Issues Badge"/></a>
-<a href="https://github.com/mgldz/Chess-Dot-Py/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/mgldz/Chess-Dot-Py?color=2b9348"></a>
-<a href="https://github.com/mgldz/Chess-Dot-Py/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mgldz/Chess-Dot-Py?color=2b9348" alt="License Badge"/></a>
+<p align="center">ChessDotPy is a simple app to access the <a href="https://www.chess.com/">Chess.com</a> API</p>
 
-ChessDotPy is a simple app to access the Chess.com API.
+<p align="center"><a href="https://github.com/mgldz/Chess-Dot-Py/blob/main/README.es.md">README in Spanish</a></p>
 
-[README in Spanish](https://github.com/mgldz/Chess-Dot-Py/blob/main/README.es.md)
+<p align="center"><img src="https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py" alt="Top Language Badge"/><img src="https://img.shields.io/github/last-commit/mgldz/Chess-Dot-Py" alt="Top Last Commit Badge"/></p>
+
+<p align="center"><a href="https://github.com/mgldz/Chess-Dot-Py/stargazers"><img src="https://img.shields.io/github/stars/mgldz/Chess-Dot-Py" alt="Stars Badge"/></a><a href="https://github.com/mgldz/Chess-Dot-Py/network/members"><img src="https://img.shields.io/github/forks/mgldz/Chess-Dot-Py" alt="Forks Badge"/></a><a href="https://github.com/mgldz/Chess-Dot-Py/pulls"><img  src="https://img.shields.io/github/issues-pr/mgldz/Chess-Dot-Py" alt="Pull Requests Badge"/></a><a href="https://github.com/mgldz/Chess-Dot-Py/issues"> <img src="https://img.shields.io/github/issues/mgldz/Chess-Dot-Py" alt="Issues Badge"/></a><a href="https://github.com/mgldz/Chess-Dot-Py/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/mgldz/Chess-Dot-Py?color=2b9348"></a><a href="https://github.com/mgldz/Chess-Dot-Py/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mgldz/Chess-Dot-Py?color=2b9348" alt="License Badge"/></a></p>
 
 ## Features
 
-With this tool we can easily access any player's profile and see the leaderboard of any game-mode
+With this tool we can easily access any player's profile and see the leaderboard of any game-mode.
+
 The interface is divided in sections:
 
 - Player:
 
   - Profile
-  - Stats
+
+  - Stats (also divided in categories)
 
 - Leaderboard:
 
   - Rank
+
   - Rating
+
   - Sorting
+
   - Wins, losses, draws
+
   - Nationality and flair
 
 ## Installation
@@ -42,13 +45,13 @@ Keep in mind that the automatically generated executables in the actions page mi
 
 1. Install [Python](https://www.python.org/downloads/)
 
-2. Download the repository or execute the command `git clone https://github.com/mgldz/Chess-Dot-Py` to clone the repository locally
+2. Download the repository or execute the command `git clone https://github.com/mgldz/Chess-Dot-Py` (requires git) to clone the repository locally
 
 3. Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required libraries.
 
-4. Install the required libraries with the command `pip install requirements.txt` (from the src folder) or executing `dependencies.bat`.
+4. Install the required libraries with the command `pip install dependencies.txt` (from the src folder) or executing `dependencies.bat`.
 
-5. Run ChessDotPy _from the src folder_ with the command `python main.py` (from the src folder) or executing `start.bat`.
+5. Run ChessDotPy with the command `python main.py` (from the src folder) or executing `start.bat`.
 
 ## Usage
 
@@ -69,6 +72,17 @@ To load the leaderboard data, head to the Leaderboard tab and press "Update". Af
 Double clicking the player's username will redirect to the Player tab and will load the player's profile.
 
 Double clicking any column name will change the default sorting by that column.
+
+## Screenshots
+
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/s1.png"></p>
+
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/develop/resources/s2.png"></p>
+
+## Modules used
+
+- [Chess.com](https://pypi.org/project/chess.com/ "Chess.com") - API Wrapper for Chess.com
+- [PyQt5](https://pypi.org/project/PyQt5/ "PyQt5") - Graphic interface
 
 ## Contributing
 
