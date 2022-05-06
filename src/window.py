@@ -1,16 +1,15 @@
 import threading
 import webbrowser
+
 import requests
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtGui import QMovie, QPixmap
 
 import interface.manager as m
-
-from util import get_resource_path
 from const import default_avatar_url
-from data import get_player, get_leaderboard
+from data import get_leaderboard, get_player
 from interface.main_window import Ui_MainWindow
-
-from PyQt5.QtGui import QMovie, QPixmap
-from PyQt5 import QtCore, QtGui
+from util import get_resource_path
 
 
 class Window(Ui_MainWindow):
@@ -57,7 +56,8 @@ class Window(Ui_MainWindow):
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
 
         # Key presses
-        self.lineEditPlayerSearch.returnPressed.connect(self.search_enter_pressed)
+        self.lineEditPlayerSearch.returnPressed.connect(
+            self.search_enter_pressed)
 
         # Downloaders
         self.player_downloader.done.connect(self.player_data_downloaded)
@@ -74,15 +74,14 @@ class Window(Ui_MainWindow):
         self.check_mark = QPixmap(get_resource_path("resources/checkmark.png"))
         self.window_icon = QtGui.QIcon(get_resource_path("resources/icon.png"))
         self.empty_image = QPixmap(get_resource_path("resources/empty.png"))
-        self.default_avatar = QPixmap(get_resource_path("resources/avatar.png"))
-        self.default_avatar_bg = QPixmap(get_resource_path("resources/avatar_bg.png"))
+        self.default_avatar = QPixmap(
+            get_resource_path("resources/avatar.png"))
+        self.default_avatar_bg = QPixmap(
+            get_resource_path("resources/avatar_bg.png"))
 
         # GIFs
         self.loading = QMovie(get_resource_path("resources/loading.gif"))
         self.loading.start()
-
-        # Other
-        self.player_downloader.set_default_profile_picture(self.default_avatar)
 
     def set_initial_state(self):
         """
@@ -124,7 +123,8 @@ class Window(Ui_MainWindow):
         Opens the webbrowser and loads the player's profile
         """
         if self.last_loaded_player != None:
-            webbrowser.open("https://www.chess.com/es/member/%s" % self.last_loaded_player)
+            webbrowser.open("https://www.chess.com/es/member/%s" %
+                            self.last_loaded_player)
 
     def button_clear_clicked(self):
         """
@@ -170,22 +170,28 @@ class Window(Ui_MainWindow):
         leaderboard downloader thread. Adds one tab per section inside
         the leaderboard object.
         """
-        # Clear leaderboard widget
-        self.tabWidgetLeaderboard.clear()
-        
-        # Thread list
-        self.image_threads.clear()
+        # Only executed if downloaded properly
+        if not leaderboard:
+            m.show_popup_window("Error", "Couldn't load leaderboard", "Error")
+        else:
+            # Clear leaderboard widget
+            self.tabWidgetLeaderboard.clear()
 
-        # Add the tabs
-        for section in leaderboard.section_list:
-            self.image_threads.append(m.insert_lb_tab(self.tabWidgetLeaderboard, section, self))
+            # Thread list
+            self.image_threads.clear()
 
-        # Start the threads
-        thread = threading.Thread(target=self.start_image_threads, daemon=True, args=())
-        thread.start()
+            # Add the tabs
+            for section in leaderboard.section_list:
+                self.image_threads.append(m.insert_lb_tab(
+                    self.tabWidgetLeaderboard, section, self))
 
-        # Save as last
-        self.last_image_downloader_thread = thread
+            # Start the threads
+            thread = threading.Thread(
+                target=self.start_image_threads, daemon=True, args=())
+            thread.start()
+
+            # Save as last
+            self.last_image_downloader_thread = thread
 
     def start_image_threads(self):
         """
@@ -205,7 +211,6 @@ class Window(Ui_MainWindow):
 
         # Remove all threads
         self.image_threads.clear()
-
 
     def table_double_clicked(self, item: object):
         """
@@ -247,7 +252,6 @@ class Window(Ui_MainWindow):
         return 0
 
 
-
 class PlayerDownloader(QtCore.QThread):
     """
     Downloader class to obtain player data while not
@@ -268,12 +272,6 @@ class PlayerDownloader(QtCore.QThread):
         Updates player name for download
         """
         self.player_name = player_name
-
-    def set_default_profile_picture(self, profile_picture: object):
-        """
-        Sets default profile picture image
-        """
-        self.default_profile_picture = profile_picture
 
     def run(self):
         """
@@ -296,8 +294,8 @@ class PlayerDownloader(QtCore.QThread):
             # Downloading avatar if it exists
             avatar_url = player.profile.avatar_url
             if avatar_url != None:
-                if avatar_url == default_avatar_url and self.default_profile_picture != None:
-                    response["avatar"] = self.default_profile_picture
+                if avatar_url == default_avatar_url:
+                    response["avatar"] = None
                 else:
                     try:
                         response["avatar"] = requests.get(avatar_url).content

@@ -1,6 +1,6 @@
 import os.path
-import emoji
 
+import emoji
 from util import find_emoji, read_field
 
 
@@ -110,14 +110,16 @@ class LPlayer:
         """
         Returns country code
         """
-        if self.country_api_id == None: return "?"
+        if self.country_api_id == None:
+            return "?"
         return os.path.basename(self.country_api_id)
 
     def get_flair(self):
         """
         Returns flair (emoji)
         """
-        if self.flair == None: return ""
+        if self.flair == None:
+            return ""
         flair = find_emoji(self.flair)
         return emoji.emojize(":%s:" % flair)
 

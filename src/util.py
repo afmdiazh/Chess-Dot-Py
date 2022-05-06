@@ -3,11 +3,12 @@ Utility functions
 """
 
 import datetime
+import json
 import os
 import sys
-import json
 
 emojis = None
+
 
 def read_field(json: dict, field: str, default_value: any = None):
     """
@@ -41,13 +42,15 @@ def get_resource_path(relative_path: str):
 
     return os.path.join(base_path, relative_path)
 
+
 def find_emoji(string: str):
     """
     Tries to find emoji from Chess.com emoji
     """
     # Directly from json
-    if string in emojis: return emojis[string]
-    
+    if string in emojis:
+        return emojis[string]
+
     # Closest approximation
     names = emojis.keys()
     for name in names:
@@ -56,6 +59,7 @@ def find_emoji(string: str):
 
     # Not found
     return "chess_pawn"
+
 
 # Load emoji list
 with open(get_resource_path("resources/emoji.json")) as f:
