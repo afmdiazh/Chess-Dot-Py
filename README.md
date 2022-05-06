@@ -1,6 +1,7 @@
 # Chess-Dot-Py
 
 ![GitHub top language](https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py)
+![GitHub last commit](https://img.shields.io/github/last-commit/mgldz/Chess-Dot-Py)
 <a href="https://github.com/mgldz/Chess-Dot-Py/stargazers"><img src="https://img.shields.io/github/stars/mgldz/Chess-Dot-Py" alt="Stars Badge"/></a>
 <a href="https://github.com/mgldz/Chess-Dot-Py/network/members"><img src="https://img.shields.io/github/forks/mgldz/Chess-Dot-Py" alt="Forks Badge"/></a>
 <a href="https://github.com/mgldz/Chess-Dot-Py/pulls"><img src="https://img.shields.io/github/issues-pr/mgldz/Chess-Dot-Py" alt="Pull Requests Badge"/></a>
@@ -14,7 +15,8 @@ ChessDotPy is a simple app to access the Chess.com API.
 
 ## Features
 
-With this tool we can easily access any player's profile and see the leaderboard of any game-mode
+With this tool we can easily access any player's profile and see the leaderboard of any game-mode.
+
 The interface is divided in sections:
 
 - Player:
@@ -46,9 +48,9 @@ Keep in mind that the automatically generated executables in the actions page mi
 
 3. Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required libraries.
 
-4. Install the required libraries with the command `pip install requirements.txt` (from the src folder) or executing `dependencies.bat`.
+4. Install the required libraries with the command `pip install dependencies.txt` (from the src folder) or executing `dependencies.bat`.
 
-5. Run ChessDotPy _from the src folder_ with the command `python main.py` (from the src folder) or executing `start.bat`.
+5. Run ChessDotPy with the command `python main.py` (from the src folder) or executing `start.bat`.
 
 ## Usage
 
