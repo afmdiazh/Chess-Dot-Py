@@ -1,5 +1,6 @@
 # Chess-Dot-Py
 
+![GitHub top language](https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py)
 <a href="https://github.com/mgldz/Chess-Dot-Py/stargazers"><img src="https://img.shields.io/github/stars/mgldz/Chess-Dot-Py" alt="Stars Badge"/></a>
 <a href="https://github.com/mgldz/Chess-Dot-Py/network/members"><img src="https://img.shields.io/github/forks/mgldz/Chess-Dot-Py" alt="Forks Badge"/></a>
 <a href="https://github.com/mgldz/Chess-Dot-Py/pulls"><img src="https://img.shields.io/github/issues-pr/mgldz/Chess-Dot-Py" alt="Pull Requests Badge"/></a>
