@@ -1,5 +1,6 @@
-from .stats import Stats
 from util import read_field
+
+from .stats import Stats
 
 
 class Player:

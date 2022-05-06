@@ -3,14 +3,13 @@ Big functions to update the main window
 """
 
 import threading
+
 import requests
-
-from util import format_date
 from const import default_avatar_url
-
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from util import format_date
 
 
 def set_initial_state(self: object):
@@ -199,7 +198,8 @@ def update_sections(self: object, data: dict):
 
         # # Change if needed
         if not self.tabWidgetSubsection.isTabVisible(current_tab):
-            self.tabWidgetSubsection.setCurrentIndex(self.find_first_subsection_tab())   
+            self.tabWidgetSubsection.setCurrentIndex(
+                self.find_first_subsection_tab())
 
         # Icon
         avatar = data["avatar"]
@@ -291,7 +291,8 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
         # Loop trough value list
         for value in values:
             value_index = values.index(value)
-            if value_index >= image_index: value_index += 1
+            if value_index >= image_index:
+                value_index += 1
             item = QTableWidgetItem()
             item.setData(QtCore.Qt.DisplayRole, value)
             item.setFlags(QtCore.Qt.ItemIsEnabled)
@@ -327,7 +328,8 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
         image_url_list.append(player.avatar_url)
 
     # Update images on thread
-    thread = threading.Thread(target=download_images, daemon=True, args=(image_label_list, image_url_list, self.default_avatar_bg,))
+    thread = threading.Thread(target=download_images, daemon=True, args=(
+        image_label_list, image_url_list, self.default_avatar_bg,))
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -345,6 +347,7 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
 
     # Return thread
     return thread
+
 
 def download_images(labels: list, urls: list, default_image: object):
     """
@@ -366,6 +369,7 @@ def download_images(labels: list, urls: list, default_image: object):
                 labels[i].setPixmap(avatar_pixmap)
         except:
             pass
+
 
 def show_popup_window(text: str = "text", informative_text: str = "informative_text", title: str = "title", icon: any = QMessageBox.Critical):
     """
