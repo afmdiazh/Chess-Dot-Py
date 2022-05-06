@@ -1,9 +1,12 @@
 <h1 align="center">Chess-Dot-Py</h1>
 
+<p align="center">ChessDotPy is a simple app to access the <a  href="https://www.chess.com/">Chess.com</a> API</p>
+
+<p align="center"><a  href="https://github.com/mgldz/Chess-Dot-Py/blob/main/README.es.md"> README in Spanish </a> </p>
+
 <p align="center">
-ChessDotPy is a simple app to access the [Chess.com](https://www.chess.com/ "Chess.com") API</p>
-<p align="center">[README in Spanish](https://github.com/mgldz/Chess-Dot-Py/blob/main/README.es.md)</p>
-<p align="center">![GitHub top language](https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py) ![GitHub last commit](https://img.shields.io/github/last-commit/mgldz/Chess-Dot-Py)
+<img  src="https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py"  alt="Top Language Badge"/> <img  src="https://img.shields.io/github/last-commit/mgldz/Chess-Dot-Py"  alt="Top Last Commit Badge"/>
+
 <a  href="https://github.com/mgldz/Chess-Dot-Py/stargazers"><img  src="https://img.shields.io/github/stars/mgldz/Chess-Dot-Py"  alt="Stars Badge"/> </a><a  href="https://github.com/mgldz/Chess-Dot-Py/network/members"><img  src="https://img.shields.io/github/forks/mgldz/Chess-Dot-Py"  alt="Forks Badge"/> </a><a  href="https://github.com/mgldz/Chess-Dot-Py/pulls"><img  src="https://img.shields.io/github/issues-pr/mgldz/Chess-Dot-Py"  alt="Pull Requests Badge"/></a><a  href="https://github.com/mgldz/Chess-Dot-Py/issues"> <img  src="https://img.shields.io/github/issues/mgldz/Chess-Dot-Py"  alt="Issues Badge"/></a><a  href="https://github.com/mgldz/Chess-Dot-Py/graphs/contributors"> <img  alt="GitHub contributors"  src="https://img.shields.io/github/contributors/mgldz/Chess-Dot-Py?color=2b9348"></a> <a  href="https://github.com/mgldz/Chess-Dot-Py/blob/master/LICENSE"><img  src="https://img.shields.io/github/license/mgldz/Chess-Dot-Py?color=2b9348"  alt="License Badge"/></a>
 
 </p>
