@@ -51,6 +51,10 @@ class Window(Ui_MainWindow):
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
         self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
+        self.pushButtonGetDailyPuzzle.clicked.connect(
+            lambda: self.button_puzzle_clicked(False))
+        self.pushButtonGetRandomPuzzle.clicked.connect(
+            lambda: self.button_puzzle_clicked(True))
 
         # Clicks
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
@@ -117,15 +121,6 @@ class Window(Ui_MainWindow):
         if self.last_loaded_player != None:
             self.fetch_player_data(self.last_loaded_player)
 
-    def avatar_double_clicked(self, item):
-        """
-        Executed when a player's avatar is double clicked
-        Opens the webbrowser and loads the player's profile
-        """
-        if self.last_loaded_player != None:
-            webbrowser.open("https://www.chess.com/es/member/%s" %
-                            self.last_loaded_player)
-
     def button_clear_clicked(self):
         """
         Executed when pushButtonPlayerClear is clicked
@@ -142,6 +137,22 @@ class Window(Ui_MainWindow):
         if not self.last_image_downloader_thread or not self.last_image_downloader_thread.is_alive():
             self.update_loading_icon(self.loadingLeaderboard, True)
             self.leaderboard_downloader.start()
+
+    def button_puzzle_clicked(self, random: bool = False):
+        """
+        Executed when pushButtonGetDailyPuzzle or pushButtonGetRandomPuzzle are clicked 
+        Obtains puzzle data
+        """
+        pass
+
+    def avatar_double_clicked(self, item: any):
+        """
+        Executed when a player's avatar is double clicked
+        Opens the webbrowser and loads the player's profile
+        """
+        if self.last_loaded_player != None:
+            webbrowser.open("https://www.chess.com/es/member/%s" %
+                            self.last_loaded_player)
 
     def fetch_player_data(self, player_name: str):
         """
