@@ -41,6 +41,10 @@ The interface is divided in sections:
 
   - Solutions
 
+- History:
+
+  - Player's game history
+
 ## Installation
 
 ### Option 1: Executable ( Windows only )
@@ -87,6 +91,14 @@ To load the puzzle data, head to the Puzzle tab and press "Get Daily Puzzle" or 
 
 - Double clicking the Daily Puzzle image will open the puzzle in the browser.
 
+### History
+
+To see a player's history, head to the History tab and type their name. After that, you can press enter or "Search" and if the player exists their history will load.
+
+- Pressing "Reload" will reload the player's history.
+
+- Pressing clear will clear the whole section.
+
 ## Screenshots
 
 <p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s1.png"></p>
@@ -94,6 +106,8 @@ To load the puzzle data, head to the Puzzle tab and press "Get Daily Puzzle" or 
 <p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s2.png"></p>
 
 <p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s3.png"></p>
+
+<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s4.png"></p>
 
 ## Modules used
 
