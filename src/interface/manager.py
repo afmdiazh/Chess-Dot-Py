@@ -347,7 +347,7 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
     # Resize columns
     header = tableWidget.horizontalHeader()
     for i in range(len(fields)):
-        header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(i, QHeaderView.Stretch)
 
     # Add table to layout
     layout.addWidget(tableWidget)
@@ -414,7 +414,7 @@ def update_history(self: object, history: History):
         # Resize headers
         header = self.tableWidgetHistory.horizontalHeader()
         for i in range(column_count):
-            header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
+            header.setSectionResizeMode(i, QHeaderView.Stretch)
 
         # Other
         self.tableWidgetHistory.setSortingEnabled(True)
