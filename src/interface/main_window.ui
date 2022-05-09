@@ -102,8 +102,17 @@
           </item>
           <item row="1" column="0" colspan="6">
            <layout class="QHBoxLayout" name="horizontalLayoutPlayer">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
+            </property>
             <item>
              <widget class="QGroupBox" name="groupBoxStats">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="locale">
                <locale language="English" country="UnitedStates"/>
               </property>
@@ -384,6 +393,12 @@
                 <widget class="QTabWidget" name="tabWidgetSubsection">
                  <property name="enabled">
                   <bool>true</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
                  </property>
                  <property name="locale">
                   <locale language="English" country="UnitedStates"/>
@@ -1293,6 +1308,12 @@
             </item>
             <item>
              <widget class="QGroupBox" name="groupBoxProfile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="locale">
                <locale language="English" country="UnitedStates"/>
               </property>
@@ -1504,7 +1525,7 @@
                   <item>
                    <widget class="ImageWidget" name="image">
                     <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>

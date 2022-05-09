@@ -29,6 +29,7 @@ class ImageWidget(QLabel):
         the resize event pixmap scaling
         """
         self._pixmap = a0
+        self.adjustSize()
         self.resizeEvent()
         return super().setPixmap(a0)
 
