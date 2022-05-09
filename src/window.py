@@ -269,8 +269,8 @@ class Window(QObject, Ui_MainWindow):
             self.pushButtonRevealSolution.show()
 
             # Set title and description
-            self.lineEditPuzzleTitle.setText(puzzle.title)
-            self.lineEditPuzzleSolution.setText(puzzle.pgn)
+            self.lineEditPuzzleTitle.setText(puzzle.get_title())
+            self.lineEditPuzzleSolution.setText(puzzle.get_solution())
             self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Password)
 
             # Set image
