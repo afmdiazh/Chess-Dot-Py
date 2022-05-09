@@ -28,26 +28,29 @@ class Puzzle:
             if self.pgn:
                 lines = self.pgn.splitlines()
                 for line in lines:
-                    # Find all the entries that contain data in brackets
-                    fields = re.findall(r'"([^"]*)"', line)
-                    if len(fields) > 0:
-                        # Value of the field
-                        data = fields[0]
+                    try:
+                        # Find all the entries that contain data in brackets
+                        fields = re.findall(r'"([^"]*)"', line)
+                        if len(fields) > 0:
+                            # Value of the field
+                            data = fields[0]
 
-                        # Title of the field
-                        title = line
+                            # Title of the field
+                            title = line
 
-                        # Replaces characters that aren't needed
-                        characters_to_remove = [data, "[", "]", '"']
-                        for char in characters_to_remove:
-                            title = title.replace(char, "")
+                            # Replaces characters that aren't needed
+                            characters_to_remove = [data, "[", "]", '"']
+                            for char in characters_to_remove:
+                                title = title.replace(char, "")
 
-                        # Remove spaces
-                        title = title.strip()
+                            # Remove spaces
+                            title = title.strip()
 
-                        # Add to dictionary if not FEN
-                        if title != "FEN":
-                            self.extra_data[title] = data
+                            # Add to dictionary if not FEN
+                            if title != "FEN":
+                                self.extra_data[title] = data
+                    except:
+                        pass
 
     def get_extra_data(self):
         """
@@ -61,17 +64,19 @@ class Puzzle:
         if len(data_titles) == 0:
             return "No extra data"
 
-        # Create the html string
-        html = html_start
-        for title in data_titles:
-            # Title
-            html += "<p>" + html_title % title
-            # Value
-            html += ": %s" % self.extra_data[title] + "</p>"
-        html += html_end
-
-        # Return
-        return html
+        # For security
+        try:
+            # Create the html string
+            html = html_start
+            for title in data_titles:
+                # Title
+                html += "<p>" + html_title % title
+                # Value
+                html += ": %s" % self.extra_data[title] + "</p>"
+            html += html_end
+            return html
+        except:
+            return "Error parsing extra data"
 
     def print_data(self):
         """
