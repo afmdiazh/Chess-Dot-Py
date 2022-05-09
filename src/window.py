@@ -189,8 +189,11 @@ class Window(Ui_MainWindow):
                 self.image_threads.append(m.insert_lb_tab(
                     self.tabWidgetLeaderboard, section, self))
 
-            # Set back the index
-            self.tabWidgetLeaderboard.setCurrentIndex(last_index)
+            # Check if index is in range, for example:
+            # Tab amount -> 13, max index -> 12
+            if self.tabWidgetLeaderboard.count() > last_index:
+                # Set back the index
+                self.tabWidgetLeaderboard.setCurrentIndex(last_index)
 
             # Start the threads
             thread = threading.Thread(
