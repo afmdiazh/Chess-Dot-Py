@@ -173,7 +173,11 @@ class Window(Ui_MainWindow):
         # Only executed if downloaded properly
         if not leaderboard:
             m.show_popup_window("Error", "Couldn't load leaderboard", "Error")
+            self.update_loading_icon(self.loadingLeaderboard, False, True)
         else:
+            # Store index
+            last_index = self.tabWidgetLeaderboard.currentIndex()
+
             # Clear leaderboard widget
             self.tabWidgetLeaderboard.clear()
 
@@ -184,6 +188,9 @@ class Window(Ui_MainWindow):
             for section in leaderboard.section_list:
                 self.image_threads.append(m.insert_lb_tab(
                     self.tabWidgetLeaderboard, section, self))
+
+            # Set back the index
+            self.tabWidgetLeaderboard.setCurrentIndex(last_index)
 
             # Start the threads
             thread = threading.Thread(
