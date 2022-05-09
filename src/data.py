@@ -1,4 +1,3 @@
-import json
 import chessdotcom as c
 
 from leaderboard.leaderboard import Leaderboard
@@ -57,12 +56,16 @@ def get_player_online_status_json(username: str):
         return None
 
 
-def get_puzzle_json():
+def get_puzzle_json(random: bool = False):
     """
     Obtains daily puzzle
     """
     try:
-        return c.get_current_daily_puzzle().json
+        if random:
+            return c.get_random_daily_puzzle().json
+        else:
+            return c.get_current_daily_puzzle().json
+
     except:
         return None
 
@@ -92,12 +95,12 @@ def get_leaderboard():
         return None
 
 
-def get_puzzle():
+def get_puzzle(random: bool = False):
     """
     Generates a puzzle object
     Returns none if the data couldn't be generated
     """
-    json_data = get_puzzle_json()
+    json_data = get_puzzle_json(random)
     if (json_data):
         return Puzzle(json_data)
     else:
@@ -110,5 +113,4 @@ if __name__ == "__main__":
     magnus = get_player("MagnusCarlsen")
     gotham = get_player("GothamChess")
     hikaru = get_player("Hikaru")
-    puzzle = get_puzzle()
-    print(puzzle.print_data())
+    puzzle = get_puzzle(False)
