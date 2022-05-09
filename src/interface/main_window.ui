@@ -62,6 +62,9 @@
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="2">
            <widget class="QPushButton" name="pushButtonPlayerSearch">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
@@ -82,6 +85,9 @@
           </item>
           <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonPlayerClear">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clears all the data&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
@@ -92,6 +98,9 @@
           </item>
           <item row="0" column="3">
            <widget class="QPushButton" name="pushButtonPlayerReload">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reloads current player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
@@ -1604,6 +1613,9 @@
            <layout class="QHBoxLayout" name="horizontalLayoutLeaderboard">
             <item>
              <widget class="QPushButton" name="pushButtonLBUpdate">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Obtains the latest leaderboard data&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Update</string>
               </property>
@@ -1749,6 +1761,9 @@
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
               <widget class="QPushButton" name="pushButtonGetDailyPuzzle">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Loads the daily puzzle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
                 <string>Get Daily Puzzle</string>
                </property>
@@ -1778,6 +1793,9 @@
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonRevealSolution">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reveals the puzzle's solution&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
                 <string>Reveal Solution</string>
                </property>
@@ -1785,6 +1803,9 @@
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonGetRandomPuzzle">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Loads a random puzzle&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Random puzzle updates every 15 seconds)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
                 <string>Get Random Puzzle</string>
                </property>
