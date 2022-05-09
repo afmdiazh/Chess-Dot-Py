@@ -1,7 +1,9 @@
+import json
 import chessdotcom as c
 
 from leaderboard.leaderboard import Leaderboard
 from player.player import Player
+from puzzle.puzzle import Puzzle
 
 
 # User-Agent header
@@ -50,7 +52,17 @@ def get_player_online_status_json(username: str):
     Returns none if it fails to get the data
     """
     try:
-        return c.is_player_online(username)
+        return c.is_player_online(username).json
+    except:
+        return None
+
+
+def get_puzzle_json():
+    """
+    Obtains daily puzzle
+    """
+    try:
+        return c.get_current_daily_puzzle().json
     except:
         return None
 
@@ -78,3 +90,25 @@ def get_leaderboard():
         return Leaderboard(json_data)
     else:
         return None
+
+
+def get_puzzle():
+    """
+    Generates a puzzle object
+    Returns none if the data couldn't be generated
+    """
+    json_data = get_puzzle_json()
+    if (json_data):
+        return Puzzle(json_data)
+    else:
+        return None
+
+
+# Tests
+if __name__ == "__main__":
+    leaderboard = get_leaderboard()
+    magnus = get_player("MagnusCarlsen")
+    gotham = get_player("GothamChess")
+    hikaru = get_player("Hikaru")
+    puzzle = get_puzzle()
+    print(puzzle.print_data())
