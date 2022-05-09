@@ -7,7 +7,7 @@ from PyQt5.QtGui import QMovie, QPixmap
 
 import interface.manager as m
 from const import default_avatar_url
-from data import get_leaderboard, get_player
+from data import get_leaderboard, get_player, get_puzzle
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
@@ -33,6 +33,7 @@ class Window(Ui_MainWindow):
         super().__init__()
         self.player_downloader = PlayerDownloader()
         self.leaderboard_downloader = LeaderboardDownloader()
+        self.puzzle_downloader = PuzzleDownloader()
         self.image_threads = []
         self.setupUi(window)
         self.load_files()
@@ -143,7 +144,8 @@ class Window(Ui_MainWindow):
         Executed when pushButtonGetDailyPuzzle or pushButtonGetRandomPuzzle are clicked 
         Obtains puzzle data
         """
-        pass
+        self.puzzle_downloader.set_random(random)
+        self.puzzle_downloader.start()
 
     def avatar_double_clicked(self, item: any):
         """
@@ -346,3 +348,30 @@ class LeaderboardDownloader(QtCore.QThread):
         """
         leaderboard = get_leaderboard()
         self.done.emit(leaderboard)
+
+
+class PuzzleDownloader(QtCore.QThread):
+    """
+    Downloader class to obtain puzzle data
+    """
+
+    done = QtCore.pyqtSignal(object)
+
+    def __init__(self):
+        """
+        Constructor
+        """
+        QtCore.QThread.__init__(self)
+
+    def set_random(self, random: bool):
+        """
+        Updates the random attribute
+        """
+        self.random = random
+
+    def run(self):
+        """
+        Obtains the puzzle data and emits response
+        """
+        puzzle = get_puzzle(self.random)
+        self.done.emit(puzzle)
