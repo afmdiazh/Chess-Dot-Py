@@ -4,6 +4,7 @@ import webbrowser
 import requests
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QMovie, QPixmap, QImage
+from PyQt5.QtCore import QObject
 from PyQt5.QtWidgets import QLineEdit
 
 import interface.manager as m
@@ -13,7 +14,7 @@ from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
 
-class Window(Ui_MainWindow):
+class Window(QObject, Ui_MainWindow):
     """
     Chess-Dot-Py main window
     """
