@@ -28,6 +28,9 @@ class Window(QObject, Ui_MainWindow):
     # Username index in leaderboard
     username_item_column_index = -1
 
+    # URL of the latest puzzle
+    puzzle_url = None
+
     def __init__(self, window):
         """
         Initializes the window
@@ -63,6 +66,7 @@ class Window(QObject, Ui_MainWindow):
 
         # Clicks
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
+        self.labelPuzzleImage.mouseDoubleClickEvent = self.puzzle_double_clicked
 
         # Key presses
         self.lineEditPlayerSearch.returnPressed.connect(
@@ -193,6 +197,15 @@ class Window(QObject, Ui_MainWindow):
             webbrowser.open("https://www.chess.com/es/member/%s" %
                             self.last_loaded_player)
 
+    def puzzle_double_clicked(self, item: any):
+        """
+        Executed when the puzzle image is double clicked
+        Opens the webbrowser and loads the puzzle tab
+        Only daily puzzle can be clicked to open tab
+        """
+        if self.puzzle_url != None:
+            webbrowser.open(self.puzzle_url)
+
     def fetch_player_data(self, player_name: str):
         """
         Starts the player data download thread with the given
@@ -282,6 +295,12 @@ class Window(QObject, Ui_MainWindow):
                 puzzle_image = QImage()
                 puzzle_image.loadFromData(image)
                 self.labelPuzzleImage.setPixmap(QPixmap(puzzle_image))
+
+            # Set URL
+            if puzzle.is_random:
+                self.puzzle_url = None
+            else:
+                self.puzzle_url = puzzle.url
 
     def start_image_threads(self):
         """

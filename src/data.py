@@ -103,7 +103,7 @@ def get_puzzle(random: bool = False):
     """
     json_data = get_puzzle_json(random)
     if (json_data):
-        return Puzzle(json_data)
+        return Puzzle(json_data, random)
     else:
         return None
 
