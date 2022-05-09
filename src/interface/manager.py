@@ -103,6 +103,11 @@ def set_history_initial_state(self: object):
     # Clear table
     self.tableWidgetHistory.setRowCount(0)
 
+    # Resize headers
+    header = self.tableWidgetHistory.horizontalHeader()
+    for i in range(self.tableWidgetHistory.columnCount()):
+        header.setSectionResizeMode(i, QHeaderView.Stretch)
+
 
 def update_sections(self: object, data: dict):
     """
