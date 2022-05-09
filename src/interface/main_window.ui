@@ -102,8 +102,17 @@
           </item>
           <item row="1" column="0" colspan="6">
            <layout class="QHBoxLayout" name="horizontalLayoutPlayer">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
+            </property>
             <item>
              <widget class="QGroupBox" name="groupBoxStats">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="locale">
                <locale language="English" country="UnitedStates"/>
               </property>
@@ -385,11 +394,17 @@
                  <property name="enabled">
                   <bool>true</bool>
                  </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="locale">
                   <locale language="English" country="UnitedStates"/>
                  </property>
                  <property name="currentIndex">
-                  <number>2</number>
+                  <number>0</number>
                  </property>
                  <property name="usesScrollButtons">
                   <bool>false</bool>
@@ -1293,6 +1308,12 @@
             </item>
             <item>
              <widget class="QGroupBox" name="groupBoxProfile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="locale">
                <locale language="English" country="UnitedStates"/>
               </property>
@@ -1473,6 +1494,12 @@
                </item>
                <item row="0" column="0">
                 <widget class="QFrame" name="frameAvatarContainer">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="locale">
                   <locale language="English" country="UnitedStates"/>
                  </property>
@@ -1496,17 +1523,17 @@
                    <number>4</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="image">
+                   <widget class="ImageWidget" name="image">
                     <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>200</width>
-                      <height>200</height>
+                      <width>16777215</width>
+                      <height>16777215</height>
                      </size>
                     </property>
                     <property name="layoutDirection">
@@ -1519,7 +1546,7 @@
                      <pixmap>../resources/avatar.png</pixmap>
                     </property>
                     <property name="scaledContents">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>
@@ -1620,19 +1647,25 @@
            <layout class="QGridLayout" name="gridLayoutPuzzle">
             <item row="1" column="0">
              <widget class="QFrame" name="framePuzzleImage">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::Box</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
                <item row="0" column="0">
-                <widget class="QLabel" name="labelPuzzleImage">
+                <widget class="ImageWidget" name="labelPuzzleImage">
                  <property name="maximumSize">
                   <size>
-                   <width>400</width>
-                   <height>400</height>
+                   <width>16777215</width>
+                   <height>16777215</height>
                   </size>
                  </property>
                  <property name="text">
@@ -1642,11 +1675,36 @@
                   <pixmap>../resources/puzzle.png</pixmap>
                  </property>
                  <property name="scaledContents">
-                  <bool>true</bool>
+                  <bool>false</bool>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
                  </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QFrame" name="frame">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <item>
+                   <widget class="QLabel" name="labelPuzzleExtraData">
+                    <property name="text">
+                     <string>No extra data</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -1654,8 +1712,14 @@
             </item>
             <item row="2" column="0">
              <widget class="QLineEdit" name="lineEditPuzzleSolution">
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Solution</string>
               </property>
              </widget>
             </item>
@@ -1663,6 +1727,12 @@
              <widget class="QLineEdit" name="lineEditPuzzleTitle">
               <property name="alignment">
                <set>Qt::AlignCenter</set>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Title</string>
               </property>
              </widget>
             </item>
@@ -1769,6 +1839,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ImageWidget</class>
+   <extends>QLabel</extends>
+   <header>interface.image_widget.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tabWidgetMain</tabstop>
   <tabstop>lineEditPlayerSearch</tabstop>

@@ -4,6 +4,7 @@ import webbrowser
 import requests
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QMovie, QPixmap, QImage
+from PyQt5.QtCore import QObject
 from PyQt5.QtWidgets import QLineEdit
 
 import interface.manager as m
@@ -13,7 +14,7 @@ from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
 
-class Window(Ui_MainWindow):
+class Window(QObject, Ui_MainWindow):
     """
     Chess-Dot-Py main window
     """
@@ -263,13 +264,16 @@ class Window(Ui_MainWindow):
         self.update_loading_icon(self.loadingPuzzle, False, True)
 
         # If puzzle exists
-        if puzzle != None:
+        if puzzle == None:
+            m.show_popup_window("Error", "Couldn't load puzzle", "Error")
+        else:
             # Show reveal solution button
             self.pushButtonRevealSolution.show()
 
             # Set title and description
-            self.lineEditPuzzleTitle.setText(puzzle.title)
-            self.lineEditPuzzleSolution.setText(puzzle.pgn)
+            self.lineEditPuzzleTitle.setText(puzzle.get_title())
+            self.lineEditPuzzleSolution.setText(puzzle.get_solution())
+            self.labelPuzzleExtraData.setText(puzzle.get_extra_data())
             self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Password)
 
             # Set image

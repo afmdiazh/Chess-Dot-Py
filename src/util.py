@@ -27,6 +27,15 @@ def format_date(ms: int):
     to a readable string
     """
     date = datetime.datetime.fromtimestamp(ms)
+    return date.strftime("%m/%d/%Y")
+
+
+def format_date_time(ms: int):
+    """
+    Converts date format from miliseconds
+    to a readable string
+    """
+    date = datetime.datetime.fromtimestamp(ms)
     return date.strftime("%m/%d/%Y, %H:%M:%S")
 
 
