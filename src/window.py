@@ -271,6 +271,7 @@ class Window(QObject, Ui_MainWindow):
             # Set title and description
             self.lineEditPuzzleTitle.setText(puzzle.get_title())
             self.lineEditPuzzleSolution.setText(puzzle.get_solution())
+            self.labelPuzzleExtraData.setText(puzzle.get_extra_data())
             self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Password)
 
             # Set image

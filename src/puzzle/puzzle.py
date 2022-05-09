@@ -1,5 +1,5 @@
-from operator import indexOf
 from util import format_date, read_field
+from const import html_desc, html_end, html_start, html_title
 import re
 
 
@@ -47,10 +47,13 @@ class Puzzle:
         readable string containing all the data
         """
         data_titles = self.extra_data.keys()
-        formatted_string = ""
+        html = html_start
         for title in data_titles:
-            formatted_string += "%s: %s\n" % (title, self.extra_data[title])
-        return formatted_string
+            if title != "FEN":
+                html += html_title % title
+                html += html_desc % self.extra_data[title]
+        html += html_end
+        return html
 
     def print_data(self):
         """
