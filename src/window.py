@@ -3,7 +3,7 @@ import webbrowser
 
 import requests
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import QMovie, QPixmap
+from PyQt5.QtGui import QMovie, QPixmap, QImage
 
 import interface.manager as m
 from const import default_avatar_url
@@ -67,6 +67,7 @@ class Window(Ui_MainWindow):
         # Downloaders
         self.player_downloader.done.connect(self.player_data_downloaded)
         self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
+        self.puzzle_downloader.done.connect(self.puzzle_downloaded)
 
         # Table (not a connection, assigned in manager)
         self.table_double_clicked_event = self.table_double_clicked
@@ -215,6 +216,27 @@ class Window(Ui_MainWindow):
 
             # Save as last
             self.last_image_downloader_thread = thread
+
+    def puzzle_downloaded(self, data):
+        """
+        Updates puzzle tab with data obtained from the
+        puzzle downloader thread
+        """
+        puzzle = data["puzzle"]
+
+        # If puzzle exists
+        if puzzle != None:
+
+            # Set title and description
+            self.lineEditPuzzleTitle.setText(puzzle.title)
+            self.lineEditPuzzleSolution.setText(puzzle.pgn)
+
+            # Set image
+            image = data["image"]
+            if image != None:
+                puzzle_image = QImage()
+                puzzle_image.loadFromData(image)
+                self.labelPuzzleImage.setPixmap(QPixmap(puzzle_image))
 
     def start_image_threads(self):
         """
@@ -373,5 +395,23 @@ class PuzzleDownloader(QtCore.QThread):
         """
         Obtains the puzzle data and emits response
         """
+        # Get puzzle
         puzzle = get_puzzle(self.random)
-        self.done.emit(puzzle)
+
+        # Base response
+        response = {
+            "puzzle": puzzle,
+            "image": None
+        }
+
+        # If puzzle exists
+        if puzzle:
+            # Downloading image if it exists
+            url = puzzle.image_url
+            if url != None:
+                try:
+                    response["image"] = requests.get(url).content
+                except:
+                    response["image"] = None
+
+        self.done.emit(response)
