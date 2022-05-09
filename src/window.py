@@ -3,11 +3,12 @@ import webbrowser
 
 import requests
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import QMovie, QPixmap
+from PyQt5.QtGui import QMovie, QPixmap, QImage
+from PyQt5.QtWidgets import QLineEdit
 
 import interface.manager as m
 from const import default_avatar_url
-from data import get_leaderboard, get_player
+from data import get_leaderboard, get_player, get_puzzle
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
@@ -33,11 +34,12 @@ class Window(Ui_MainWindow):
         super().__init__()
         self.player_downloader = PlayerDownloader()
         self.leaderboard_downloader = LeaderboardDownloader()
+        self.puzzle_downloader = PuzzleDownloader()
         self.image_threads = []
         self.setupUi(window)
         self.load_files()
         self.set_connections()
-        self.set_initial_state()
+        self.set_initial_window_state()
         window.setWindowIcon(self.window_icon)
         window.resize(700, 600)
         window.show()
@@ -51,6 +53,12 @@ class Window(Ui_MainWindow):
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
         self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
+        self.pushButtonRevealSolution.clicked.connect(
+            self.button_reveal_clicked)
+        self.pushButtonGetDailyPuzzle.clicked.connect(
+            lambda: self.button_puzzle_clicked(False))
+        self.pushButtonGetRandomPuzzle.clicked.connect(
+            lambda: self.button_puzzle_clicked(True))
 
         # Clicks
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
@@ -62,6 +70,7 @@ class Window(Ui_MainWindow):
         # Downloaders
         self.player_downloader.done.connect(self.player_data_downloaded)
         self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
+        self.puzzle_downloader.done.connect(self.puzzle_downloaded)
 
         # Table (not a connection, assigned in manager)
         self.table_double_clicked_event = self.table_double_clicked
@@ -78,18 +87,35 @@ class Window(Ui_MainWindow):
             get_resource_path("resources/avatar.png"))
         self.default_avatar_bg = QPixmap(
             get_resource_path("resources/avatar_bg.png"))
+        self.default_puzzle = QPixmap(
+            get_resource_path("resources/puzzle.png"))
 
         # GIFs
         self.loading = QMovie(get_resource_path("resources/loading.gif"))
         self.loading.start()
+
+    def set_initial_window_state(self):
+        """
+        Set initial state for some UI elements
+        EXECUTED ONLY ONCE AT THE START
+        """
+        # Player
+        self.set_initial_state()
+
+        # Leaderboard
+        self.loadingLeaderboard.setPixmap(self.empty_image)
+        self.loadingLeaderboard.setMaximumSize(QtCore.QSize(0, 0))
+
+        # Puzzle
+        self.pushButtonRevealSolution.hide()
+        self.loadingPuzzle.setMaximumSize(QtCore.QSize(0, 0))
+        self.labelPuzzleImage.setPixmap(self.default_puzzle)
 
     def set_initial_state(self):
         """
         Sets initial state for some UI elements
         """
         m.set_initial_state(self)
-        self.loadingLeaderboard.setPixmap(self.empty_image)
-        self.loadingLeaderboard.setMaximumSize(QtCore.QSize(0, 0))
 
     def search_enter_pressed(self):
         """
@@ -117,15 +143,6 @@ class Window(Ui_MainWindow):
         if self.last_loaded_player != None:
             self.fetch_player_data(self.last_loaded_player)
 
-    def avatar_double_clicked(self, item):
-        """
-        Executed when a player's avatar is double clicked
-        Opens the webbrowser and loads the player's profile
-        """
-        if self.last_loaded_player != None:
-            webbrowser.open("https://www.chess.com/es/member/%s" %
-                            self.last_loaded_player)
-
     def button_clear_clicked(self):
         """
         Executed when pushButtonPlayerClear is clicked
@@ -142,6 +159,38 @@ class Window(Ui_MainWindow):
         if not self.last_image_downloader_thread or not self.last_image_downloader_thread.is_alive():
             self.update_loading_icon(self.loadingLeaderboard, True)
             self.leaderboard_downloader.start()
+
+    def button_puzzle_clicked(self, random: bool = False):
+        """
+        Executed when pushButtonGetDailyPuzzle or pushButtonGetRandomPuzzle
+        are clicked. Obtains puzzle data
+        """
+        # Update loading icon
+        self.update_loading_icon(self.loadingPuzzle, True)
+
+        # Hide reveal solution button
+        self.pushButtonRevealSolution.hide()
+
+        # Start downloader
+        self.puzzle_downloader.set_random(random)
+        self.puzzle_downloader.start()
+
+    def button_reveal_clicked(self):
+        """
+        Executed when pushButtonRevealSolution is clicked
+        Reveals the solution of the puzzle
+        """
+        self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Normal)
+        self.pushButtonRevealSolution.hide()
+
+    def avatar_double_clicked(self, item: any):
+        """
+        Executed when a player's avatar is double clicked
+        Opens the webbrowser and loads the player's profile
+        """
+        if self.last_loaded_player != None:
+            webbrowser.open("https://www.chess.com/es/member/%s" %
+                            self.last_loaded_player)
 
     def fetch_player_data(self, player_name: str):
         """
@@ -173,7 +222,11 @@ class Window(Ui_MainWindow):
         # Only executed if downloaded properly
         if not leaderboard:
             m.show_popup_window("Error", "Couldn't load leaderboard", "Error")
+            self.update_loading_icon(self.loadingLeaderboard, False, True)
         else:
+            # Store index
+            last_index = self.tabWidgetLeaderboard.currentIndex()
+
             # Clear leaderboard widget
             self.tabWidgetLeaderboard.clear()
 
@@ -185,6 +238,12 @@ class Window(Ui_MainWindow):
                 self.image_threads.append(m.insert_lb_tab(
                     self.tabWidgetLeaderboard, section, self))
 
+            # Check if index is in range, for example:
+            # Tab amount -> 13, max index -> 12
+            if self.tabWidgetLeaderboard.count() > last_index:
+                # Set back the index
+                self.tabWidgetLeaderboard.setCurrentIndex(last_index)
+
             # Start the threads
             thread = threading.Thread(
                 target=self.start_image_threads, daemon=True, args=())
@@ -192,6 +251,33 @@ class Window(Ui_MainWindow):
 
             # Save as last
             self.last_image_downloader_thread = thread
+
+    def puzzle_downloaded(self, data):
+        """
+        Updates puzzle tab with data obtained from the
+        puzzle downloader thread
+        """
+        puzzle = data["puzzle"]
+
+        # Update loading icon
+        self.update_loading_icon(self.loadingPuzzle, False, True)
+
+        # If puzzle exists
+        if puzzle != None:
+            # Show reveal solution button
+            self.pushButtonRevealSolution.show()
+
+            # Set title and description
+            self.lineEditPuzzleTitle.setText(puzzle.title)
+            self.lineEditPuzzleSolution.setText(puzzle.pgn)
+            self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Password)
+
+            # Set image
+            image = data["image"]
+            if image != None:
+                puzzle_image = QImage()
+                puzzle_image.loadFromData(image)
+                self.labelPuzzleImage.setPixmap(QPixmap(puzzle_image))
 
     def start_image_threads(self):
         """
@@ -325,3 +411,48 @@ class LeaderboardDownloader(QtCore.QThread):
         """
         leaderboard = get_leaderboard()
         self.done.emit(leaderboard)
+
+
+class PuzzleDownloader(QtCore.QThread):
+    """
+    Downloader class to obtain puzzle data
+    """
+
+    done = QtCore.pyqtSignal(object)
+
+    def __init__(self):
+        """
+        Constructor
+        """
+        QtCore.QThread.__init__(self)
+
+    def set_random(self, random: bool):
+        """
+        Updates the random attribute
+        """
+        self.random = random
+
+    def run(self):
+        """
+        Obtains the puzzle data and emits response
+        """
+        # Get puzzle
+        puzzle = get_puzzle(self.random)
+
+        # Base response
+        response = {
+            "puzzle": puzzle,
+            "image": None
+        }
+
+        # If puzzle exists
+        if puzzle:
+            # Downloading image if it exists
+            url = puzzle.image_url
+            if url != None:
+                try:
+                    response["image"] = requests.get(url).content
+                except:
+                    response["image"] = None
+
+        self.done.emit(response)
