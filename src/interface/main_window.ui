@@ -389,7 +389,7 @@
                   <locale language="English" country="UnitedStates"/>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>2</number>
                  </property>
                  <property name="usesScrollButtons">
                   <bool>false</bool>
@@ -1269,7 +1269,7 @@
                    </item>
                   </layout>
                  </widget>
-                 <widget class="QWidget" name="tab">
+                 <widget class="QWidget" name="qWidgetNoData">
                   <attribute name="title">
                    <string>Game-mode stats</string>
                   </attribute>
@@ -1611,12 +1611,84 @@
           </item>
          </layout>
         </widget>
+        <widget class="QWidget" name="qWidgetPuzzle">
+         <attribute name="title">
+          <string>Puzzle</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButtonRevealSolution">
+            <property name="text">
+             <string>Reveal Solution</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="pushButtonGetDailyPuzzle">
+            <property name="text">
+             <string>Get Daily Puzzle</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonGetRandomPuzzle">
+            <property name="text">
+             <string>Get Random Puzzle</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <layout class="QGridLayout" name="gridLayoutPuzzle">
+            <item row="1" column="0">
+             <widget class="QFrame" name="framePuzzleImage">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_14">
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelPuzzleImage">
+                 <property name="maximumSize">
+                  <size>
+                   <width>400</width>
+                   <height>400</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap>../resources/puzzle.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLineEdit" name="lineEditPuzzleSolution"/>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLineEdit" name="lineEditPuzzleTitle"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
         <widget class="QWidget" name="qWidgetAbout">
          <attribute name="title">
           <string>About</string>
          </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
            <widget class="QFrame" name="frameAbout">
             <property name="frameShape">
              <enum>QFrame::Box</enum>
