@@ -4,6 +4,13 @@ from leaderboard.leaderboard import Leaderboard
 from player.player import Player
 
 
+# User-Agent header
+c.Client.config["headers"]["User-Agent"] = (
+    "Chess-Dot-Py"
+    "https://github.com/mgldz/Chess-Dot-Py"
+)
+
+
 def get_leaderboards_json():
     """
     Obtain leaderboards as a json object
