@@ -181,6 +181,7 @@ class Window(Ui_MainWindow):
         Reveals the solution of the puzzle
         """
         self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Normal)
+        self.pushButtonRevealSolution.hide()
 
     def avatar_double_clicked(self, item: any):
         """
