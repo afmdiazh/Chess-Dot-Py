@@ -1,5 +1,5 @@
 from util import format_date, read_field
-from const import html_desc, html_end, html_start, html_title
+from const import html_end, html_start, html_title
 import re
 
 
@@ -31,28 +31,46 @@ class Puzzle:
                     # Find all the entries that contain data in brackets
                     fields = re.findall(r'"([^"]*)"', line)
                     if len(fields) > 0:
+                        # Value of the field
                         data = fields[0]
+
+                        # Title of the field
+                        title = line
+
                         # Replaces characters that aren't needed
-                        title = line.replace(data, "")
-                        title = title.replace('"', "")
-                        title = title.replace('[', "")
-                        title = title.replace(']', "")
+                        characters_to_remove = [data, "[", "]", '"']
+                        for char in characters_to_remove:
+                            title = title.replace(char, "")
+
+                        # Remove spaces
                         title = title.strip()
-                        # Add to dictionary
-                        self.extra_data[title] = data
+
+                        # Add to dictionary if not FEN
+                        if title != "FEN":
+                            self.extra_data[title] = data
 
     def get_extra_data(self):
         """
         Formats the extra_data dictionary into a 
         readable string containing all the data
         """
+        # Obtain all the keys inside the object
         data_titles = self.extra_data.keys()
+
+        # If no keys, return
+        if len(data_titles) == 0:
+            return "No extra data"
+
+        # Create the html string
         html = html_start
         for title in data_titles:
-            if title != "FEN":
-                html += html_title % title
-                html += html_desc % self.extra_data[title]
+            # Title
+            html += "<p>" + html_title % title
+            # Value
+            html += ": %s" % self.extra_data[title] + "</p>"
         html += html_end
+
+        # Return
         return html
 
     def print_data(self):
