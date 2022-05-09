@@ -4,6 +4,7 @@ import webbrowser
 import requests
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QMovie, QPixmap, QImage
+from PyQt5.QtWidgets import QLineEdit
 
 import interface.manager as m
 from const import default_avatar_url
@@ -52,6 +53,8 @@ class Window(Ui_MainWindow):
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
         self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
+        self.pushButtonRevealSolution.clicked.connect(
+            self.button_reveal_clicked)
         self.pushButtonGetDailyPuzzle.clicked.connect(
             lambda: self.button_puzzle_clicked(False))
         self.pushButtonGetRandomPuzzle.clicked.connect(
@@ -159,8 +162,8 @@ class Window(Ui_MainWindow):
 
     def button_puzzle_clicked(self, random: bool = False):
         """
-        Executed when pushButtonGetDailyPuzzle or pushButtonGetRandomPuzzle are clicked 
-        Obtains puzzle data
+        Executed when pushButtonGetDailyPuzzle or pushButtonGetRandomPuzzle
+        are clicked. Obtains puzzle data
         """
         # Update loading icon
         self.update_loading_icon(self.loadingPuzzle, True)
@@ -171,6 +174,13 @@ class Window(Ui_MainWindow):
         # Start downloader
         self.puzzle_downloader.set_random(random)
         self.puzzle_downloader.start()
+
+    def button_reveal_clicked(self):
+        """
+        Executed when pushButtonRevealSolution is clicked
+        Reveals the solution of the puzzle
+        """
+        self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Normal)
 
     def avatar_double_clicked(self, item: any):
         """
@@ -259,6 +269,7 @@ class Window(Ui_MainWindow):
             # Set title and description
             self.lineEditPuzzleTitle.setText(puzzle.title)
             self.lineEditPuzzleSolution.setText(puzzle.pgn)
+            self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Password)
 
             # Set image
             image = data["image"]
