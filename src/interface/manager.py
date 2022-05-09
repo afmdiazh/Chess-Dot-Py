@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import *
 from util import format_date
 
 
-def set_initial_state(self: object):
+def set_player_initial_state(self: object):
     """
     Sets initial state for some UI elements
     """
@@ -347,6 +347,15 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
 
     # Return thread
     return thread
+
+
+def set_history_initial_state(self: object):
+    """
+    Sets initial state for some UI elements
+    """
+    # Loading icon
+    self.loadingHistory.setPixmap(self.empty_image)
+    self.loadingHistory.setMaximumSize(QtCore.QSize(0, 0))
 
 
 def download_images(labels: list, urls: list, default_image: object):

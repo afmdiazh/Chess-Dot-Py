@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QLineEdit
 
 import interface.manager as m
 from const import default_avatar_url
-from data import get_leaderboard, get_player, get_puzzle
+from data import get_history, get_leaderboard, get_player, get_puzzle
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 
@@ -21,6 +21,9 @@ class Window(QObject, Ui_MainWindow):
 
     # Username of the last loaded player
     last_loaded_player = None
+
+    # Username of the last loaded history
+    last_loaded_history = None
 
     # Last image downloader thread
     last_image_downloader_thread = None
@@ -39,6 +42,7 @@ class Window(QObject, Ui_MainWindow):
         self.player_downloader = PlayerDownloader()
         self.leaderboard_downloader = LeaderboardDownloader()
         self.puzzle_downloader = PuzzleDownloader()
+        self.history_downloader = HistoryDownloader()
         self.image_threads = []
         self.setupUi(window)
         self.load_files()
@@ -53,16 +57,26 @@ class Window(QObject, Ui_MainWindow):
         Connects UI elements and events to functions
         """
         # Buttons
+        # # Player
         self.pushButtonPlayerSearch.clicked.connect(self.button_search_clicked)
         self.pushButtonPlayerReload.clicked.connect(self.button_reload_clicked)
         self.pushButtonPlayerClear.clicked.connect(self.button_clear_clicked)
+        # # Leaderboard
         self.pushButtonLBUpdate.clicked.connect(self.button_lb_clicked)
+        # # Puzzle
         self.pushButtonRevealSolution.clicked.connect(
             self.button_reveal_clicked)
         self.pushButtonGetDailyPuzzle.clicked.connect(
             lambda: self.button_puzzle_clicked(False))
         self.pushButtonGetRandomPuzzle.clicked.connect(
             lambda: self.button_puzzle_clicked(True))
+        # # History
+        self.pushButtonHistorySearch.clicked.connect(
+            self.button_history_search_clicked)
+        self.pushButtonHistoryReload.clicked.connect(
+            self.button_history_reload_clicked)
+        self.pushButtonHistoryClear.clicked.connect(
+            self.button_history_clear_clicked)
 
         # Clicks
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
@@ -105,7 +119,7 @@ class Window(QObject, Ui_MainWindow):
         EXECUTED ONLY ONCE AT THE START
         """
         # Player
-        self.set_initial_state()
+        m.set_player_initial_state(self)
 
         # Leaderboard
         self.loadingLeaderboard.setPixmap(self.empty_image)
@@ -116,11 +130,8 @@ class Window(QObject, Ui_MainWindow):
         self.loadingPuzzle.setMaximumSize(QtCore.QSize(0, 0))
         self.labelPuzzleImage.setPixmap(self.default_puzzle)
 
-    def set_initial_state(self):
-        """
-        Sets initial state for some UI elements
-        """
-        m.set_initial_state(self)
+        # History
+        m.set_history_initial_state(self)
 
     def search_enter_pressed(self):
         """
@@ -154,7 +165,7 @@ class Window(QObject, Ui_MainWindow):
         Clears all the profile fields
         """
         self.last_loaded_player = None
-        self.set_initial_state()
+        m.set_player_initial_state(self)
 
     def button_lb_clicked(self):
         """
@@ -188,6 +199,31 @@ class Window(QObject, Ui_MainWindow):
         self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Normal)
         self.pushButtonRevealSolution.hide()
 
+    def button_history_search_clicked(self):
+        """
+        Executed when pushButtonHistorySearch is clicked
+        Loads the profile data of the inputted text if there's any
+        """
+        button_text = self.lineEditPlayerHistory.text().strip()
+        if button_text != "":
+            self.fetch_player_data(button_text)
+
+    def button_history_reload_clicked(self):
+        """
+        Executed when pushButtonHistoryReload is clicked
+        Reloads the last searched profile if there's any
+        """
+        if self.last_loaded_history != None:
+            self.fetch_history_data(self.last_loaded_history)
+
+    def button_history_clear_clicked(self):
+        """
+        Executed when pushButtonPlayerClear is clicked
+        Clears all the profile fields
+        """
+        self.last_loaded_history = None
+        m.set_history_initial_state(self)
+
     def avatar_double_clicked(self, item: any):
         """
         Executed when a player's avatar is double clicked
@@ -214,6 +250,15 @@ class Window(QObject, Ui_MainWindow):
         self.update_loading_icon(self.loadingPlayer, True)
         self.player_downloader.set_player_name(player_name)
         self.player_downloader.start()
+
+    def fetch_history_data(self, player_name: str):
+        """
+        Starts the match history download thread with the given
+        player name
+        """
+        self.update_loading_icon(self.loadingHistory, True)
+        self.history_downloader.set_player_name(player_name)
+        self.history_downloader.start()
 
     def player_data_downloaded(self, data: dict):
         """
@@ -301,6 +346,13 @@ class Window(QObject, Ui_MainWindow):
                 self.puzzle_url = None
             else:
                 self.puzzle_url = puzzle.url
+
+    def history_downloaded(self, history):
+        """
+        Updates history tab with data obtained
+        from the history downloader thread
+        """
+        pass
 
     def start_image_threads(self):
         """
@@ -479,3 +531,30 @@ class PuzzleDownloader(QtCore.QThread):
                     response["image"] = None
 
         self.done.emit(response)
+
+
+class HistoryDownloader(QtCore.QThread):
+    """
+    Downloader class to obtain history data
+    """
+
+    done = QtCore.pyqtSignal(object)
+
+    def __init__(self):
+        """
+        Constructor
+        """
+        QtCore.QThread.__init__(self)
+
+    def set_player_name(self, player_name: str):
+        """
+        Updates player name for download
+        """
+        self.player_name = player_name
+
+    def run(self):
+        """
+        Obtains the history data and emits response
+        """
+        history = get_history(self.player_name)
+        self.done.emit(history)

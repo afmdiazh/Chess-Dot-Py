@@ -1828,16 +1828,6 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEditPlayerHistory">
-            <property name="placeholderText">
-             <string>Hikaru</string>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="5">
            <widget class="QPushButton" name="pushButtonHistoryClear">
             <property name="text">
@@ -1931,6 +1921,16 @@
             </property>
             <property name="scaledContents">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLineEdit" name="lineEditPlayerHistory">
+            <property name="placeholderText">
+             <string>Hikaru</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
