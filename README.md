@@ -33,6 +33,14 @@ The interface is divided in sections:
 
   - Nationality and flair
 
+- Puzzle:
+
+  - Daily puzzle
+
+  - Random puzzle (updates every 15 seconds)
+
+  - Solutions
+
 ## Installation
 
 ### Option 1: Executable ( Windows only )
@@ -78,6 +86,8 @@ Double clicking any column name will change the default sorting by that column.
 <p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s1.png"></p>
 
 <p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s2.png"></p>
+
+<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s3.png"></p>
 
 ## Modules used
 
