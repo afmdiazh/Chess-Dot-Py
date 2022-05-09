@@ -381,3 +381,13 @@ def show_popup_window(text: str = "text", informative_text: str = "informative_t
     window.setInformativeText(informative_text)
     window.setWindowTitle(title)
     window.exec_()
+
+
+def get_size_policy(mode: any = QtWidgets.QSizePolicy.MinimumExpanding):
+    """
+    Generates a QSizePolicy object with the given policy type
+    """
+    size_policy = QtWidgets.QSizePolicy(mode, mode)
+    size_policy.setHorizontalStretch(0)
+    size_policy.setVerticalStretch(0)
+    return size_policy
