@@ -109,6 +109,8 @@ To see a player's history, head to the History tab and type their name. After th
 
 <p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s4.png"></p>
 
+<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s5.png"></p>
+
 ## Modules used
 
 - [Chess.com](https://pypi.org/project/chess.com/ "Chess.com") - API Wrapper for Chess.com
