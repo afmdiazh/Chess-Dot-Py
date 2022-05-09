@@ -264,7 +264,9 @@ class Window(QObject, Ui_MainWindow):
         self.update_loading_icon(self.loadingPuzzle, False, True)
 
         # If puzzle exists
-        if puzzle != None:
+        if puzzle == None:
+            m.show_popup_window("Error", "Couldn't load puzzle", "Error")
+        else:
             # Show reveal solution button
             self.pushButtonRevealSolution.show()
 
