@@ -38,7 +38,7 @@ class Window(Ui_MainWindow):
         self.setupUi(window)
         self.load_files()
         self.set_connections()
-        self.set_initial_state()
+        self.set_initial_window_state()
         window.setWindowIcon(self.window_icon)
         window.resize(700, 600)
         window.show()
@@ -84,18 +84,35 @@ class Window(Ui_MainWindow):
             get_resource_path("resources/avatar.png"))
         self.default_avatar_bg = QPixmap(
             get_resource_path("resources/avatar_bg.png"))
+        self.default_puzzle = QPixmap(
+            get_resource_path("resources/puzzle.png"))
 
         # GIFs
         self.loading = QMovie(get_resource_path("resources/loading.gif"))
         self.loading.start()
+
+    def set_initial_window_state(self):
+        """
+        Set initial state for some UI elements
+        EXECUTED ONLY ONCE AT THE START
+        """
+        # Player
+        self.set_initial_state()
+
+        # Leaderboard
+        self.loadingLeaderboard.setPixmap(self.empty_image)
+        self.loadingLeaderboard.setMaximumSize(QtCore.QSize(0, 0))
+
+        # Puzzle
+        self.pushButtonRevealSolution.hide()
+        self.loadingPuzzle.setMaximumSize(QtCore.QSize(0, 0))
+        self.labelPuzzleImage.setPixmap(self.default_puzzle)
 
     def set_initial_state(self):
         """
         Sets initial state for some UI elements
         """
         m.set_initial_state(self)
-        self.loadingLeaderboard.setPixmap(self.empty_image)
-        self.loadingLeaderboard.setMaximumSize(QtCore.QSize(0, 0))
 
     def search_enter_pressed(self):
         """
@@ -145,6 +162,13 @@ class Window(Ui_MainWindow):
         Executed when pushButtonGetDailyPuzzle or pushButtonGetRandomPuzzle are clicked 
         Obtains puzzle data
         """
+        # Update loading icon
+        self.update_loading_icon(self.loadingPuzzle, True)
+
+        # Hide reveal solution button
+        self.pushButtonRevealSolution.hide()
+
+        # Start downloader
         self.puzzle_downloader.set_random(random)
         self.puzzle_downloader.start()
 
@@ -224,8 +248,13 @@ class Window(Ui_MainWindow):
         """
         puzzle = data["puzzle"]
 
+        # Update loading icon
+        self.update_loading_icon(self.loadingPuzzle, False, True)
+
         # If puzzle exists
         if puzzle != None:
+            # Show reveal solution button
+            self.pushButtonRevealSolution.show()
 
             # Set title and description
             self.lineEditPuzzleTitle.setText(puzzle.title)
