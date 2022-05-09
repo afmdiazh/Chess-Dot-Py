@@ -9,10 +9,11 @@ from const import default_avatar_url
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from history.history import History
 from util import format_date
 
 
-def set_initial_state(self: object):
+def set_player_initial_state(self: object):
     """
     Sets initial state for some UI elements
     """
@@ -89,6 +90,23 @@ def set_initial_state(self: object):
     # Loading icon
     self.loadingPlayer.setPixmap(self.empty_image)
     self.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
+
+
+def set_history_initial_state(self: object):
+    """
+    Sets initial state for some UI elements
+    """
+    # Loading icon
+    self.loadingHistory.setPixmap(self.empty_image)
+    self.loadingHistory.setMaximumSize(QtCore.QSize(0, 0))
+
+    # Clear table
+    self.tableWidgetHistory.setRowCount(0)
+
+    # Resize headers
+    header = self.tableWidgetHistory.horizontalHeader()
+    for i in range(self.tableWidgetHistory.columnCount()):
+        header.setSectionResizeMode(i, QHeaderView.Stretch)
 
 
 def update_sections(self: object, data: dict):
@@ -334,7 +352,7 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
     # Resize columns
     header = tableWidget.horizontalHeader()
     for i in range(len(fields)):
-        header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(i, QHeaderView.Stretch)
 
     # Add table to layout
     layout.addWidget(tableWidget)
@@ -347,6 +365,69 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
 
     # Return thread
     return thread
+
+
+def update_history(self: object, history: History):
+    """
+    Updates the history section with the downloaded data
+    """
+    if history == None:
+        set_history_initial_state(self)
+        show_popup_window("Error", "Couldn't load history", "Error")
+    else:
+        # Clear table
+        self.tableWidgetHistory.setRowCount(0)
+
+        # Game list
+        games = history.game_list
+
+        # Reversed because they are in opposite order
+        games.reverse()
+
+        # Columns
+        column_count = self.tableWidgetHistory.columnCount()
+
+        # Rows
+        self.tableWidgetHistory.setRowCount(len(games))
+
+        # Iterate over all the games
+        for game in games:
+            # Current index
+            index = games.index(game)
+
+            # Values
+            values = [
+                game.opponent_player.username,
+                game.own_color,
+                game.get_winner(),
+                game.get_accuracies(),
+                game.get_ratings(),
+                game.time_control,
+                game.rules,
+                game.get_date()
+            ]
+
+            # Adding all the values
+            for i in range(len(values)):
+                if i < column_count:
+                    item = QTableWidgetItem()
+                    item.setData(QtCore.Qt.DisplayRole, values[i])
+                    item.setFlags(QtCore.Qt.ItemIsEnabled)
+                    item.setTextAlignment(QtCore.Qt.AlignCenter)
+                    self.tableWidgetHistory.setItem(index, i, item)
+
+        # Resize headers
+        header = self.tableWidgetHistory.horizontalHeader()
+        for i in range(column_count):
+            header.setSectionResizeMode(i, QHeaderView.Stretch)
+
+        # Other
+        self.tableWidgetHistory.setSortingEnabled(True)
+        self.tableWidgetHistory.horizontalHeader().setSectionsClickable(True)
+        self.tableWidgetHistory.verticalHeader().setVisible(False)
+
+        # Save the last loaded name
+        self.last_loaded_history = history.username
 
 
 def download_images(labels: list, urls: list, default_image: object):
@@ -381,3 +462,13 @@ def show_popup_window(text: str = "text", informative_text: str = "informative_t
     window.setInformativeText(informative_text)
     window.setWindowTitle(title)
     window.exec_()
+
+
+def get_size_policy(mode: any = QtWidgets.QSizePolicy.MinimumExpanding):
+    """
+    Generates a QSizePolicy object with the given policy type
+    """
+    size_policy = QtWidgets.QSizePolicy(mode, mode)
+    size_policy.setHorizontalStretch(0)
+    size_policy.setVerticalStretch(0)
+    return size_policy

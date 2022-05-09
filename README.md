@@ -41,6 +41,10 @@ The interface is divided in sections:
 
   - Solutions
 
+- History:
+
+  - Player's game history
+
 ## Installation
 
 ### Option 1: Executable ( Windows only )
@@ -53,7 +57,7 @@ Keep in mind that the automatically generated executables in the actions page mi
 
 1. Install [Python](https://www.python.org/downloads/)
 
-2. Download the repository or execute the command `git clone https://github.com/mgldz/Chess-Dot-Py` (requires git) to clone the repository locally
+2. Download the repository or execute the command `git clone https://github.com/mgldz/Chess-Dot-Py` (requires [git](https://git-scm.com/downloads)) to clone the repository locally
 
 3. Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required libraries.
 
@@ -67,31 +71,50 @@ Keep in mind that the automatically generated executables in the actions page mi
 
 To see a player's stats, head to the Player tab and type their name. After that, you can press enter or "Search" and if the player exists their stats will load.
 
-Double clicking the player's avatar will open their Chess.com profile in the browser.
+- Double clicking the player's avatar will open their Chess.com profile in the browser.
 
-Pressing "Reload" will reload the player's profile.
+- Pressing "Reload" will reload the player's profile.
 
-Pressing clear will clear the whole section.
+- Pressing clear will clear the whole section.
 
 ### Leaderboard
 
 To load the leaderboard data, head to the Leaderboard tab and press "Update". After that, it will take a few moments to download all the leaderboard information and a bit more to download the profile pictures in the background.
 
-Double clicking the player's username will redirect to the Player tab and will load the player's profile.
+- Double clicking the player's username will redirect to the Player tab and will load the player's profile.
 
-Double clicking any column name will change the default sorting by that column.
+- Double clicking any column name will change the default sorting by that column.
+
+### Puzzle
+
+To load the puzzle data, head to the Puzzle tab and press "Get Daily Puzzle" or "Get Random Puzzle" (random puzzles are updated every 15 seconds or so). After the puzzle loads, you can press "Reveal Solution" to view the moves needed to solve the puzzle.
+
+- Double clicking the Daily Puzzle image will open the puzzle in the browser.
+
+### History
+
+To see a player's history, head to the History tab and type their name. After that, you can press enter or "Search" and if the player exists their history will load.
+
+- Pressing "Reload" will reload the player's history.
+
+- Pressing clear will clear the whole section.
 
 ## Screenshots
 
-<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s1.png"></p>
+<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s1.png"></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s2.png"></p>
+<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s2.png"></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s3.png"></p>
+<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s3.png"></p>
+
+<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s4.png"></p>
+
+<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s5.png"></p>
 
 ## Modules used
 
 - [Chess.com](https://pypi.org/project/chess.com/ "Chess.com") - API Wrapper for Chess.com
+
 - [PyQt5](https://pypi.org/project/PyQt5/ "PyQt5") - Graphic interface
 
 ## Contributing

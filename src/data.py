@@ -1,5 +1,6 @@
 import datetime
 import chessdotcom as c
+from history.history import History
 
 from leaderboard.leaderboard import Leaderboard
 from player.player import Player
@@ -66,7 +67,17 @@ def get_puzzle_json(random: bool = False):
             return c.get_random_daily_puzzle().json
         else:
             return c.get_current_daily_puzzle().json
+    except:
+        return None
 
+
+def get_history_json(username: str):
+    """
+    Obtains daily puzzle
+    """
+    try:
+        date = datetime.datetime.now()
+        return c.get_player_games_by_month(username, datetime_obj=date).json
     except:
         return None
 
@@ -103,13 +114,27 @@ def get_puzzle(random: bool = False):
     """
     json_data = get_puzzle_json(random)
     if (json_data):
-        return Puzzle(json_data)
+        return Puzzle(json_data, random)
+    else:
+        return None
+
+
+def get_history(username: str):
+    """
+    Generates a history object
+    Returns none if the data couldn't be generated
+    """
+    json_data = get_history_json(username)
+    if (json_data):
+        return History(json_data, username)
     else:
         return None
 
 
 # Tests
 if __name__ == "__main__":
+    history = get_history("Hikaru")
+    history.print_all_games()
     leaderboard = get_leaderboard()
     magnus = get_player("MagnusCarlsen")
     gotham = get_player("GothamChess")

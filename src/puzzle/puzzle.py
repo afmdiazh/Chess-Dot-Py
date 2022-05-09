@@ -8,11 +8,12 @@ class Puzzle:
     Represents a daily puzzle, containing puzzle data
     """
 
-    def __init__(self, json: dict):
+    def __init__(self, json: dict, is_random: bool = False):
         """
         Obtains the data from the json object
         """
         puzzle = read_field(json, "puzzle")
+        self.is_random = is_random
 
         if puzzle:
             # Obtain data from json
