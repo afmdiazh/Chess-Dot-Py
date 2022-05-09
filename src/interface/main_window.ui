@@ -1848,22 +1848,7 @@
              <widget class="QTableWidget" name="tableWidgetHistory">
               <row>
                <property name="text">
-                <string>g1</string>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string>g2</string>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string>g2</string>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string>g3</string>
+                <string>TEST</string>
                </property>
               </row>
               <column>
@@ -1899,6 +1884,11 @@
               <column>
                <property name="text">
                 <string>Rules</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Date</string>
                </property>
               </column>
              </widget>
@@ -1974,7 +1964,7 @@
      <x>0</x>
      <y>0</y>
      <width>699</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

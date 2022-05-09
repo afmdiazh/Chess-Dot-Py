@@ -1,4 +1,4 @@
-from util import format_date, read_field
+from util import format_date, format_date_time, read_field
 
 
 class History:
@@ -17,7 +17,7 @@ class History:
 
         # Generate game objects
         for game_json in games:
-            self.game_list.append(Game(game_json))
+            self.game_list.append(Game(game_json, self.username))
 
     def print_all_games(self):
         for game in self.game_list:
@@ -30,11 +30,12 @@ class Game:
     data about the player's performance
     """
 
-    def __init__(self, json: dict):
+    def __init__(self, json: dict, username: str):
         """
         Constructor
         """
         # Base data
+        self.own_username = username
         self.url = read_field(json, "url")
         self.pgn = read_field(json, "pgn")
         self.time_control = read_field(json, "time_control")
@@ -55,6 +56,53 @@ class Game:
 
         self.white = Player(white, read_field(accuracies, "white"))
         self.black = Player(black, read_field(accuracies, "black"))
+
+        # Other
+        if self.black.username.lower() == self.own_username.lower():
+            self.own_player = self.black
+            self.own_color = "Black"
+            self.opponent_player = self.white
+            self.opponent_color = "White"
+        else:
+            self.own_player = self.white
+            self.own_color = "White"
+            self.opponent_player = self.black
+            self.opponent_color = "Black"
+
+    def get_winner(self):
+        """
+        Obtains winner of the game
+        """
+        if self.white.result == "win":
+            return "White"
+        elif self.black.result == "win":
+            return "Black"
+        else:
+            return "Draw"
+
+    def get_accuracies(self):
+        """
+        Obtains the player's accuracies as a string
+        """
+        return "W: %s, B: %s" % (str(round(self.white.accuracy, 2)), str(round(self.black.accuracy, 2)))
+
+    def get_ratings(self):
+        """
+        Obtains the player's ratings as a string
+        """
+        return "W: %d, B: %d" % (self.white.rating, self.black.rating)
+
+    def get_format(self):
+        """
+        Obtains the game's time and ruleset as a string
+        """
+        return "%s - %s" % (self.rules, self.time_control)
+
+    def get_date(self):
+        """
+        Obtains the date of the game as a string
+        """
+        return format_date_time(self.end_time)
 
     def print_all_data(self):
         """

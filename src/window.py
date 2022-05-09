@@ -6,6 +6,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QMovie, QPixmap, QImage
 from PyQt5.QtCore import QObject
 from PyQt5.QtWidgets import QLineEdit
+from history.history import History
 
 import interface.manager as m
 from const import default_avatar_url
@@ -85,11 +86,14 @@ class Window(QObject, Ui_MainWindow):
         # Key presses
         self.lineEditPlayerSearch.returnPressed.connect(
             self.search_enter_pressed)
+        self.lineEditPlayerHistory.returnPressed.connect(
+            self.history_enter_pressed)
 
         # Downloaders
         self.player_downloader.done.connect(self.player_data_downloaded)
         self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
         self.puzzle_downloader.done.connect(self.puzzle_downloaded)
+        self.history_downloader.done.connect(self.history_downloaded)
 
         # Table (not a connection, assigned in manager)
         self.table_double_clicked_event = self.table_double_clicked
@@ -141,6 +145,15 @@ class Window(QObject, Ui_MainWindow):
         button_text = self.lineEditPlayerSearch.text().strip()
         if button_text != "":
             self.fetch_player_data(button_text)
+
+    def history_enter_pressed(self):
+        """
+        Executed when enter is pressed inside the history text edit
+        Loads the profile data of the inputted text if there's any
+        """
+        button_text = self.lineEditPlayerHistory.text().strip()
+        if button_text != "":
+            self.fetch_history_data(button_text)
 
     def button_search_clicked(self):
         """
@@ -206,7 +219,7 @@ class Window(QObject, Ui_MainWindow):
         """
         button_text = self.lineEditPlayerHistory.text().strip()
         if button_text != "":
-            self.fetch_player_data(button_text)
+            self.fetch_history_data(button_text)
 
     def button_history_reload_clicked(self):
         """
@@ -347,12 +360,13 @@ class Window(QObject, Ui_MainWindow):
             else:
                 self.puzzle_url = puzzle.url
 
-    def history_downloaded(self, history):
+    def history_downloaded(self, history: History):
         """
         Updates history tab with data obtained
         from the history downloader thread
         """
-        pass
+        m.update_history(self, history)
+        self.update_loading_icon(self.loadingHistory, False)
 
     def start_image_threads(self):
         """
