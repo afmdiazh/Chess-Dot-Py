@@ -1821,36 +1821,6 @@
           <string>History</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_15">
-          <item row="0" column="4">
-           <widget class="QPushButton" name="pushButtonHistoryReload">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reload player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Reload</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="QPushButton" name="pushButtonHistoryClear">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clear section&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Clear</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QPushButton" name="pushButtonHistorySearch">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Search</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0" colspan="6">
            <layout class="QVBoxLayout" name="verticalLayoutHistory">
             <item>
@@ -1907,7 +1877,17 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="2">
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="lineEditPlayerHistory">
+            <property name="placeholderText">
+             <string>Hikaru</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
            <widget class="QLabel" name="loadingHistory">
             <property name="maximumSize">
              <size>
@@ -1926,13 +1906,33 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QLineEdit" name="lineEditPlayerHistory">
-            <property name="placeholderText">
-             <string>Hikaru</string>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonHistorySearch">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
-            <property name="clearButtonEnabled">
-             <bool>false</bool>
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="pushButtonHistoryReload">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reload player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Reload</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QPushButton" name="pushButtonHistoryClear">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clear section&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Clear</string>
             </property>
            </widget>
           </item>
@@ -1990,7 +1990,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>tabWidgetMain</tabstop>
   <tabstop>lineEditPlayerSearch</tabstop>
   <tabstop>pushButtonPlayerSearch</tabstop>
   <tabstop>pushButtonPlayerReload</tabstop>
