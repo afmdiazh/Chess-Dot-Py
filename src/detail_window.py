@@ -61,13 +61,13 @@ class DetailWindow(QMainWindow, Ui_MainWindow):
             game.white.result,
             game.white.id,
             game.white.uuid,
-            game.white.accuracy,
+            str(game.white.accuracy) + "%",
             game.black.username,
             game.black.rating,
             game.black.result,
             game.black.id,
             game.black.uuid,
-            game.black.accuracy
+            str(game.black.accuracy) + "%"
         )
         self.label.setText(text)
 
