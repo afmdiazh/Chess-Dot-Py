@@ -5,6 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject
 from PyQt5.QtGui import QImage, QMovie, QPixmap
 from PyQt5.QtWidgets import QLineEdit
+from detail_window import DetailWindow
 
 import interface.manager as m
 from downloader import (HistoryDownloader, LeaderboardDownloader,
@@ -438,6 +439,15 @@ class Window(QObject, Ui_MainWindow):
             lambda: self.go_to_history(username))
         self.menu.addAction(go_to_history)
 
+        # Open detail window
+        extra_data = parent_table.getEntryData(row)
+        print(extra_data)
+        if extra_data != None:
+            open_detail_window = QtWidgets.QAction('Detail', self)
+            open_detail_window.triggered.connect(
+                lambda: self.open_detail_window(extra_data))
+            self.menu.addAction(open_detail_window)
+
         # Show menu
         self.menu.popup(QtGui.QCursor.pos())
 
@@ -458,6 +468,12 @@ class Window(QObject, Ui_MainWindow):
             self.tabWidgetMain.setCurrentIndex(3)
             self.lineEditPlayerHistory.setText(username)
             self.fetch_history_data(username)
+
+    def open_detail_window(self, extra_data: object):
+        """
+        Generates a detail window with the given data
+        """
+        self.detail_window = DetailWindow(extra_data)
 
     def update_loading_icon(self, label: object, enabled: bool, clear: bool = False, failed: bool = False):
         """
