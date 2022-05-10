@@ -133,7 +133,11 @@ class Game:
         Returns own color as an emoji
         """
         try:
-            return emoji.emojize(":%s_circle:" % self.own_color.lower())
+            e = emoji.emojize(":%s_circle:" % self.own_color.lower())
+            if emoji.is_emoji(e):
+                return e
+            else:
+                return self.own_color
         except:
             return self.own_color
 
