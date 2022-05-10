@@ -1,7 +1,7 @@
 <p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/logo.png"
 height="130"></p>
 
-<p align="center">ChessDotPy is a simple app to access the <a href="https://www.chess.com/">Chess.com</a> API</p>
+<p align="center">ChessDotPy is a simple app that communicates with the <a href="https://www.chess.com/">Chess.com</a> API</p>
 
 <p align="center"><a href="https://github.com/mgldz/Chess-Dot-Py/blob/main/README.es.md">README in Spanish</a></p>
 
