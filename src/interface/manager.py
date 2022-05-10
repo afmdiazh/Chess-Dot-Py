@@ -10,7 +10,7 @@ from history.history import History
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from util import format_date
+from util import format_date, read_field
 
 
 def set_player_initial_state(window: object):
@@ -126,7 +126,7 @@ def update_sections(window: object, data: dict):
      - player_name: player name used in the search
      - avatar: downloaded avatar image
     """
-    player = data["player"]
+    player = read_field(data, "player")
 
     # If player not found
     if player == None:
@@ -234,7 +234,7 @@ def update_sections(window: object, data: dict):
                 window.find_first_subsection_tab())
 
         # Icon
-        avatar = data["avatar"]
+        avatar = read_field(data, "avatar")
 
         if avatar != None:
             avatar_image = QImage()
@@ -244,7 +244,7 @@ def update_sections(window: object, data: dict):
             window.image.setPixmap(window.default_avatar)
 
         # Save
-        window.last_loaded_player = data["player_name"]
+        window.last_loaded_player = read_field(data, "player_name")
 
         # Icon
         window.update_loading_icon(window.loadingPlayer, False)

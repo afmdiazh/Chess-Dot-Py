@@ -12,7 +12,7 @@ from const import default_avatar_url
 from data import get_history, get_leaderboard, get_player, get_puzzle
 from history.history import History
 from interface.main_window import Ui_MainWindow
-from util import get_resource_path
+from util import get_resource_path, read_field
 
 
 class Window(QObject, Ui_MainWindow):
@@ -333,16 +333,19 @@ class Window(QObject, Ui_MainWindow):
         Updates puzzle tab with data obtained from the
         puzzle downloader thread
         """
-        puzzle = data["puzzle"]
+        puzzle = read_field(data, "puzzle")
 
-        # Update loading icon
-        self.update_loading_icon(self.loadingPuzzle, False, True)
-
-        # If puzzle exists
+        # If puzzle doesn't exist
         if puzzle == None:
+            # Update loading icon
+            self.update_loading_icon(self.loadingPuzzle, False, True, True)
+            # Show error
             m.show_popup_window("Error", "Couldn't load puzzle",
                                 "Error", window_icon=self.window_icon)
         else:
+            # Update loading icon
+            self.update_loading_icon(self.loadingPuzzle, False, True)
+
             # Show reveal solution button
             self.pushButtonRevealSolution.show()
 
@@ -353,7 +356,7 @@ class Window(QObject, Ui_MainWindow):
             self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Password)
 
             # Set image
-            image = data["image"]
+            image = read_field(data, "image")
             if image != None:
                 puzzle_image = QImage()
                 puzzle_image.loadFromData(image)
