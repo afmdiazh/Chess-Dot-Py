@@ -338,7 +338,7 @@ class Window(QObject, Ui_MainWindow):
         # If puzzle doesn't exist
         if puzzle == None:
             # Update loading icon
-            self.update_loading_icon(self.loadingPuzzle, False, True, True)
+            self.update_loading_icon(self.loadingPuzzle, False, False, True)
             # Show error
             m.show_popup_window("Error", "Couldn't load puzzle",
                                 "Error", window_icon=self.window_icon)
@@ -413,12 +413,14 @@ class Window(QObject, Ui_MainWindow):
         If else, sets the checkmark or disables the label
         """
         label.setMaximumSize(QtCore.QSize(20, 20))
+        label.show()
         if enabled:
             label.setMovie(self.loading)
             # self.loading.start()
         else:
             # self.loading.stop()
             if clear:
+                label.hide()
                 label.setPixmap(self.empty_image)
                 label.setMaximumSize(QtCore.QSize(0, 0))
             else:
