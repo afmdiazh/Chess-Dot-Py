@@ -54,7 +54,7 @@ class TableWidget(QTableWidget):
         key = None
 
         # Get key
-        if index != None:
+        if index == None:
             key = str(self.entry_count)
         else:
             key = str(index)
