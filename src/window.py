@@ -297,7 +297,8 @@ class Window(QObject, Ui_MainWindow):
         # Only executed if downloaded properly
         if not leaderboard:
             self.update_loading_icon(self.loadingLeaderboard, False, True)
-            m.show_popup_window("Error", "Couldn't load leaderboard", "Error")
+            m.show_popup_window(
+                "Error", "Couldn't load leaderboard", "Error", window_icon=self.window_icon)
         else:
             # Store index
             last_index = self.tabWidgetLeaderboard.currentIndex()
@@ -339,7 +340,8 @@ class Window(QObject, Ui_MainWindow):
 
         # If puzzle exists
         if puzzle == None:
-            m.show_popup_window("Error", "Couldn't load puzzle", "Error")
+            m.show_popup_window("Error", "Couldn't load puzzle",
+                                "Error", window_icon=self.window_icon)
         else:
             # Show reveal solution button
             self.pushButtonRevealSolution.show()

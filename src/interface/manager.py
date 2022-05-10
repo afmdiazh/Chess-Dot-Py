@@ -134,7 +134,8 @@ def update_sections(self: object, data: dict):
         # Update icon to show cross
         self.update_loading_icon(self.loadingPlayer, False, False, True)
         # Show error message
-        show_popup_window("Error", "Couldn't load player", "Error")
+        show_popup_window("Error", "Couldn't load player",
+                          "Error", window_icon=self.window_icon)
     else:
         # Total stats
         stats = player.stats
@@ -393,7 +394,8 @@ def update_history(self: object, history: History):
         # Update icon to show cross
         self.update_loading_icon(self.loadingHistory, False, False, True)
         # Show error message
-        show_popup_window("Error", "Couldn't load history", "Error")
+        show_popup_window("Error", "Couldn't load history",
+                          "Error", window_icon=self.window_icon)
     else:
         # Clear table
         self.tableWidgetHistory.setRowCount(0)
@@ -465,11 +467,13 @@ def download_images(labels: list, urls: list, default_image: object):
             pass
 
 
-def show_popup_window(text: str = "text", informative_text: str = "informative_text", title: str = "title", icon: any = QMessageBox.Critical):
+def show_popup_window(text: str = "text", informative_text: str = "informative_text", title: str = "title", icon: any = QMessageBox.Critical, window_icon: any = None):
     """
     Generates a pop-up window
     """
     window = QMessageBox()
+    if window_icon != None:
+        window.setWindowIcon(window_icon)
     window.setIcon(icon)
     window.setText(text)
     window.setInformativeText(informative_text)
