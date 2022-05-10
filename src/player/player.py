@@ -29,6 +29,7 @@ class Profile:
         contains the unprocessed profile data
         """
         player = read_field(json, "player")
+
         if player:
             self.avatar_url = read_field(player, "avatar")
             self.player_id = read_field(player, "player_id")

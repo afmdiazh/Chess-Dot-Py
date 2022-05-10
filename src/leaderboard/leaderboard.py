@@ -13,7 +13,7 @@ class Leaderboard:
         """
         Generates a list of section items
         """
-        leaderboards = json["leaderboards"]
+        leaderboards = read_field(json, "leaderboards", {})
 
         # Get all the section names
         self.section_names = leaderboards.keys()

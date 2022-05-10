@@ -11,7 +11,7 @@ class Stats:
         """
         Creates sections from the json
         """
-        stats = json["stats"]
+        stats = read_field(json, "stats", {})
 
         # Section names, for example:
         # chess_rapid, chess_bullet, chess_blitz
@@ -112,8 +112,8 @@ class SSection:
         # Last: current rating
         last = read_field(json, "last")
         if last:
-            self.current_rating = last["rating"]
-            self.current_date = last["date"]
+            self.current_rating = read_field(last, "rating")
+            self.current_date = read_field(last, "last")
         else:
             self.current_rating = None
             self.current_date = None
@@ -121,8 +121,8 @@ class SSection:
         # Best: highest rating
         best = read_field(json, "best")
         if best:
-            self.highest_rating = best["rating"]
-            self.highest_date = best["date"]
+            self.highest_rating = read_field(best, "rating")
+            self.highest_date = read_field(best, "date")
         else:
             self.highest_rating = None
             self.highest_date = None
@@ -130,9 +130,9 @@ class SSection:
         # Record: wins, losses and draws
         record = read_field(json, "record")
         if record:
-            self.wins = record["win"]
-            self.losses = record["loss"]
-            self.draws = record["draw"]
+            self.wins = read_field(record, "win")
+            self.losses = read_field(record, "loss")
+            self.draws = read_field(record, "draw")
         else:
             self.wins = None
             self.losses = None
