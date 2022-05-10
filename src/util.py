@@ -60,7 +60,7 @@ def get_resource_path(relative_path: str):
     return os.path.join(base_path, relative_path)
 
 
-def find_emoji(string: str):
+def find_emoji(string: str, default: str = "chess_pawn"):
     """
     Tries to find emoji from Chess.com emoji
     """
@@ -75,9 +75,12 @@ def find_emoji(string: str):
             return emojis[name]
 
     # Not found
-    return "chess_pawn"
+    return default
 
 
 # Load emoji list
-with open(get_resource_path("resources/emoji.json")) as f:
-    emojis = json.load(f)
+try:
+    with open(get_resource_path("resources/emoji.json")) as f:
+        emojis = json.load(f)
+except:
+    emojis = {}
