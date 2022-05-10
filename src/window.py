@@ -422,7 +422,7 @@ class Window(QObject, Ui_MainWindow):
         username = username_item.text().strip()
 
         # Create menu
-        self.menu = QtWidgets.QMenu()
+        self.menu = QtWidgets.QMenu(parent_table)
         self.menu.setTitle(username)
 
         # Go to profile
