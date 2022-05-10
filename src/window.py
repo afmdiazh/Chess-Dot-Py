@@ -407,8 +407,16 @@ class Window(QObject, Ui_MainWindow):
         column = parent_table.usernameIndex()
         row = item.row()
 
+        # Return if column is not set
+        if column == -1:
+            return
+
         # Obtain the username item
         username_item = parent_table.item(row, column)
+
+        # Return if item not found
+        if username_item == None:
+            return
 
         # Obtain the username text
         username = username_item.text().strip()
