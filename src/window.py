@@ -171,6 +171,7 @@ class Window(QObject, Ui_MainWindow):
         Reloads the last searched profile if there's any
         """
         if self.last_loaded_player != None:
+            self.lineEditPlayerSearch.setText(self.last_loaded_player)
             self.fetch_player_data(self.last_loaded_player)
 
     def button_clear_clicked(self):
@@ -229,6 +230,7 @@ class Window(QObject, Ui_MainWindow):
         Reloads the last searched profile if there's any
         """
         if self.last_loaded_history != None:
+            self.lineEditPlayerHistory.setText(self.last_loaded_history)
             self.fetch_history_data(self.last_loaded_history)
 
     def button_history_clear_clicked(self):
