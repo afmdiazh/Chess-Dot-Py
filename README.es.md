@@ -82,13 +82,13 @@ Para ver las estadísticas y el perfil de un jugador, dirígete a la pestaña Ju
 
 - Al hacer doble clic en el avatar del jugador, se abrirá su perfil de Chess.com en el navegador.
 
-- Al presionar "Recargar" se recargará el perfil del jugador.
+- Al presionar "Recargar" o F5 se recargará el perfil del jugador.
 
 - Al pulsar borrar se borrará toda la sección.
 
 ### Clasificación
 
-Para cargar los datos de la tabla de clasificación, dirígete a la pestaña Clasificación y presiona "Actualizar". Después de eso, tardará unos minutos en descargar toda la información de la tabla de clasificación y un poco más para descargar las imágenes de perfil en segundo plano.
+Para cargar los datos de la tabla de clasificación, dirígete a la pestaña Clasificación y presiona "Actualizar" o F5. Después de eso, tardará unos minutos en descargar toda la información de la tabla de clasificación y un poco más para descargar las imágenes de perfil en segundo plano.
 
 - Al hacer doble clic en cualquier jugador, se abrirá un menú para acceder a los datos del jugador directamente.
 
@@ -106,7 +106,7 @@ Para ver el historial de un jugador, dirígete a la pestaña Historial y escribe
 
 - Al hacer doble clic en cualquier partida, se abrirá un menú para acceder a los datos del oponente directamente.
 
-- Al presionar "Recargar" se recargará el historial del jugador.
+- Al presionar "Recargar" o F5 se recargará el historial del jugador.
 
 - Al pulsar borrar se borrará toda la sección.
 
