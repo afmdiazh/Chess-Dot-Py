@@ -11,10 +11,9 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from util import format_date
-from window import Window
 
 
-def set_player_initial_state(window: Window):
+def set_player_initial_state(window: object):
     """
     Sets initial state for some UI elements
     """
@@ -94,7 +93,7 @@ def set_player_initial_state(window: Window):
     window.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
 
 
-def set_history_initial_state(window: Window, first_execution: bool = True):
+def set_history_initial_state(window: object, first_execution: bool = True):
     """
     Sets initial state for some UI elements
     """
@@ -118,7 +117,7 @@ def set_history_initial_state(window: Window, first_execution: bool = True):
         window.tableWidgetHistory.verticalHeader().setVisible(False)
 
 
-def update_sections(window: Window, data: dict):
+def update_sections(window: object, data: dict):
     """
     Updates player tab with the data obtained from the
     player downloader thread, the data item contains
@@ -251,7 +250,7 @@ def update_sections(window: Window, data: dict):
         window.update_loading_icon(window.loadingPlayer, False)
 
 
-def insert_lb_tab(tabWidget: object, section: object, window: Window):
+def insert_lb_tab(tabWidget: object, section: object, window: object):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
@@ -385,7 +384,7 @@ def insert_lb_tab(tabWidget: object, section: object, window: Window):
     return thread
 
 
-def update_history(window: Window, history: History):
+def update_history(window: object, history: History):
     """
     Updates the history section with the downloaded data
     """
