@@ -28,17 +28,23 @@ def format_date(ms: int):
     Converts date format from miliseconds
     to a readable string
     """
-    date = datetime.datetime.fromtimestamp(ms)
-    return date.strftime("%m/%d/%Y")
+    try:
+        date = datetime.datetime.fromtimestamp(ms)
+        return date.strftime("%m/%d/%Y")
+    except:
+        return "Error parsing date"
 
 
 def format_date_time(ms: int):
     """
     Converts date format from miliseconds
-    to a readable string
+    to a readable string (more precise)
     """
-    date = datetime.datetime.fromtimestamp(ms)
-    return date.strftime("%m/%d/%Y, %H:%M:%S")
+    try:
+        date = datetime.datetime.fromtimestamp(ms)
+        return date.strftime("%m/%d/%Y, %H:%M:%S")
+    except:
+        return "Error parsing date"
 
 
 def get_resource_path(relative_path: str):
