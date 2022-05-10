@@ -78,8 +78,7 @@ class Window(QObject, Ui_MainWindow):
         # Clicks
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
         self.labelPuzzleImage.mouseDoubleClickEvent = self.puzzle_double_clicked
-        self.tableWidgetHistory.itemDoubleClicked.connect(
-            self.table_double_clicked)
+        self.tableWidgetHistory.itemDoubleClicked.connect(self.table_clicked)
 
         # Key presses
         self.lineEditPlayerSearch.returnPressed.connect(
@@ -92,9 +91,6 @@ class Window(QObject, Ui_MainWindow):
         self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
         self.puzzle_downloader.done.connect(self.puzzle_downloaded)
         self.history_downloader.done.connect(self.history_downloaded)
-
-        # Table (not a connection, assigned in manager)
-        self.table_double_clicked_event = self.table_double_clicked
 
     def load_files(self):
         """
@@ -394,9 +390,9 @@ class Window(QObject, Ui_MainWindow):
         # Remove all threads
         self.image_threads.clear()
 
-    def table_double_clicked(self, item: object):
+    def table_clicked(self, item: object):
         """
-        Executed when a table element is double clicked
+        Executed when a table element is clicked
         Shows a menu with different actions
         """
 
@@ -423,7 +419,12 @@ class Window(QObject, Ui_MainWindow):
 
         # Create menu
         self.menu = QtWidgets.QMenu(parent_table)
-        self.menu.setTitle(username)
+        self.menu.setTitle(username)  # Doesn't work with theme
+
+        # Show username
+        show_username = QtWidgets.QAction(username, self)
+        self.menu.addAction(show_username)
+        self.menu.addSeparator()
 
         # Go to profile
         go_to_profile = QtWidgets.QAction('Profile', self)

@@ -386,7 +386,7 @@ def insert_lb_tab(tabWidget: object, section: object, window: object):
     tabWidget.addTab(tab, section.get_formatted_name())
 
     # Add event
-    tableWidget.itemDoubleClicked.connect(window.table_double_clicked_event)
+    tableWidget.itemDoubleClicked.connect(window.table_clicked)
 
     # Return thread
     return thread
