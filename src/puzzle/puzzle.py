@@ -1,6 +1,7 @@
-from util import format_date, read_field
-from const import html_end, html_start, html_title
 import re
+
+from const import html_end, html_start, html_title
+from util import format_date, read_field
 
 
 class Puzzle:

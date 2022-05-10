@@ -6,7 +6,6 @@ from qt_material import apply_stylesheet
 from util import get_resource_path
 from window import Window
 
-
 if __name__ == "__main__":
     # Create app
     app = QtWidgets.QApplication(sys.argv)

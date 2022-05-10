@@ -1,11 +1,11 @@
 import datetime
-import chessdotcom as c
-from history.history import History
 
+import chessdotcom as c
+
+from history.history import History
 from leaderboard.leaderboard import Leaderboard
 from player.player import Player
 from puzzle.puzzle import Puzzle
-
 
 # User-Agent header
 c.Client.config["headers"]["User-Agent"] = (

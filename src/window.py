@@ -3,14 +3,14 @@ import webbrowser
 
 import requests
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import QMovie, QPixmap, QImage
 from PyQt5.QtCore import QObject
+from PyQt5.QtGui import QImage, QMovie, QPixmap
 from PyQt5.QtWidgets import QLineEdit
-from history.history import History
 
 import interface.manager as m
 from const import default_avatar_url
 from data import get_history, get_leaderboard, get_player, get_puzzle
+from history.history import History
 from interface.main_window import Ui_MainWindow
 from util import get_resource_path
 

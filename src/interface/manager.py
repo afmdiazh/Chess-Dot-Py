@@ -6,10 +6,10 @@ import threading
 
 import requests
 from const import default_avatar_url
+from history.history import History
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from history.history import History
 from util import format_date
 
 
