@@ -296,8 +296,8 @@ class Window(QObject, Ui_MainWindow):
         """
         # Only executed if downloaded properly
         if not leaderboard:
-            m.show_popup_window("Error", "Couldn't load leaderboard", "Error")
             self.update_loading_icon(self.loadingLeaderboard, False, True)
+            m.show_popup_window("Error", "Couldn't load leaderboard", "Error")
         else:
             # Store index
             last_index = self.tabWidgetLeaderboard.currentIndex()
