@@ -13,7 +13,7 @@ class Leaderboard:
         """
         Generates a list of section items
         """
-        leaderboards = json["leaderboards"]
+        leaderboards = read_field(json, "leaderboards", {})
 
         # Get all the section names
         self.section_names = leaderboards.keys()
@@ -129,3 +129,13 @@ class LPlayer:
         W: wins, L: losses, D: draws
         """
         return "W: %d L: %d D: %d" % (self.wins, self.losses, self.draws)
+
+    def get_winrate(self):
+        """
+        Obtains the player's winrate as a string
+        """
+        total_games = self.wins + self.draws + self.losses
+        if total_games == 0:
+            return "0%"
+        else:
+            return str(round(self.wins / total_games * 100, 2)) + "%"

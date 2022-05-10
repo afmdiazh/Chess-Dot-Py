@@ -1,18 +1,18 @@
 import threading
 import webbrowser
 
-import requests
-from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import QMovie, QPixmap, QImage
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject
+from PyQt5.QtGui import QImage, QMovie, QPixmap
 from PyQt5.QtWidgets import QLineEdit
-from history.history import History
+from detail_window import DetailWindow
 
 import interface.manager as m
-from const import default_avatar_url
-from data import get_history, get_leaderboard, get_player, get_puzzle
+from downloader import (HistoryDownloader, LeaderboardDownloader,
+                        PlayerDownloader, PuzzleDownloader)
+from history.history import History
 from interface.main_window import Ui_MainWindow
-from util import get_resource_path
+from util import get_resource_path, read_field
 
 
 class Window(QObject, Ui_MainWindow):
@@ -28,9 +28,6 @@ class Window(QObject, Ui_MainWindow):
 
     # Last image downloader thread
     last_image_downloader_thread = None
-
-    # Username index in leaderboard
-    username_item_column_index = -1
 
     # URL of the latest puzzle
     puzzle_url = None
@@ -82,6 +79,7 @@ class Window(QObject, Ui_MainWindow):
         # Clicks
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
         self.labelPuzzleImage.mouseDoubleClickEvent = self.puzzle_double_clicked
+        self.tableWidgetHistory.itemDoubleClicked.connect(self.table_clicked)
 
         # Key presses
         self.lineEditPlayerSearch.returnPressed.connect(
@@ -94,9 +92,6 @@ class Window(QObject, Ui_MainWindow):
         self.leaderboard_downloader.done.connect(self.leaderboard_downloaded)
         self.puzzle_downloader.done.connect(self.puzzle_downloaded)
         self.history_downloader.done.connect(self.history_downloaded)
-
-        # Table (not a connection, assigned in manager)
-        self.table_double_clicked_event = self.table_double_clicked
 
     def load_files(self):
         """
@@ -171,6 +166,7 @@ class Window(QObject, Ui_MainWindow):
         Reloads the last searched profile if there's any
         """
         if self.last_loaded_player != None:
+            self.lineEditPlayerSearch.setText(self.last_loaded_player)
             self.fetch_player_data(self.last_loaded_player)
 
     def button_clear_clicked(self):
@@ -229,6 +225,7 @@ class Window(QObject, Ui_MainWindow):
         Reloads the last searched profile if there's any
         """
         if self.last_loaded_history != None:
+            self.lineEditPlayerHistory.setText(self.last_loaded_history)
             self.fetch_history_data(self.last_loaded_history)
 
     def button_history_clear_clicked(self):
@@ -296,8 +293,9 @@ class Window(QObject, Ui_MainWindow):
         """
         # Only executed if downloaded properly
         if not leaderboard:
-            m.show_popup_window("Error", "Couldn't load leaderboard", "Error")
             self.update_loading_icon(self.loadingLeaderboard, False, True)
+            m.show_popup_window(
+                "Error", "Couldn't load leaderboard", "Error", window_icon=self.window_icon)
         else:
             # Store index
             last_index = self.tabWidgetLeaderboard.currentIndex()
@@ -332,15 +330,19 @@ class Window(QObject, Ui_MainWindow):
         Updates puzzle tab with data obtained from the
         puzzle downloader thread
         """
-        puzzle = data["puzzle"]
+        puzzle = read_field(data, "puzzle")
 
-        # Update loading icon
-        self.update_loading_icon(self.loadingPuzzle, False, True)
-
-        # If puzzle exists
+        # If puzzle doesn't exist
         if puzzle == None:
-            m.show_popup_window("Error", "Couldn't load puzzle", "Error")
+            # Update loading icon
+            self.update_loading_icon(self.loadingPuzzle, False, False, True)
+            # Show error
+            m.show_popup_window("Error", "Couldn't load puzzle",
+                                "Error", window_icon=self.window_icon)
         else:
+            # Update loading icon
+            self.update_loading_icon(self.loadingPuzzle, False, True)
+
             # Show reveal solution button
             self.pushButtonRevealSolution.show()
 
@@ -351,7 +353,7 @@ class Window(QObject, Ui_MainWindow):
             self.lineEditPuzzleSolution.setEchoMode(QLineEdit.Password)
 
             # Set image
-            image = data["image"]
+            image = read_field(data, "image")
             if image != None:
                 puzzle_image = QImage()
                 puzzle_image.loadFromData(image)
@@ -389,17 +391,90 @@ class Window(QObject, Ui_MainWindow):
         # Remove all threads
         self.image_threads.clear()
 
-    def table_double_clicked(self, item: object):
+    def table_clicked(self, item: object):
         """
-        Executed when a leaderboard table element is double clicked
-        Redirects to the player tab and loads the profile of the clicked player
+        Executed when a table element is clicked
+        Shows a menu with different actions
         """
-        if item.column() == self.username_item_column_index:
-            username = item.text().strip()
-            if username != "":
-                self.tabWidgetMain.setCurrentIndex(0)
-                self.lineEditPlayerSearch.setText(username)
-                self.fetch_player_data(username)
+
+        # Obtain the parent table
+        parent_table = item.tableWidget()
+
+        # Obtain row and column for the username
+        column = parent_table.usernameIndex()
+        row = item.row()
+
+        # Return if column is not set
+        if column == -1:
+            return
+
+        # Obtain the username item
+        username_item = parent_table.item(row, column)
+
+        # Return if item not found
+        if username_item == None:
+            return
+
+        # Obtain the username text
+        username = username_item.text().strip()
+
+        # Create menu
+        self.menu = QtWidgets.QMenu(parent_table)
+        self.menu.setTitle(username)  # Doesn't work with theme
+
+        # Show username
+        show_username = QtWidgets.QAction(username, self)
+        self.menu.addAction(show_username)
+        self.menu.addSeparator()
+
+        # Go to profile
+        go_to_profile = QtWidgets.QAction('Profile', self)
+        go_to_profile.triggered.connect(
+            lambda: self.go_to_profile(username))
+        self.menu.addAction(go_to_profile)
+
+        # Go to history
+        go_to_history = QtWidgets.QAction('History', self)
+        go_to_history.triggered.connect(
+            lambda: self.go_to_history(username))
+        self.menu.addAction(go_to_history)
+
+        # Open detail window
+        extra_data = parent_table.getEntryData(row)
+
+        # Only open if extra data exists and table has a type
+        if extra_data != None and parent_table.tableType() != None:
+            open_detail_window = QtWidgets.QAction('Detail', self)
+            open_detail_window.triggered.connect(
+                lambda: self.open_detail_window(extra_data))
+            self.menu.addAction(open_detail_window)
+
+        # Show menu
+        self.menu.popup(QtGui.QCursor.pos())
+
+    def go_to_profile(self, username: str = ""):
+        """
+        Jumps to a player's profile
+        """
+        if username != "":
+            self.tabWidgetMain.setCurrentIndex(0)
+            self.lineEditPlayerSearch.setText(username)
+            self.fetch_player_data(username)
+
+    def go_to_history(self, username: str = ""):
+        """
+        Jumps to a player's history
+        """
+        if username != "":
+            self.tabWidgetMain.setCurrentIndex(3)
+            self.lineEditPlayerHistory.setText(username)
+            self.fetch_history_data(username)
+
+    def open_detail_window(self, extra_data: object):
+        """
+        Generates a detail window with the given data
+        """
+        self.detail_window = DetailWindow(extra_data, self.window_icon)
 
     def update_loading_icon(self, label: object, enabled: bool, clear: bool = False, failed: bool = False):
         """
@@ -408,12 +483,14 @@ class Window(QObject, Ui_MainWindow):
         If else, sets the checkmark or disables the label
         """
         label.setMaximumSize(QtCore.QSize(20, 20))
+        label.show()
         if enabled:
             label.setMovie(self.loading)
             # self.loading.start()
         else:
             # self.loading.stop()
             if clear:
+                label.hide()
                 label.setPixmap(self.empty_image)
                 label.setMaximumSize(QtCore.QSize(0, 0))
             else:
@@ -430,150 +507,3 @@ class Window(QObject, Ui_MainWindow):
             if self.tabWidgetSubsection.isTabVisible(i):
                 return i
         return 0
-
-
-class PlayerDownloader(QtCore.QThread):
-    """
-    Downloader class to obtain player data while not
-    freezing the interface
-    """
-
-    done = QtCore.pyqtSignal(object)
-    default_profile_picture = None
-
-    def __init__(self):
-        """
-        Constructor
-        """
-        QtCore.QThread.__init__(self)
-
-    def set_player_name(self, player_name: str):
-        """
-        Updates player name for download
-        """
-        self.player_name = player_name
-
-    def run(self):
-        """
-        Obtains the player data and emits response
-        """
-        # Base response
-        response = {
-            "player_name": self.player_name,
-            "player": None,
-            "avatar": None
-        }
-
-        # Obtains player
-        player = get_player(self.player_name)
-        response["player"] = player
-
-        # If player exists
-        if player:
-
-            # Downloading avatar if it exists
-            avatar_url = player.profile.avatar_url
-            if avatar_url != None:
-                if avatar_url == default_avatar_url:
-                    response["avatar"] = None
-                else:
-                    try:
-                        response["avatar"] = requests.get(avatar_url).content
-                    except:
-                        response["avatar"] = None
-
-        # Emits response
-        self.done.emit(response)
-
-
-class LeaderboardDownloader(QtCore.QThread):
-    """
-    Downloader class to obtain leaderboard data
-    """
-
-    done = QtCore.pyqtSignal(object)
-
-    def __init__(self):
-        """
-        Constructor
-        """
-        QtCore.QThread.__init__(self)
-
-    def run(self):
-        """
-        Obtains the leaderboard data and emits response
-        """
-        leaderboard = get_leaderboard()
-        self.done.emit(leaderboard)
-
-
-class PuzzleDownloader(QtCore.QThread):
-    """
-    Downloader class to obtain puzzle data
-    """
-
-    done = QtCore.pyqtSignal(object)
-
-    def __init__(self):
-        """
-        Constructor
-        """
-        QtCore.QThread.__init__(self)
-
-    def set_random(self, random: bool):
-        """
-        Updates the random attribute
-        """
-        self.random = random
-
-    def run(self):
-        """
-        Obtains the puzzle data and emits response
-        """
-        # Get puzzle
-        puzzle = get_puzzle(self.random)
-
-        # Base response
-        response = {
-            "puzzle": puzzle,
-            "image": None
-        }
-
-        # If puzzle exists
-        if puzzle:
-            # Downloading image if it exists
-            url = puzzle.image_url
-            if url != None:
-                try:
-                    response["image"] = requests.get(url).content
-                except:
-                    response["image"] = None
-
-        self.done.emit(response)
-
-
-class HistoryDownloader(QtCore.QThread):
-    """
-    Downloader class to obtain history data
-    """
-
-    done = QtCore.pyqtSignal(object)
-
-    def __init__(self):
-        """
-        Constructor
-        """
-        QtCore.QThread.__init__(self)
-
-    def set_player_name(self, player_name: str):
-        """
-        Updates player name for download
-        """
-        self.player_name = player_name
-
-    def run(self):
-        """
-        Obtains the history data and emits response
-        """
-        history = get_history(self.player_name)
-        self.done.emit(history)

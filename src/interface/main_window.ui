@@ -107,6 +107,9 @@
             <property name="text">
              <string>Reload</string>
             </property>
+            <property name="shortcut">
+             <string>F5</string>
+            </property>
            </widget>
           </item>
           <item row="1" column="0" colspan="6">
@@ -1619,6 +1622,9 @@
               <property name="text">
                <string>Update</string>
               </property>
+              <property name="shortcut">
+               <string>F5</string>
+              </property>
              </widget>
             </item>
             <item>
@@ -1724,6 +1730,12 @@
             </item>
             <item row="2" column="0">
              <widget class="QLineEdit" name="lineEditPuzzleSolution">
+              <property name="mouseTracking">
+               <bool>false</bool>
+              </property>
+              <property name="acceptDrops">
+               <bool>false</bool>
+              </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
@@ -1737,6 +1749,12 @@
             </item>
             <item row="0" column="0">
              <widget class="QLineEdit" name="lineEditPuzzleTitle">
+              <property name="mouseTracking">
+               <bool>false</bool>
+              </property>
+              <property name="acceptDrops">
+               <bool>false</bool>
+              </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
@@ -1821,40 +1839,10 @@
           <string>History</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_15">
-          <item row="0" column="4">
-           <widget class="QPushButton" name="pushButtonHistoryReload">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reload player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Reload</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="QPushButton" name="pushButtonHistoryClear">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clear section&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Clear</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QPushButton" name="pushButtonHistorySearch">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Search</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0" colspan="6">
            <layout class="QVBoxLayout" name="verticalLayoutHistory">
             <item>
-             <widget class="QTableWidget" name="tableWidgetHistory">
+             <widget class="TableWidget" name="tableWidgetHistory">
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Opponent&lt;/span&gt;: username of the opponent&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Color&lt;/span&gt;: color of the pieces the player was using&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Result&lt;/span&gt;: win / loss / draw&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Accuracy&lt;/span&gt;: acuracy %&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rating&lt;/span&gt;: rating before finishing the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Format&lt;/span&gt;: format of the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rules&lt;/span&gt;: rules of the game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
@@ -1907,7 +1895,17 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="2">
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="lineEditPlayerHistory">
+            <property name="placeholderText">
+             <string>Hikaru</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
            <widget class="QLabel" name="loadingHistory">
             <property name="maximumSize">
              <size>
@@ -1926,13 +1924,36 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QLineEdit" name="lineEditPlayerHistory">
-            <property name="placeholderText">
-             <string>Hikaru</string>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonHistorySearch">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
-            <property name="clearButtonEnabled">
-             <bool>false</bool>
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="pushButtonHistoryReload">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reloads current player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Reload</string>
+            </property>
+            <property name="shortcut">
+             <string>F5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QPushButton" name="pushButtonHistoryClear">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clear section&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Clear</string>
             </property>
            </widget>
           </item>
@@ -1955,7 +1976,7 @@
              <item>
               <widget class="QLabel" name="labelAbout">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;ChessDotPy, by MDH&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;a simple app to access the &lt;a href=&quot;Chess.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#ffad20;&quot;&gt;Chess.com&lt;/span&gt;&lt;/a&gt; api&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Built Using&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.python.org/about/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Python&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://pypi.org/project/PyQt5/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://pypi.org/project/chess.com/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Chess.com API&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;ChessDotPy, by MD&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;a simple app to access the &lt;a href=&quot;Chess.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#ffad20;&quot;&gt;Chess.com&lt;/span&gt;&lt;/a&gt; api&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Built Using&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.python.org/about/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Python&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://pypi.org/project/PyQt5/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://pypi.org/project/chess.com/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Chess.com API&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Other&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/mgldz/Chess-Dot-Py&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -1988,9 +2009,13 @@
    <extends>QLabel</extends>
    <header>interface.image_widget.h</header>
   </customwidget>
+  <customwidget>
+   <class>TableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>interface.table_widget.h</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>tabWidgetMain</tabstop>
   <tabstop>lineEditPlayerSearch</tabstop>
   <tabstop>pushButtonPlayerSearch</tabstop>
   <tabstop>pushButtonPlayerReload</tabstop>

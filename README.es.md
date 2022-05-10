@@ -1,11 +1,11 @@
 <p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/logo.png"
 height="130"></p>
 
-<p align="center">ChessDotPy es una aplicación simple que se comunica con la API de <a href="https://www.chess.com/">Chess.com</a> API</p>
+<p align="center">ChessDotPy es una aplicación simple que se comunica con la API de <a href="https://www.chess.com/">Chess.com</a></p>
 
 <p align="center"><a href="https://github.com/mgldz/Chess-Dot-Py/blob/main/README.md">README en inglés</a></p>
 
-<p align="center"><img src="https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py" alt="Top Language Badge"/> <img src="https://img.shields.io/github/last-commit/mgldz/Chess-Dot-Py" alt="Top Last Commit Badge"/></p>
+<p align="center"><img src="https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py" alt="Top Language Badge"/> <img src="https://img.shields.io/github/last-commit/mgldz/Chess-Dot-Py" alt="Last Commit Badge"/></p>
 
 <p align="center"><a href="https://github.com/mgldz/Chess-Dot-Py/stargazers"><img src="https://img.shields.io/github/stars/mgldz/Chess-Dot-Py" alt="Stars Badge"/> <a href="https://github.com/mgldz/Chess-Dot-Py/network/members"><img src="https://img.shields.io/github/forks/mgldz/Chess-Dot-Py" alt="Forks Badge"/></a> <a href="https://github.com/mgldz/Chess-Dot-Py/pulls"><img  src="https://img.shields.io/github/issues-pr/mgldz/Chess-Dot-Py" alt="Pull Requests Badge"/></a> <a href="https://github.com/mgldz/Chess-Dot-Py/issues"> <img src="https://img.shields.io/github/issues/mgldz/Chess-Dot-Py" alt="Issues Badge"/></a> <a href="https://github.com/mgldz/Chess-Dot-Py/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/mgldz/Chess-Dot-Py?color=2b9348"></a> <a href="https://github.com/mgldz/Chess-Dot-Py/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mgldz/Chess-Dot-Py?color=2b9348" alt="License Badge"/></a></p>
 
@@ -82,15 +82,15 @@ Para ver las estadísticas y el perfil de un jugador, dirígete a la pestaña Ju
 
 - Al hacer doble clic en el avatar del jugador, se abrirá su perfil de Chess.com en el navegador.
 
-- Al presionar "Recargar" se recargará el perfil del jugador.
+- Al presionar "Recargar" o F5 se recargará el perfil del jugador.
 
 - Al pulsar borrar se borrará toda la sección.
 
 ### Clasificación
 
-Para cargar los datos de la tabla de clasificación, dirígete a la pestaña Clasificación y presiona "Actualizar". Después de eso, tardará unos minutos en descargar toda la información de la tabla de clasificación y un poco más para descargar las imágenes de perfil en segundo plano.
+Para cargar los datos de la tabla de clasificación, dirígete a la pestaña Clasificación y presiona "Actualizar" o F5. Después de eso, tardará unos minutos en descargar toda la información de la tabla de clasificación y un poco más para descargar las imágenes de perfil en segundo plano.
 
-- Al hacer doble clic en el nombre de usuario del jugador, se redirigirá a la pestaña Jugador y se cargará el perfil del jugador.
+- Al hacer doble clic en cualquier jugador, se abrirá un menú para acceder a los datos del jugador directamente.
 
 - Hacer doble clic en cualquier nombre de columna cambiará el orden predeterminado por el de esa columna.
 
@@ -104,7 +104,9 @@ Para cargar los datos del rompecabezas, dirígete a la pestaña Rompecabezas y p
 
 Para ver el historial de un jugador, dirígete a la pestaña Historial y escribe su nombre. Después de eso, puede presionar enter o "Buscar" y, si el jugador existe, se cargará su historial.
 
-- Al presionar "Recargar" se recargará el historial del jugador.
+- Al hacer doble clic en cualquier partida, se abrirá un menú para acceder a los datos del oponente directamente.
+
+- Al presionar "Recargar" o F5 se recargará el historial del jugador.
 
 - Al pulsar borrar se borrará toda la sección.
 

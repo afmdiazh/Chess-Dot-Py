@@ -44,7 +44,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='ChessDotPy',
+    name='Chess-Dot-Py',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

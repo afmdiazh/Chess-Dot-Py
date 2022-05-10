@@ -20,5 +20,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: chess-dot-py
+          name: Chess-Dot-Py
           path: src/dist/windows

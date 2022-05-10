@@ -14,7 +14,7 @@ class History:
         """
         self.username = username
         self.game_list = []
-        games = json["games"]
+        games = read_field(json, "games", [])
 
         # Generate game objects
         for game_json in games:
@@ -50,13 +50,13 @@ class Game:
         self.rules = read_field(json, "rules")
 
         # Players
-        white = read_field(json, "white")
-        black = read_field(json, "black")
+        white = read_field(json, "white", {})
+        black = read_field(json, "black", {})
 
         accuracies = read_field(json, "accuracies")
 
-        self.white = Player(white, read_field(accuracies, "white"))
-        self.black = Player(black, read_field(accuracies, "black"))
+        self.white = Player(white, read_field(accuracies, "white", 0.0))
+        self.black = Player(black, read_field(accuracies, "black", 0.0))
 
         # Other
         if self.black.username.lower() == self.own_username.lower():
