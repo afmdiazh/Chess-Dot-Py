@@ -441,7 +441,6 @@ class Window(QObject, Ui_MainWindow):
 
         # Open detail window
         extra_data = parent_table.getEntryData(row)
-        print(extra_data)
         if extra_data != None:
             open_detail_window = QtWidgets.QAction('Detail', self)
             open_detail_window.triggered.connect(
@@ -473,7 +472,7 @@ class Window(QObject, Ui_MainWindow):
         """
         Generates a detail window with the given data
         """
-        self.detail_window = DetailWindow(extra_data)
+        self.detail_window = DetailWindow(extra_data, self.window_icon)
 
     def update_loading_icon(self, label: object, enabled: bool, clear: bool = False, failed: bool = False):
         """
