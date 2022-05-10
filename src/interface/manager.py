@@ -370,6 +370,9 @@ def insert_lb_tab(tabWidget: object, section: object, window: object):
         image_label_list.append(label)
         image_url_list.append(player.avatar_url)
 
+        # Add entry data
+        tableWidget.addEntryData(player)
+
     # Update images on thread
     thread = threading.Thread(target=download_images, daemon=True, args=(
         image_label_list, image_url_list, window.default_avatar_bg,))
@@ -408,6 +411,7 @@ def update_history(window: object, history: History):
     else:
         # Clear table
         window.tableWidgetHistory.setRowCount(0)
+        window.tableWidgetHistory.clearEntryData()
 
         # Game list
         games = history.game_list
@@ -446,6 +450,9 @@ def update_history(window: object, history: History):
                     item.setFlags(QtCore.Qt.ItemIsEnabled)
                     item.setTextAlignment(QtCore.Qt.AlignCenter)
                     window.tableWidgetHistory.setItem(index, i, item)
+
+            # Add the entry data
+            window.tableWidgetHistory.addEntryData(game)
 
         # Save the last loaded name
         window.last_loaded_history = history.username
