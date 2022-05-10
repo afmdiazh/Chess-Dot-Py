@@ -754,7 +754,7 @@ class Ui_MainWindow(object):
         self.gridLayout_15.setObjectName("gridLayout_15")
         self.verticalLayoutHistory = QtWidgets.QVBoxLayout()
         self.verticalLayoutHistory.setObjectName("verticalLayoutHistory")
-        self.tableWidgetHistory = QtWidgets.QTableWidget(self.qWidgetHistory)
+        self.tableWidgetHistory = TableWidget(self.qWidgetHistory)
         self.tableWidgetHistory.setObjectName("tableWidgetHistory")
         self.tableWidgetHistory.setColumnCount(8)
         self.tableWidgetHistory.setRowCount(1)
@@ -970,6 +970,7 @@ class Ui_MainWindow(object):
         self.labelAbout.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600;\">ChessDotPy, by MDH</span></p><p align=\"center\">a simple app to access the <a href=\"Chess.com\"><span style=\" text-decoration: underline; color:#ffad20;\">Chess.com</span></a> api</p><p align=\"center\"><br/></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">Built Using</span></p><p align=\"center\"><a href=\"https://www.python.org/about/\"><span style=\" font-size:12pt; text-decoration: underline; color:#ffad20;\">Python</span></a></p><p align=\"center\"><a href=\"https://pypi.org/project/PyQt5/\"><span style=\" font-size:12pt; text-decoration: underline; color:#ffad20;\">PyQt5</span></a></p><p align=\"center\"><a href=\"https://pypi.org/project/chess.com/\"><span style=\" font-size:12pt; text-decoration: underline; color:#ffad20;\">Chess.com API</span></a></p><p align=\"center\"><br/></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">Check out the</span></p><p align=\"center\"><a href=\"https://github.com/mgldz/Chess-Dot-Py\"><span style=\" font-size:12pt; text-decoration: underline; color:#ffad20;\">Github</span></a></p></body></html>"))
         self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.qWidgetAbout), _translate("MainWindow", "About"))
 from interface.image_widget import ImageWidget
+from interface.table_widget import TableWidget
 
 
 if __name__ == "__main__":

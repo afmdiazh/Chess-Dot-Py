@@ -10,6 +10,7 @@ from history.history import History
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from interface.table_widget import TableWidget
 from util import format_date, read_field
 
 
@@ -115,6 +116,12 @@ def set_history_initial_state(window: object, first_execution: bool = True):
         window.tableWidgetHistory.setSortingEnabled(True)
         window.tableWidgetHistory.horizontalHeader().setSectionsClickable(True)
         window.tableWidgetHistory.verticalHeader().setVisible(False)
+
+        # Set type
+        window.tableWidgetHistory.setTableType("history")
+
+        # Set username index
+        window.tableWidgetHistory.setUsernameIndex(0)
 
 
 def update_sections(window: object, data: dict):
@@ -269,7 +276,8 @@ def insert_lb_tab(tabWidget: object, section: object, window: object):
     layout.setObjectName("verticalLayout_" + name)
 
     # Create table widget
-    tableWidget = QTableWidget(tab)
+    tableWidget = TableWidget(tab)
+    tableWidget.setTableType("leaderboard")
     tableWidget.setObjectName("tableWidget")
     tableWidget.setSortingEnabled(True)
     tableWidget.horizontalHeader().setSectionsClickable(True)
@@ -295,7 +303,7 @@ def insert_lb_tab(tabWidget: object, section: object, window: object):
     image_index = fields.index("Image")
 
     # Username index for clicking event
-    window.username_item_column_index = fields.index("Username")
+    tableWidget.setUsernameIndex(fields.index("Username"))
 
     # Add all the fields
     for field in fields:

@@ -1,7 +1,7 @@
 import threading
 import webbrowser
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject
 from PyQt5.QtGui import QImage, QMovie, QPixmap
 from PyQt5.QtWidgets import QLineEdit
@@ -27,9 +27,6 @@ class Window(QObject, Ui_MainWindow):
 
     # Last image downloader thread
     last_image_downloader_thread = None
-
-    # Username index in leaderboard
-    username_item_column_index = -1
 
     # URL of the latest puzzle
     puzzle_url = None
@@ -82,7 +79,7 @@ class Window(QObject, Ui_MainWindow):
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
         self.labelPuzzleImage.mouseDoubleClickEvent = self.puzzle_double_clicked
         self.tableWidgetHistory.itemDoubleClicked.connect(
-            self.table_history_double_clicked)
+            self.table_double_clicked)
 
         # Key presses
         self.lineEditPlayerSearch.returnPressed.connect(
@@ -399,28 +396,59 @@ class Window(QObject, Ui_MainWindow):
 
     def table_double_clicked(self, item: object):
         """
-        Executed when a leaderboard table element is double clicked
-        Redirects to the player tab and loads the profile of the clicked player
+        Executed when a table element is double clicked
+        Shows a menu with different actions
         """
-        if item.column() == self.username_item_column_index:
-            username = item.text().strip()
-            if username != "":
-                self.tabWidgetMain.setCurrentIndex(0)
-                self.lineEditPlayerSearch.setText(username)
-                self.fetch_player_data(username)
 
-    def table_history_double_clicked(self, item: object):
+        # Obtain the parent table
+        parent_table = item.tableWidget()
+
+        # Obtain row and column for the username
+        column = parent_table.usernameIndex()
+        row = item.row()
+
+        # Obtain the username item
+        username_item = parent_table.item(row, column)
+
+        # Obtain the username text
+        username = username_item.text().strip()
+
+        # Create menu
+        self.menu = QtWidgets.QMenu()
+        self.menu.setTitle(username)
+
+        # Go to profile
+        go_to_profile = QtWidgets.QAction('Profile', self)
+        go_to_profile.triggered.connect(
+            lambda: self.go_to_profile(username))
+        self.menu.addAction(go_to_profile)
+
+        # Go to history
+        go_to_history = QtWidgets.QAction('History', self)
+        go_to_history.triggered.connect(
+            lambda: self.go_to_history(username))
+        self.menu.addAction(go_to_history)
+
+        # Show menu
+        self.menu.popup(QtGui.QCursor.pos())
+
+    def go_to_profile(self, username: str = ""):
         """
-        Executed when a history table element is double clicked
-        Redirects to the player tab and loads the profile of the clicked player
+        Jumps to a player's profile
         """
-        # Index is hardcoded in this case
-        if item.column() == 0:
-            username = item.text().strip()
-            if username != "":
-                self.tabWidgetMain.setCurrentIndex(0)
-                self.lineEditPlayerSearch.setText(username)
-                self.fetch_player_data(username)
+        if username != "":
+            self.tabWidgetMain.setCurrentIndex(0)
+            self.lineEditPlayerSearch.setText(username)
+            self.fetch_player_data(username)
+
+    def go_to_history(self, username: str = ""):
+        """
+        Jumps to a player's history
+        """
+        if username != "":
+            self.tabWidgetMain.setCurrentIndex(3)
+            self.lineEditPlayerHistory.setText(username)
+            self.fetch_history_data(username)
 
     def update_loading_icon(self, label: object, enabled: bool, clear: bool = False, failed: bool = False):
         """

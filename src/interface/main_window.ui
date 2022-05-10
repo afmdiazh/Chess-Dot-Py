@@ -1824,7 +1824,7 @@
           <item row="1" column="0" colspan="6">
            <layout class="QVBoxLayout" name="verticalLayoutHistory">
             <item>
-             <widget class="QTableWidget" name="tableWidgetHistory">
+             <widget class="TableWidget" name="tableWidgetHistory">
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Opponent&lt;/span&gt;: username of the opponent&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Color&lt;/span&gt;: color of the pieces the player was using&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Result&lt;/span&gt;: win / loss / draw&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Accuracy&lt;/span&gt;: acuracy %&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rating&lt;/span&gt;: rating before finishing the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Format&lt;/span&gt;: format of the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rules&lt;/span&gt;: rules of the game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
@@ -1987,6 +1987,11 @@
    <class>ImageWidget</class>
    <extends>QLabel</extends>
    <header>interface.image_widget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>interface.table_widget.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
