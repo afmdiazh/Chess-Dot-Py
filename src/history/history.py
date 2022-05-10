@@ -82,19 +82,37 @@ class Game:
 
     def get_accuracies(self):
         """
-        Obtains the player's accuracies as a string
+        Obtains the players' accuracies as a string
         """
         try:
-            return "W: %s, B: %s" % (str(round(self.white.accuracy, 2)), str(round(self.black.accuracy, 2)))
+            return "W: %s%, B: %s%" % (str(round(self.white.accuracy, 2)), str(round(self.black.accuracy, 2)))
+        except:
+            return "Unknown"
+
+    def get_own_accuracy(self):
+        """
+        Obtains the player's own accuracy as a string
+        """
+        try:
+            return "%s%" % str(round(self.own_player.accuracy, 2))
         except:
             return "Unknown"
 
     def get_ratings(self):
         """
-        Obtains the player's ratings as a string
+        Obtains the players' ratings as a string
         """
         try:
             return "W: %d, B: %d" % (self.white.rating, self.black.rating)
+        except:
+            return "Unknown"
+
+    def get_own_rating(self):
+        """
+        Obtains the player's own ratings as a string
+        """
+        try:
+            return "%d" % self.own_player.rating
         except:
             return "Unknown"
 
