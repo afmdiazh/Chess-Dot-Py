@@ -84,19 +84,28 @@ class Game:
         """
         Obtains the player's accuracies as a string
         """
-        return "W: %s, B: %s" % (str(round(self.white.accuracy, 2)), str(round(self.black.accuracy, 2)))
+        try:
+            return "W: %s, B: %s" % (str(round(self.white.accuracy, 2)), str(round(self.black.accuracy, 2)))
+        except:
+            return "Unknown"
 
     def get_ratings(self):
         """
         Obtains the player's ratings as a string
         """
-        return "W: %d, B: %d" % (self.white.rating, self.black.rating)
+        try:
+            return "W: %d, B: %d" % (self.white.rating, self.black.rating)
+        except:
+            return "Unknown"
 
     def get_format(self):
         """
         Obtains the game's time and ruleset as a string
         """
-        return "%s - %s" % (self.rules, self.time_control)
+        try:
+            return "%s - %s" % (self.rules, self.time_control)
+        except:
+            return "Unknown"
 
     def get_date(self):
         """
