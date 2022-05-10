@@ -93,7 +93,7 @@ To see a player's stats and profile, head to the Player tab and type their name.
 
 To load the leaderboard data, head to the Leaderboard tab and press "Update". After that, it will take a few moments to download all the leaderboard information and a bit more to download the profile pictures in the background.
 
-- Double clicking the player's username will redirect to the Player tab and will load the player's profile.
+- Double clicking any player will open a menu to search and view the player's history directly.
 
 - Double clicking any column name will change the default sorting by that column.
 
@@ -106,6 +106,8 @@ To load the puzzle data, head to the Puzzle tab and press "Get Daily Puzzle" or 
 ### History
 
 To see a player's history, head to the History tab and type their name. After that, you can press enter or "Search" and if the player exists their history will load.
+
+- Double clicking any game will open a menu to search and view the opponent's history directly.
 
 - Pressing "Reload" will reload the player's history.
 

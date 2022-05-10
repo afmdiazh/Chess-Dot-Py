@@ -90,7 +90,7 @@ Para ver las estadísticas y el perfil de un jugador, dirígete a la pestaña Ju
 
 Para cargar los datos de la tabla de clasificación, dirígete a la pestaña Clasificación y presiona "Actualizar". Después de eso, tardará unos minutos en descargar toda la información de la tabla de clasificación y un poco más para descargar las imágenes de perfil en segundo plano.
 
-- Al hacer doble clic en el nombre de usuario del jugador, se redirigirá a la pestaña Jugador y se cargará el perfil del jugador.
+- Al hacer doble clic en cualquier jugador, se abrirá un menú para acceder a los datos del jugador directamente.
 
 - Hacer doble clic en cualquier nombre de columna cambiará el orden predeterminado por el de esa columna.
 
@@ -103,6 +103,8 @@ Para cargar los datos del rompecabezas, dirígete a la pestaña Rompecabezas y p
 ### Historial
 
 Para ver el historial de un jugador, dirígete a la pestaña Historial y escribe su nombre. Después de eso, puede presionar enter o "Buscar" y, si el jugador existe, se cargará su historial.
+
+- Al hacer doble clic en cualquier partida, se abrirá un menú para acceder a los datos del oponente directamente.
 
 - Al presionar "Recargar" se recargará el historial del jugador.
 
