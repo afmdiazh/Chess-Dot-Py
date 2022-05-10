@@ -15,6 +15,8 @@ def read_field(json: dict, field: str, default_value: any = None):
     Reads a field from a json object
     If the field doesn't exist, returns None
     """
+    if json == None:
+        return default_value
     if field in json:
         return json[field]
     else:
