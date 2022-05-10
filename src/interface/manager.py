@@ -11,112 +11,114 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from util import format_date
+from window import Window
 
 
-def set_player_initial_state(self: object):
+def set_player_initial_state(window: Window):
     """
     Sets initial state for some UI elements
     """
     # Subsections
     for index in range(4):
-        self.tabWidgetSubsection.setTabEnabled(index, False)
-        self.tabWidgetSubsection.setTabVisible(index, False)
+        window.tabWidgetSubsection.setTabEnabled(index, False)
+        window.tabWidgetSubsection.setTabVisible(index, False)
 
     # Last
-    self.tabWidgetSubsection.setTabEnabled(4, True)
-    self.tabWidgetSubsection.setTabVisible(4, True)
+    window.tabWidgetSubsection.setTabEnabled(4, True)
+    window.tabWidgetSubsection.setTabVisible(4, True)
 
     # Disable
-    self.qWidgetBlitz.setEnabled(False)
-    self.qWidgetBullet.setEnabled(False)
-    self.qWidgetRapid.setEnabled(False)
-    self.qWidgetDaily.setEnabled(False)
+    window.qWidgetBlitz.setEnabled(False)
+    window.qWidgetBullet.setEnabled(False)
+    window.qWidgetRapid.setEnabled(False)
+    window.qWidgetDaily.setEnabled(False)
 
     # Change index
-    self.tabWidgetSubsection.setCurrentIndex(self.find_first_subsection_tab())
+    window.tabWidgetSubsection.setCurrentIndex(
+        window.find_first_subsection_tab())
 
     # Stats
-    self.lineEditTotalGames.setText("")
-    self.lineEditTotalWins.setText("")
-    self.lineEditTotalLosses.setText("")
-    self.lineEditTotalDraws.setText("")
-    self.lineEditTotalWinrate.setText("")
+    window.lineEditTotalGames.setText("")
+    window.lineEditTotalWins.setText("")
+    window.lineEditTotalLosses.setText("")
+    window.lineEditTotalDraws.setText("")
+    window.lineEditTotalWinrate.setText("")
 
     # Profile
-    self.lineEditFollowers.setText("")
-    self.lineEditTitle.setText("")
-    self.lineEditLastOnline.setText("")
-    self.lineEditJoinedOn.setText("")
-    self.lineEditUsername.setText("")
-    self.lineEditName.setText("")
-    self.lineEditStatus.setText("")
+    window.lineEditFollowers.setText("")
+    window.lineEditTitle.setText("")
+    window.lineEditLastOnline.setText("")
+    window.lineEditJoinedOn.setText("")
+    window.lineEditUsername.setText("")
+    window.lineEditName.setText("")
+    window.lineEditStatus.setText("")
 
     # Daily subsection
-    self.lineEditDailyRating.setText("")
-    self.lineEditDailyGames.setText("")
-    self.lineEditDailyWins.setText("")
-    self.lineEditDailyLosses.setText("")
-    self.lineEditDailyDraws.setText("")
-    self.lineEditDailyWinrate.setText("")
+    window.lineEditDailyRating.setText("")
+    window.lineEditDailyGames.setText("")
+    window.lineEditDailyWins.setText("")
+    window.lineEditDailyLosses.setText("")
+    window.lineEditDailyDraws.setText("")
+    window.lineEditDailyWinrate.setText("")
 
     # Rapid subsection
-    self.lineEditRapidRating.setText("")
-    self.lineEditRapidGames.setText("")
-    self.lineEditRapidWins.setText("")
-    self.lineEditRapidLosses.setText("")
-    self.lineEditRapidDraws.setText("")
-    self.lineEditRapidWinrate.setText("")
+    window.lineEditRapidRating.setText("")
+    window.lineEditRapidGames.setText("")
+    window.lineEditRapidWins.setText("")
+    window.lineEditRapidLosses.setText("")
+    window.lineEditRapidDraws.setText("")
+    window.lineEditRapidWinrate.setText("")
 
     # Bullet subsection
-    self.lineEditBulletRating.setText("")
-    self.lineEditBulletGames.setText("")
-    self.lineEditBulletWins.setText("")
-    self.lineEditBulletLosses.setText("")
-    self.lineEditBulletDraws.setText("")
-    self.lineEditBulletWinrate.setText("")
+    window.lineEditBulletRating.setText("")
+    window.lineEditBulletGames.setText("")
+    window.lineEditBulletWins.setText("")
+    window.lineEditBulletLosses.setText("")
+    window.lineEditBulletDraws.setText("")
+    window.lineEditBulletWinrate.setText("")
 
     # Blitz subsection
-    self.lineEditBlitzRating.setText("")
-    self.lineEditBlitzGames.setText("")
-    self.lineEditBlitzWins.setText("")
-    self.lineEditBlitzLosses.setText("")
-    self.lineEditBlitzDraws.setText("")
-    self.lineEditBlitzWinrate.setText("")
+    window.lineEditBlitzRating.setText("")
+    window.lineEditBlitzGames.setText("")
+    window.lineEditBlitzWins.setText("")
+    window.lineEditBlitzLosses.setText("")
+    window.lineEditBlitzDraws.setText("")
+    window.lineEditBlitzWinrate.setText("")
 
     # Avatar
-    self.image.setText("")
-    self.image.setPixmap(self.default_avatar)
+    window.image.setText("")
+    window.image.setPixmap(window.default_avatar)
 
     # Loading icon
-    self.loadingPlayer.setPixmap(self.empty_image)
-    self.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
+    window.loadingPlayer.setPixmap(window.empty_image)
+    window.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
 
 
-def set_history_initial_state(self: object, first_execution: bool = True):
+def set_history_initial_state(window: Window, first_execution: bool = True):
     """
     Sets initial state for some UI elements
     """
     # Loading icon
-    self.loadingHistory.setPixmap(self.empty_image)
-    self.loadingHistory.setMaximumSize(QtCore.QSize(0, 0))
+    window.loadingHistory.setPixmap(window.empty_image)
+    window.loadingHistory.setMaximumSize(QtCore.QSize(0, 0))
 
     # Clear table
-    self.tableWidgetHistory.setRowCount(0)
+    window.tableWidgetHistory.setRowCount(0)
 
     # Only once
     if first_execution:
         # Change column resize mode
-        header = self.tableWidgetHistory.horizontalHeader()
-        for i in range(self.tableWidgetHistory.columnCount()):
+        header = window.tableWidgetHistory.horizontalHeader()
+        for i in range(window.tableWidgetHistory.columnCount()):
             header.setSectionResizeMode(i, QHeaderView.Stretch)
 
         # Other (enable sorting, make sections clickable, hide left bar)
-        self.tableWidgetHistory.setSortingEnabled(True)
-        self.tableWidgetHistory.horizontalHeader().setSectionsClickable(True)
-        self.tableWidgetHistory.verticalHeader().setVisible(False)
+        window.tableWidgetHistory.setSortingEnabled(True)
+        window.tableWidgetHistory.horizontalHeader().setSectionsClickable(True)
+        window.tableWidgetHistory.verticalHeader().setVisible(False)
 
 
-def update_sections(self: object, data: dict):
+def update_sections(window: Window, data: dict):
     """
     Updates player tab with the data obtained from the
     player downloader thread, the data item contains
@@ -130,107 +132,107 @@ def update_sections(self: object, data: dict):
     # If player not found
     if player == None:
         # Reset tab
-        set_player_initial_state(self)
+        set_player_initial_state(window)
         # Update icon to show cross
-        self.update_loading_icon(self.loadingPlayer, False, False, True)
+        window.update_loading_icon(window.loadingPlayer, False, False, True)
         # Show error message
         show_popup_window("Error", "Couldn't load player",
-                          "Error", window_icon=self.window_icon)
+                          "Error", window_icon=window.window_icon)
     else:
         # Total stats
         stats = player.stats
-        self.lineEditTotalGames.setText(str(stats.get_total_games()))
-        self.lineEditTotalWins.setText(str(stats.get_total_wins()))
-        self.lineEditTotalLosses.setText(str(stats.get_total_losses()))
-        self.lineEditTotalDraws.setText(str(stats.get_total_draws()))
-        self.lineEditTotalWinrate.setText(stats.get_total_winrate())
+        window.lineEditTotalGames.setText(str(stats.get_total_games()))
+        window.lineEditTotalWins.setText(str(stats.get_total_wins()))
+        window.lineEditTotalLosses.setText(str(stats.get_total_losses()))
+        window.lineEditTotalDraws.setText(str(stats.get_total_draws()))
+        window.lineEditTotalWinrate.setText(stats.get_total_winrate())
 
         # Profile
         profile = player.profile
-        self.lineEditFollowers.setText(str(profile.followers))
-        self.lineEditTitle.setText(profile.title)
-        self.lineEditLastOnline.setText(format_date(profile.last_online))
-        self.lineEditJoinedOn.setText(format_date(profile.joined))
-        self.lineEditUsername.setText(profile.username)
-        self.lineEditName.setText(profile.name)
-        self.lineEditStatus.setText(profile.status)
+        window.lineEditFollowers.setText(str(profile.followers))
+        window.lineEditTitle.setText(profile.title)
+        window.lineEditLastOnline.setText(format_date(profile.last_online))
+        window.lineEditJoinedOn.setText(format_date(profile.joined))
+        window.lineEditUsername.setText(profile.username)
+        window.lineEditName.setText(profile.name)
+        window.lineEditStatus.setText(profile.status)
 
         # Modes
         has_at_least_one = False
-        current_tab = self.tabWidgetSubsection.currentIndex()
+        current_tab = window.tabWidgetSubsection.currentIndex()
 
         # # Daily
         has_section = player.stats.has_section("chess_daily")
-        self.tabWidgetSubsection.setTabEnabled(0, has_section)
-        self.tabWidgetSubsection.setTabVisible(0, has_section)
-        self.qWidgetDaily.setEnabled(has_section)
+        window.tabWidgetSubsection.setTabEnabled(0, has_section)
+        window.tabWidgetSubsection.setTabVisible(0, has_section)
+        window.qWidgetDaily.setEnabled(has_section)
         if has_section:
             has_at_least_one = True
             section = player.stats.get_section("chess_daily")
-            self.lineEditDailyRating.setText(section.get_rating_string())
-            self.lineEditDailyGames.setText(
+            window.lineEditDailyRating.setText(section.get_rating_string())
+            window.lineEditDailyGames.setText(
                 str(section.get_total_games()))
-            self.lineEditDailyWins.setText(str(section.wins))
-            self.lineEditDailyLosses.setText(str(section.losses))
-            self.lineEditDailyDraws.setText(str(section.draws))
-            self.lineEditDailyWinrate.setText(section.get_win_rate())
+            window.lineEditDailyWins.setText(str(section.wins))
+            window.lineEditDailyLosses.setText(str(section.losses))
+            window.lineEditDailyDraws.setText(str(section.draws))
+            window.lineEditDailyWinrate.setText(section.get_win_rate())
 
         # # Rapid
         has_section = player.stats.has_section("chess_rapid")
-        self.tabWidgetSubsection.setTabEnabled(1, has_section)
-        self.tabWidgetSubsection.setTabVisible(1, has_section)
-        self.qWidgetRapid.setEnabled(has_section)
+        window.tabWidgetSubsection.setTabEnabled(1, has_section)
+        window.tabWidgetSubsection.setTabVisible(1, has_section)
+        window.qWidgetRapid.setEnabled(has_section)
         if has_section:
             has_at_least_one = True
             section = player.stats.get_section("chess_rapid")
-            self.lineEditRapidRating.setText(section.get_rating_string())
-            self.lineEditRapidGames.setText(
+            window.lineEditRapidRating.setText(section.get_rating_string())
+            window.lineEditRapidGames.setText(
                 str(section.get_total_games()))
-            self.lineEditRapidWins.setText(str(section.wins))
-            self.lineEditRapidLosses.setText(str(section.losses))
-            self.lineEditRapidDraws.setText(str(section.draws))
-            self.lineEditRapidWinrate.setText(section.get_win_rate())
+            window.lineEditRapidWins.setText(str(section.wins))
+            window.lineEditRapidLosses.setText(str(section.losses))
+            window.lineEditRapidDraws.setText(str(section.draws))
+            window.lineEditRapidWinrate.setText(section.get_win_rate())
 
         # # Bullet
         has_section = player.stats.has_section("chess_bullet")
-        self.tabWidgetSubsection.setTabEnabled(2, has_section)
-        self.tabWidgetSubsection.setTabVisible(2, has_section)
-        self.qWidgetBullet.setEnabled(has_section)
+        window.tabWidgetSubsection.setTabEnabled(2, has_section)
+        window.tabWidgetSubsection.setTabVisible(2, has_section)
+        window.qWidgetBullet.setEnabled(has_section)
         if has_section:
             has_at_least_one = True
             section = player.stats.get_section("chess_bullet")
-            self.lineEditBulletRating.setText(section.get_rating_string())
-            self.lineEditBulletGames.setText(
+            window.lineEditBulletRating.setText(section.get_rating_string())
+            window.lineEditBulletGames.setText(
                 str(section.get_total_games()))
-            self.lineEditBulletWins.setText(str(section.wins))
-            self.lineEditBulletLosses.setText(str(section.losses))
-            self.lineEditBulletDraws.setText(str(section.draws))
-            self.lineEditBulletWinrate.setText(section.get_win_rate())
+            window.lineEditBulletWins.setText(str(section.wins))
+            window.lineEditBulletLosses.setText(str(section.losses))
+            window.lineEditBulletDraws.setText(str(section.draws))
+            window.lineEditBulletWinrate.setText(section.get_win_rate())
 
         # # Blitz
         has_section = player.stats.has_section("chess_blitz")
-        self.tabWidgetSubsection.setTabEnabled(3, has_section)
-        self.tabWidgetSubsection.setTabVisible(3, has_section)
-        self.qWidgetBlitz.setEnabled(has_section)
+        window.tabWidgetSubsection.setTabEnabled(3, has_section)
+        window.tabWidgetSubsection.setTabVisible(3, has_section)
+        window.qWidgetBlitz.setEnabled(has_section)
         if has_section:
             has_at_least_one = True
             section = player.stats.get_section("chess_blitz")
-            self.lineEditBlitzRating.setText(section.get_rating_string())
-            self.lineEditBlitzGames.setText(
+            window.lineEditBlitzRating.setText(section.get_rating_string())
+            window.lineEditBlitzGames.setText(
                 str(section.get_total_games()))
-            self.lineEditBlitzWins.setText(str(section.wins))
-            self.lineEditBlitzLosses.setText(str(section.losses))
-            self.lineEditBlitzDraws.setText(str(section.draws))
-            self.lineEditBlitzWinrate.setText(section.get_win_rate())
+            window.lineEditBlitzWins.setText(str(section.wins))
+            window.lineEditBlitzLosses.setText(str(section.losses))
+            window.lineEditBlitzDraws.setText(str(section.draws))
+            window.lineEditBlitzWinrate.setText(section.get_win_rate())
 
         # # If no sections
-        self.tabWidgetSubsection.setTabEnabled(4, not has_at_least_one)
-        self.tabWidgetSubsection.setTabVisible(4, not has_at_least_one)
+        window.tabWidgetSubsection.setTabEnabled(4, not has_at_least_one)
+        window.tabWidgetSubsection.setTabVisible(4, not has_at_least_one)
 
         # # Change if needed
-        if not self.tabWidgetSubsection.isTabVisible(current_tab):
-            self.tabWidgetSubsection.setCurrentIndex(
-                self.find_first_subsection_tab())
+        if not window.tabWidgetSubsection.isTabVisible(current_tab):
+            window.tabWidgetSubsection.setCurrentIndex(
+                window.find_first_subsection_tab())
 
         # Icon
         avatar = data["avatar"]
@@ -238,18 +240,18 @@ def update_sections(self: object, data: dict):
         if avatar != None:
             avatar_image = QImage()
             avatar_image.loadFromData(avatar)
-            self.image.setPixmap(QPixmap(avatar_image))
+            window.image.setPixmap(QPixmap(avatar_image))
         else:
-            self.image.setPixmap(self.default_avatar)
+            window.image.setPixmap(window.default_avatar)
 
         # Save
-        self.last_loaded_player = data["player_name"]
+        window.last_loaded_player = data["player_name"]
 
         # Icon
-        self.update_loading_icon(self.loadingPlayer, False)
+        window.update_loading_icon(window.loadingPlayer, False)
 
 
-def insert_lb_tab(tabWidget: object, section: object, self: object):
+def insert_lb_tab(tabWidget: object, section: object, window: Window):
     """
     Inserts a tab to a tabWidget loading data from a section
     The tab contains a table with player data from the section object
@@ -294,7 +296,7 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
     image_index = fields.index("Image")
 
     # Username index for clicking event
-    self.username_item_column_index = fields.index("Username")
+    window.username_item_column_index = fields.index("Username")
 
     # Add all the fields
     for field in fields:
@@ -363,7 +365,7 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
 
     # Update images on thread
     thread = threading.Thread(target=download_images, daemon=True, args=(
-        image_label_list, image_url_list, self.default_avatar_bg,))
+        image_label_list, image_url_list, window.default_avatar_bg,))
 
     # Resize columns
     header = tableWidget.horizontalHeader()
@@ -377,28 +379,28 @@ def insert_lb_tab(tabWidget: object, section: object, self: object):
     tabWidget.addTab(tab, section.get_formatted_name())
 
     # Add event
-    tableWidget.itemDoubleClicked.connect(self.table_double_clicked_event)
+    tableWidget.itemDoubleClicked.connect(window.table_double_clicked_event)
 
     # Return thread
     return thread
 
 
-def update_history(self: object, history: History):
+def update_history(window: Window, history: History):
     """
     Updates the history section with the downloaded data
     """
     # If history not found
     if history == None:
         # Reset tab
-        set_history_initial_state(self, False)
+        set_history_initial_state(window, False)
         # Update icon to show cross
-        self.update_loading_icon(self.loadingHistory, False, False, True)
+        window.update_loading_icon(window.loadingHistory, False, False, True)
         # Show error message
         show_popup_window("Error", "Couldn't load history",
-                          "Error", window_icon=self.window_icon)
+                          "Error", window_icon=window.window_icon)
     else:
         # Clear table
-        self.tableWidgetHistory.setRowCount(0)
+        window.tableWidgetHistory.setRowCount(0)
 
         # Game list
         games = history.game_list
@@ -407,10 +409,10 @@ def update_history(self: object, history: History):
         games.reverse()
 
         # Columns
-        column_count = self.tableWidgetHistory.columnCount()
+        column_count = window.tableWidgetHistory.columnCount()
 
         # Rows
-        self.tableWidgetHistory.setRowCount(len(games))
+        window.tableWidgetHistory.setRowCount(len(games))
 
         # Iterate over all the games
         for game in games:
@@ -436,13 +438,13 @@ def update_history(self: object, history: History):
                     item.setData(QtCore.Qt.DisplayRole, values[i])
                     item.setFlags(QtCore.Qt.ItemIsEnabled)
                     item.setTextAlignment(QtCore.Qt.AlignCenter)
-                    self.tableWidgetHistory.setItem(index, i, item)
+                    window.tableWidgetHistory.setItem(index, i, item)
 
         # Save the last loaded name
-        self.last_loaded_history = history.username
+        window.last_loaded_history = history.username
 
         # Change icon
-        self.update_loading_icon(self.loadingHistory, False)
+        window.update_loading_icon(window.loadingHistory, False)
 
 
 def download_images(labels: list, urls: list, default_image: object):
