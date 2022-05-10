@@ -82,6 +82,8 @@ class Window(QObject, Ui_MainWindow):
         # Clicks
         self.image.mouseDoubleClickEvent = self.avatar_double_clicked
         self.labelPuzzleImage.mouseDoubleClickEvent = self.puzzle_double_clicked
+        self.tableWidgetHistory.itemDoubleClicked.connect(
+            self.table_history_double_clicked)
 
         # Key presses
         self.lineEditPlayerSearch.returnPressed.connect(
@@ -402,6 +404,19 @@ class Window(QObject, Ui_MainWindow):
         Redirects to the player tab and loads the profile of the clicked player
         """
         if item.column() == self.username_item_column_index:
+            username = item.text().strip()
+            if username != "":
+                self.tabWidgetMain.setCurrentIndex(0)
+                self.lineEditPlayerSearch.setText(username)
+                self.fetch_player_data(username)
+
+    def table_history_double_clicked(self, item: object):
+        """
+        Executed when a history table element is double clicked
+        Redirects to the player tab and loads the profile of the clicked player
+        """
+        # Index is hardcoded in this case
+        if item.column() == 0:
             username = item.text().strip()
             if username != "":
                 self.tabWidgetMain.setCurrentIndex(0)
