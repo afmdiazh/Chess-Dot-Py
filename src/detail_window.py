@@ -17,12 +17,23 @@ class DetailWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         if data != None:
             self.window = QMainWindow()
+
+            # Add interface elements
             self.setupUi(self.window)
+
+            # Set window title and icon
             self.window.setWindowTitle("Detail")
             self.window.setWindowIcon(icon)
-            self.window.show()
+
+            # Try to process data, exit if it crashes
             self.data = data
-            self.process_data()
+            try:
+                self.process_data()
+            except:
+                return
+
+            # Only show after data has been processed
+            self.window.show()
 
     def process_data(self):
         """
@@ -39,8 +50,8 @@ class DetailWindow(QMainWindow, Ui_MainWindow):
         """
         game = self.data
         text = detail_game % (
-            game.time_control,  # time control
-            game.get_date(),  # end time
+            game.time_control,
+            game.get_date(),
             game.rated,
             game.uuid,
             game.time_class,
@@ -71,14 +82,14 @@ class DetailWindow(QMainWindow, Ui_MainWindow):
             player.username,
             player.score,
             player.rank,
-            player.country_api_id,
+            player.get_country(),
             player.status,
             player.avatar_url,
-            player.flair,
+            player.get_flair(),
             player.name,
             player.wins,
             player.losses,
             player.draws,
-            100
+            player.get_winrate()
         )
         self.label.setText(text)

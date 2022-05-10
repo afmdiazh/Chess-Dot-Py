@@ -441,7 +441,9 @@ class Window(QObject, Ui_MainWindow):
 
         # Open detail window
         extra_data = parent_table.getEntryData(row)
-        if extra_data != None:
+
+        # Only open if extra data exists and table has a type
+        if extra_data != None and parent_table.tableType() != None:
             open_detail_window = QtWidgets.QAction('Detail', self)
             open_detail_window.triggered.connect(
                 lambda: self.open_detail_window(extra_data))
