@@ -460,6 +460,11 @@ def update_history(window: object, history: History):
         # Change icon
         window.update_loading_icon(window.loadingHistory, False)
 
+        # Show error if no games
+        if len(games) == 0:
+            show_popup_window("Info", "Player hasn't player any games recently",
+                              "Info", window_icon=window.window_icon, icon=QMessageBox.Information)
+
 
 def download_images(labels: list, urls: list, default_image: object):
     """
