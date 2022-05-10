@@ -104,6 +104,7 @@ class Window(QObject, Ui_MainWindow):
         """
         # Images
         self.check_mark = QPixmap(get_resource_path("resources/checkmark.png"))
+        self.cross_mark = QPixmap(get_resource_path("resources/crossmark.png"))
         self.window_icon = QtGui.QIcon(get_resource_path("resources/icon.png"))
         self.empty_image = QPixmap(get_resource_path("resources/empty.png"))
         self.default_avatar = QPixmap(
@@ -178,6 +179,7 @@ class Window(QObject, Ui_MainWindow):
         Clears all the profile fields
         """
         self.last_loaded_player = None
+        self.lineEditPlayerSearch.setText("")
         m.set_player_initial_state(self)
 
     def button_lb_clicked(self):
@@ -235,6 +237,7 @@ class Window(QObject, Ui_MainWindow):
         Clears all the profile fields
         """
         self.last_loaded_history = None
+        self.lineEditPlayerHistory.setText("")
         m.set_history_initial_state(self)
 
     def avatar_double_clicked(self, item: any):
@@ -283,7 +286,7 @@ class Window(QObject, Ui_MainWindow):
          - avatar: downloaded avatar image
         """
         m.update_sections(self, data)
-        self.update_loading_icon(self.loadingPlayer, False)
+        # self.update_loading_icon(self.loadingPlayer, False)
 
     def leaderboard_downloaded(self, leaderboard: object):
         """
@@ -366,7 +369,6 @@ class Window(QObject, Ui_MainWindow):
         from the history downloader thread
         """
         m.update_history(self, history)
-        self.update_loading_icon(self.loadingHistory, False)
 
     def start_image_threads(self):
         """
@@ -399,7 +401,7 @@ class Window(QObject, Ui_MainWindow):
                 self.lineEditPlayerSearch.setText(username)
                 self.fetch_player_data(username)
 
-    def update_loading_icon(self, label: object, enabled: bool, clear: bool = False):
+    def update_loading_icon(self, label: object, enabled: bool, clear: bool = False, failed: bool = False):
         """
         Updates loading icon for the given label
         If enabled is true, sets the loading GIF
@@ -415,7 +417,10 @@ class Window(QObject, Ui_MainWindow):
                 label.setPixmap(self.empty_image)
                 label.setMaximumSize(QtCore.QSize(0, 0))
             else:
-                label.setPixmap(self.check_mark)
+                if failed:
+                    label.setPixmap(self.cross_mark)
+                else:
+                    label.setPixmap(self.check_mark)
 
     def find_first_subsection_tab(self):
         """

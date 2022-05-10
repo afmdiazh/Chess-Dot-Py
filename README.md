@@ -17,11 +17,15 @@ The interface is divided in sections:
 
 - Player:
 
-  - Profile
+  - Profile picture
+
+  - Profile information
 
   - Stats (also divided in categories)
 
 - Leaderboard:
+
+  - Profile picture
 
   - Rank
 
@@ -43,7 +47,15 @@ The interface is divided in sections:
 
 - History:
 
-  - Player's game history
+  - Opponent
+
+  - Piece color
+
+  - Rating
+
+  - Accuracy
+
+  - Time control and rules
 
 ## Installation
 
@@ -59,7 +71,7 @@ Keep in mind that the automatically generated executables in the actions page mi
 
 2. Download the repository or execute the command `git clone https://github.com/mgldz/Chess-Dot-Py` (requires [git](https://git-scm.com/downloads)) to clone the repository locally
 
-3. Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required libraries.
+3. Install the package manager [pip](https://pip.pypa.io/en/stable/) to install the required libraries.
 
 4. Install the required libraries with the command `pip install dependencies.txt` (from the src folder) or executing `dependencies.bat`.
 
@@ -69,7 +81,7 @@ Keep in mind that the automatically generated executables in the actions page mi
 
 ### Player
 
-To see a player's stats, head to the Player tab and type their name. After that, you can press enter or "Search" and if the player exists their stats will load.
+To see a player's stats and profile, head to the Player tab and type their name. After that, you can press enter or "Search" and if the player exists their stats will load.
 
 - Double clicking the player's avatar will open their Chess.com profile in the browser.
 

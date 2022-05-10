@@ -92,7 +92,7 @@ def set_player_initial_state(self: object):
     self.loadingPlayer.setMaximumSize(QtCore.QSize(0, 0))
 
 
-def set_history_initial_state(self: object):
+def set_history_initial_state(self: object, first_execution: bool = True):
     """
     Sets initial state for some UI elements
     """
@@ -103,10 +103,17 @@ def set_history_initial_state(self: object):
     # Clear table
     self.tableWidgetHistory.setRowCount(0)
 
-    # Resize headers
-    header = self.tableWidgetHistory.horizontalHeader()
-    for i in range(self.tableWidgetHistory.columnCount()):
-        header.setSectionResizeMode(i, QHeaderView.Stretch)
+    # Only once
+    if first_execution:
+        # Change column resize mode
+        header = self.tableWidgetHistory.horizontalHeader()
+        for i in range(self.tableWidgetHistory.columnCount()):
+            header.setSectionResizeMode(i, QHeaderView.Stretch)
+
+        # Other (enable sorting, make sections clickable, hide left bar)
+        self.tableWidgetHistory.setSortingEnabled(True)
+        self.tableWidgetHistory.horizontalHeader().setSectionsClickable(True)
+        self.tableWidgetHistory.verticalHeader().setVisible(False)
 
 
 def update_sections(self: object, data: dict):
@@ -120,8 +127,13 @@ def update_sections(self: object, data: dict):
     """
     player = data["player"]
 
+    # If player not found
     if player == None:
-        self.set_initial_state()
+        # Reset tab
+        set_player_initial_state(self)
+        # Update icon to show cross
+        self.update_loading_icon(self.loadingPlayer, False, False, True)
+        # Show error message
         show_popup_window("Error", "Couldn't load player", "Error")
     else:
         # Total stats
@@ -231,6 +243,9 @@ def update_sections(self: object, data: dict):
 
         # Save
         self.last_loaded_player = data["player_name"]
+
+        # Icon
+        self.update_loading_icon(self.loadingPlayer, False)
 
 
 def insert_lb_tab(tabWidget: object, section: object, self: object):
@@ -371,8 +386,13 @@ def update_history(self: object, history: History):
     """
     Updates the history section with the downloaded data
     """
+    # If history not found
     if history == None:
-        set_history_initial_state(self)
+        # Reset tab
+        set_history_initial_state(self, False)
+        # Update icon to show cross
+        self.update_loading_icon(self.loadingHistory, False, False, True)
+        # Show error message
         show_popup_window("Error", "Couldn't load history", "Error")
     else:
         # Clear table
@@ -397,14 +417,14 @@ def update_history(self: object, history: History):
 
             # Values
             values = [
-                game.opponent_player.username,
-                game.own_color,
-                game.get_winner(),
-                game.get_accuracies(),
-                game.get_ratings(),
-                game.time_control,
-                game.rules,
-                game.get_date()
+                game.opponent_player.username,  # Opponent
+                game.get_own_color(),  # Color
+                game.get_own_result(),  # Result
+                game.get_own_accuracy(),  # Accuracy
+                game.get_own_rating(),  # Rating
+                game.time_control,  # Format
+                game.rules.capitalize(),  # Rules
+                game.get_date()  # Date
             ]
 
             # Adding all the values
@@ -416,18 +436,11 @@ def update_history(self: object, history: History):
                     item.setTextAlignment(QtCore.Qt.AlignCenter)
                     self.tableWidgetHistory.setItem(index, i, item)
 
-        # Resize headers
-        header = self.tableWidgetHistory.horizontalHeader()
-        for i in range(column_count):
-            header.setSectionResizeMode(i, QHeaderView.Stretch)
-
-        # Other
-        self.tableWidgetHistory.setSortingEnabled(True)
-        self.tableWidgetHistory.horizontalHeader().setSectionsClickable(True)
-        self.tableWidgetHistory.verticalHeader().setVisible(False)
-
         # Save the last loaded name
         self.last_loaded_history = history.username
+
+        # Change icon
+        self.update_loading_icon(self.loadingHistory, False)
 
 
 def download_images(labels: list, urls: list, default_image: object):
