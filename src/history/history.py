@@ -1,4 +1,5 @@
-from util import format_date, format_date_time, read_field
+import emoji
+from util import format_date_time, read_field
 
 
 class History:
@@ -72,6 +73,7 @@ class Game:
     def get_winner(self):
         """
         Obtains winner of the game
+        HACK: Doesn't take into acount other endings
         """
         if self.white.result == "win":
             return "White"
@@ -85,7 +87,8 @@ class Game:
         Obtains the players' accuracies as a string
         """
         try:
-            return "W: %s%, B: %s%" % (str(round(self.white.accuracy, 2)), str(round(self.black.accuracy, 2)))
+            p = "%"  # Since adding te % to the string manually caused issues
+            return "W: %s%s, B: %s%s" % (str(round(self.white.accuracy, 2)), p, str(round(self.black.accuracy, 2)), p)
         except:
             return "Unknown"
 
@@ -94,7 +97,7 @@ class Game:
         Obtains the player's own accuracy as a string
         """
         try:
-            return "%s%" % str(round(self.own_player.accuracy, 2))
+            return "%s" % str(round(self.own_player.accuracy, 2)) + "%"
         except:
             return "Unknown"
 
@@ -115,6 +118,24 @@ class Game:
             return "%d" % self.own_player.rating
         except:
             return "Unknown"
+
+    def get_own_result(self):
+        """
+        Obtains the player's game result
+        """
+        try:
+            return self.own_player.result.capitalize()
+        except:
+            return "Unknown"
+
+    def get_own_color(self):
+        """
+        Returns own color as an emoji
+        """
+        try:
+            return emoji.emojize(":%s_circle:" % self.own_color.lower())
+        except:
+            return self.own_color
 
     def get_format(self):
         """

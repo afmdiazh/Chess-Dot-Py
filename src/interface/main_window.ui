@@ -1823,6 +1823,9 @@
          <layout class="QGridLayout" name="gridLayout_15">
           <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonHistoryReload">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reload player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Reload</string>
             </property>
@@ -1830,6 +1833,9 @@
           </item>
           <item row="0" column="5">
            <widget class="QPushButton" name="pushButtonHistoryClear">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clear section&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Clear</string>
             </property>
@@ -1837,6 +1843,9 @@
           </item>
           <item row="0" column="3">
            <widget class="QPushButton" name="pushButtonHistorySearch">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Search</string>
             </property>
@@ -1846,6 +1855,9 @@
            <layout class="QVBoxLayout" name="verticalLayoutHistory">
             <item>
              <widget class="QTableWidget" name="tableWidgetHistory">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Opponent&lt;/span&gt;: username of the opponent&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Color&lt;/span&gt;: color of the pieces the player was using&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Result&lt;/span&gt;: win / loss / draw&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Accuracy&lt;/span&gt;: acuracy %&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rating&lt;/span&gt;: rating before finishing the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Format&lt;/span&gt;: format of the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rules&lt;/span&gt;: rules of the game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <row>
                <property name="text">
                 <string>TEST</string>
@@ -1863,17 +1875,17 @@
               </column>
               <column>
                <property name="text">
-                <string>Winner</string>
+                <string>Result</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Accuracies</string>
+                <string>Accuracy</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Ratings</string>
+                <string>Rating</string>
                </property>
               </column>
               <column>
@@ -1964,7 +1976,7 @@
      <x>0</x>
      <y>0</y>
      <width>699</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

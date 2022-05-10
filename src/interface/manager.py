@@ -417,14 +417,14 @@ def update_history(self: object, history: History):
 
             # Values
             values = [
-                game.opponent_player.username,
-                game.own_color,
-                game.get_winner(),
-                game.get_accuracies(),
-                game.get_ratings(),
-                game.time_control,
-                game.rules,
-                game.get_date()
+                game.opponent_player.username,  # Opponent
+                game.get_own_color(),  # Color
+                game.get_own_result(),  # Result
+                game.get_own_accuracy(),  # Accuracy
+                game.get_own_rating(),  # Rating
+                game.time_control,  # Format
+                game.rules.capitalize(),  # Rules
+                game.get_date()  # Date
             ]
 
             # Adding all the values
