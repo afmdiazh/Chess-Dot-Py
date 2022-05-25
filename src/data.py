@@ -10,7 +10,7 @@ from puzzle.puzzle import Puzzle
 # User-Agent header
 c.Client.config["headers"]["User-Agent"] = (
     "Chess-Dot-Py"
-    "https://github.com/mgldz/Chess-Dot-Py"
+    "https://github.com/afmdiazh/Chess-Dot-Py"
 )
 
 
