@@ -57,7 +57,7 @@
           </size>
          </property>
          <attribute name="title">
-          <string>Profile</string>
+          <string>Player</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="2">
