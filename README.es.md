@@ -128,6 +128,22 @@ Para cargar los datos del rompecabezas, dirígete a la pestaña Rompecabezas y p
 
 - [PyQt5](https://pypi.org/project/PyQt5/ "PyQt5") - Interfaz gráfica
 
+- [Qt Material](https://pypi.org/project/qt-material/ "Qt Material") - Temas de interfaz gráfica
+
+- [Emoji](https://pypi.org/project/emoji/ "Emoji") - Convertir strings de texto a emojis
+
+- [Pyinstaller](https://pypi.org/project/pyinstaller/ "Pyinstaller") - Crear ejecutables con código Python
+
+## Versionado
+
+El sistema de versionado utilizado para este proyecto está basado en [Semver](https://semver.org/ "Semver"), y sigue el patrón de X.Y.Z:
+
+- X: Versión grande o com cambios de compatibilidad
+
+- Y: Funcionalidad nueva
+
+- Z: Parches o cambios pequeños
+
 ## Contribuciones
 
 Las pull requests son bienvenidas. Para cambios más grandes, abra un asunto primero para discutir lo que le gustaría cambiar

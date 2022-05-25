@@ -131,6 +131,22 @@ To load the puzzle data, head to the Puzzle tab and press "Get Daily Puzzle" or 
 
 - [PyQt5](https://pypi.org/project/PyQt5/ "PyQt5") - Graphic interface
 
+- [Qt Material](https://pypi.org/project/qt-material/ "Qt Material") - Graphic interface themes
+
+- [Emoji](https://pypi.org/project/emoji/ "Emoji") - Converting text strings to emojis
+
+- [Pyinstaller](https://pypi.org/project/pyinstaller/ "Pyinstaller") - Creating executables from Python source
+
+## Versioning
+
+The versioning used for this project is based on [Semver](https://semver.org/ "Semver"), and it follows this X.Y.Z pattern:
+
+- X: Major version, release or compatibility change
+
+- Y: Functionality and features
+
+- Z: Patches or small changes
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
