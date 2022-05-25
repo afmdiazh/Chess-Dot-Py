@@ -1733,6 +1733,9 @@
               <property name="mouseTracking">
                <bool>false</bool>
               </property>
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
+              </property>
               <property name="acceptDrops">
                <bool>false</bool>
               </property>
@@ -1751,6 +1754,9 @@
              <widget class="QLineEdit" name="lineEditPuzzleTitle">
               <property name="mouseTracking">
                <bool>false</bool>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
               </property>
               <property name="acceptDrops">
                <bool>false</bool>
