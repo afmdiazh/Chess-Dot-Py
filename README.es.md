@@ -136,7 +136,7 @@ Para cargar los datos del rompecabezas, dirígete a la pestaña Rompecabezas y p
 
 ## Versionado
 
-El sistema de versionado utilizado para este proyecto está basado en [Semver](https://semver.org/ "Semver"), y sigue el patrón de X.Y.Z:
+El sistema de versionado utilizado para este proyecto está basado en [Semver](https://semver.org/lang/es/ "Semver"), y sigue el patrón de X.Y.Z:
 
 - X: Versión grande o com cambios de compatibilidad
 
