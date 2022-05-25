@@ -23,6 +23,18 @@ The interface is divided in sections:
 
   - Stats (also divided in categories)
 
+- History:
+
+  - Opponent
+
+  - Piece color
+
+  - Rating
+
+  - Accuracy
+
+  - Time control and rules
+
 - Leaderboard:
 
   - Profile picture
@@ -44,18 +56,6 @@ The interface is divided in sections:
   - Random puzzle (updates every 15 seconds)
 
   - Solutions
-
-- History:
-
-  - Opponent
-
-  - Piece color
-
-  - Rating
-
-  - Accuracy
-
-  - Time control and rules
 
 ## Installation
 
@@ -89,6 +89,16 @@ To see a player's stats and profile, head to the Player tab and type their name.
 
 - Pressing clear will clear the whole section.
 
+### History
+
+To see a player's history, head to the History tab and type their name. After that, you can press enter or "Search" and if the player exists their history will load.
+
+- Double clicking any game will open a menu to search and view the opponent's history directly.
+
+- Pressing "Reload" or F5 will reload the player's history.
+
+- Pressing clear will clear the whole section.
+
 ### Leaderboard
 
 To load the leaderboard data, head to the Leaderboard tab and press "Update" or F5. After that, it will take a few moments to download all the leaderboard information and a bit more to download the profile pictures in the background.
@@ -102,16 +112,6 @@ To load the leaderboard data, head to the Leaderboard tab and press "Update" or 
 To load the puzzle data, head to the Puzzle tab and press "Get Daily Puzzle" or "Get Random Puzzle" (random puzzles are updated every 15 seconds or so). After the puzzle loads, you can press "Reveal Solution" to view the moves needed to solve the puzzle.
 
 - Double clicking the Daily Puzzle image will open the puzzle in the browser.
-
-### History
-
-To see a player's history, head to the History tab and type their name. After that, you can press enter or "Search" and if the player exists their history will load.
-
-- Double clicking any game will open a menu to search and view the opponent's history directly.
-
-- Pressing "Reload" or F5 will reload the player's history.
-
-- Pressing clear will clear the whole section.
 
 ## Screenshots
 
