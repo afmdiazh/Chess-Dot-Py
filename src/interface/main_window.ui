@@ -1594,6 +1594,131 @@
           </item>
          </layout>
         </widget>
+        <widget class="QWidget" name="qWidgetHistory">
+         <attribute name="title">
+          <string>History</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_15">
+          <item row="1" column="0" colspan="6">
+           <layout class="QVBoxLayout" name="verticalLayoutHistory">
+            <item>
+             <widget class="TableWidget" name="tableWidgetHistory">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Opponent&lt;/span&gt;: username of the opponent&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Color&lt;/span&gt;: color of the pieces the player was using&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Result&lt;/span&gt;: win / loss / draw&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Accuracy&lt;/span&gt;: acuracy %&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rating&lt;/span&gt;: rating before finishing the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Format&lt;/span&gt;: format of the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rules&lt;/span&gt;: rules of the game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <row>
+               <property name="text">
+                <string>TEST</string>
+               </property>
+              </row>
+              <column>
+               <property name="text">
+                <string>Opponent</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Color</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Result</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Accuracy</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Rating</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Format</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Rules</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Date</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="lineEditPlayerHistory">
+            <property name="placeholderText">
+             <string>Hikaru</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="loadingHistory">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap>../resources/loading.gif</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonHistorySearch">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="pushButtonHistoryReload">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reloads current player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Reload</string>
+            </property>
+            <property name="shortcut">
+             <string>F5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QPushButton" name="pushButtonHistoryClear">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clear section&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
         <widget class="QWidget" name="qWidgetLeaderboard">
          <attribute name="title">
           <string>Leaderboard</string>
@@ -1836,131 +1961,6 @@
               </widget>
              </item>
             </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="qWidgetHistory">
-         <attribute name="title">
-          <string>History</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_15">
-          <item row="1" column="0" colspan="6">
-           <layout class="QVBoxLayout" name="verticalLayoutHistory">
-            <item>
-             <widget class="TableWidget" name="tableWidgetHistory">
-              <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Opponent&lt;/span&gt;: username of the opponent&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Color&lt;/span&gt;: color of the pieces the player was using&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Result&lt;/span&gt;: win / loss / draw&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Accuracy&lt;/span&gt;: acuracy %&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rating&lt;/span&gt;: rating before finishing the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Format&lt;/span&gt;: format of the game&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rules&lt;/span&gt;: rules of the game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <row>
-               <property name="text">
-                <string>TEST</string>
-               </property>
-              </row>
-              <column>
-               <property name="text">
-                <string>Opponent</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Color</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Result</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Accuracy</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Rating</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Format</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Rules</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Date</string>
-               </property>
-              </column>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLineEdit" name="lineEditPlayerHistory">
-            <property name="placeholderText">
-             <string>Hikaru</string>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="loadingHistory">
-            <property name="maximumSize">
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>../resources/loading.gif</pixmap>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonHistorySearch">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Search</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QPushButton" name="pushButtonHistoryReload">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reloads current player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Reload</string>
-            </property>
-            <property name="shortcut">
-             <string>F5</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="4">
-           <widget class="QPushButton" name="pushButtonHistoryClear">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clear section&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Clear</string>
-            </property>
            </widget>
           </item>
          </layout>
