@@ -929,7 +929,7 @@ class Ui_MainWindow(object):
         self.labelUsername.setText(_translate("MainWindow", "Username"))
         self.labelJoinedOn.setText(_translate("MainWindow", "Joined on"))
         self.labelStatus.setText(_translate("MainWindow", "Status"))
-        self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.qWidgetPlayer), _translate("MainWindow", "Player"))
+        self.tabWidgetMain.setTabText(self.tabWidgetMain.indexOf(self.qWidgetPlayer), _translate("MainWindow", "Profile"))
         self.tableWidgetHistory.setToolTip(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600;\">Opponent</span>: username of the opponent</p><p align=\"center\"><span style=\" font-weight:600;\">Color</span>: color of the pieces the player was using</p><p align=\"center\"><span style=\" font-weight:600;\">Result</span>: win / loss / draw</p><p align=\"center\"><span style=\" font-weight:600;\">Accuracy</span>: acuracy %</p><p align=\"center\"><span style=\" font-weight:600;\">Rating</span>: rating before finishing the game</p><p align=\"center\"><span style=\" font-weight:600;\">Format</span>: format of the game</p><p align=\"center\"><span style=\" font-weight:600;\">Rules</span>: rules of the game</p></body></html>"))
         item = self.tableWidgetHistory.verticalHeaderItem(0)
         item.setText(_translate("MainWindow", "TEST"))
