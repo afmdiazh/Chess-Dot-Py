@@ -277,6 +277,7 @@ def insert_lb_tab(tabWidget: object, section: object, window: object):
 
     # Create table widget
     tableWidget = TableWidget(tab)
+    tableWidget.clearEntryData()
     tableWidget.setTableType("leaderboard")
     tableWidget.setObjectName("tableWidget")
     tableWidget.setSortingEnabled(True)
