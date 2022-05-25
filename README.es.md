@@ -9,7 +9,7 @@ height="130"></p>
 
 <p align="center"><a href="https://github.com/afmdiazh/Chess-Dot-Py/stargazers"><img src="https://img.shields.io/github/stars/afmdiazh/Chess-Dot-Py" alt="Stars Badge"/> <a href="https://github.com/afmdiazh/Chess-Dot-Py/network/members"><img src="https://img.shields.io/github/forks/afmdiazh/Chess-Dot-Py" alt="Forks Badge"/></a> <a href="https://github.com/afmdiazh/Chess-Dot-Py/pulls"><img  src="https://img.shields.io/github/issues-pr/afmdiazh/Chess-Dot-Py" alt="Pull Requests Badge"/></a> <a href="https://github.com/afmdiazh/Chess-Dot-Py/issues"> <img src="https://img.shields.io/github/issues/afmdiazh/Chess-Dot-Py" alt="Issues Badge"/></a> <a href="https://github.com/afmdiazh/Chess-Dot-Py/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/afmdiazh/Chess-Dot-Py?color=2b9348"></a> <a href="https://github.com/afmdiazh/Chess-Dot-Py/blob/master/LICENSE"><img src="https://img.shields.io/github/license/afmdiazh/Chess-Dot-Py?color=2b9348" alt="License Badge"/></a></p>
 
-## Features
+## Características
 
 Con esta herramiente podemos acceder facilmente al perfil de cualquier jugador y ver la clasificación de cualquier modo de juego.
 También nos facilita ver el rompecabezas diario y el historial de partidas de los jugadores.
@@ -23,6 +23,18 @@ La interfaz está dividida en secciones:
   - Información del perfil
 
   - Estadísticas (también dividido en categorías)
+
+- Historial:
+
+  - Oponente
+
+  - Color de las piezas
+
+  - Puntuación
+
+  - Porcentaje de precisión
+
+  - Reglas y control de tiempo
 
 - Clasificación:
 
@@ -41,18 +53,6 @@ La interfaz está dividida en secciones:
   - Rompecabezas aleatorio (se actualiza cada 15 segundos)
 
   - Soluciones
-
-- Historial:
-
-  - Oponente
-
-  - Color de las piezas
-
-  - Puntuación
-
-  - Porcentaje de precisión
-
-  - Reglas y control de tiempo
 
 ## Instalación
 
@@ -86,6 +86,16 @@ Para ver las estadísticas y el perfil de un jugador, dirígete a la pestaña Ju
 
 - Al pulsar borrar se borrará toda la sección.
 
+### Historial
+
+Para ver el historial de un jugador, dirígete a la pestaña Historial y escribe su nombre. Después de eso, puede presionar enter o "Buscar" y, si el jugador existe, se cargará su historial.
+
+- Al hacer doble clic en cualquier partida, se abrirá un menú para acceder a los datos del oponente directamente.
+
+- Al presionar "Recargar" o F5 se recargará el historial del jugador.
+
+- Al pulsar borrar se borrará toda la sección.
+
 ### Clasificación
 
 Para cargar los datos de la tabla de clasificación, dirígete a la pestaña Clasificación y presiona "Actualizar" o F5. Después de eso, tardará unos minutos en descargar toda la información de la tabla de clasificación y un poco más para descargar las imágenes de perfil en segundo plano.
@@ -99,16 +109,6 @@ Para cargar los datos de la tabla de clasificación, dirígete a la pestaña Cla
 Para cargar los datos del rompecabezas, dirígete a la pestaña Rompecabezas y presiona "Obtener rompecabezas diario" o "Obtener rompecabezas aleatorio" (los rompecabezas aleatorios se actualizan cada 15 segundos, más o menos). Después de que se cargue el rompecabezas, puedes presionar "Revelar solución" para ver los movimientos necesarios para resolver el rompecabezas.
 
 - Al hacer doble clic en la imagen del rompecabezas diario, se abrirá el rompecabezas en el navegador.
-
-### Historial
-
-Para ver el historial de un jugador, dirígete a la pestaña Historial y escribe su nombre. Después de eso, puede presionar enter o "Buscar" y, si el jugador existe, se cargará su historial.
-
-- Al hacer doble clic en cualquier partida, se abrirá un menú para acceder a los datos del oponente directamente.
-
-- Al presionar "Recargar" o F5 se recargará el historial del jugador.
-
-- Al pulsar borrar se borrará toda la sección.
 
 ## Capturas de pantalla
 
@@ -127,6 +127,22 @@ Para ver el historial de un jugador, dirígete a la pestaña Historial y escribe
 - [Chess.com](https://pypi.org/project/chess.com/ "Chess.com") - API Wrapper para Chess.com
 
 - [PyQt5](https://pypi.org/project/PyQt5/ "PyQt5") - Interfaz gráfica
+
+- [Qt Material](https://pypi.org/project/qt-material/ "Qt Material") - Temas de interfaz gráfica
+
+- [Emoji](https://pypi.org/project/emoji/ "Emoji") - Convertir strings de texto a emojis
+
+- [Pyinstaller](https://pypi.org/project/pyinstaller/ "Pyinstaller") - Crear ejecutables con código Python
+
+## Versionado
+
+El sistema de versionado utilizado para este proyecto está basado en [Semver](https://semver.org/lang/es/ "Semver"), y sigue el patrón de X.Y.Z:
+
+- X: Versión grande o com cambios de compatibilidad
+
+- Y: Funcionalidad nueva
+
+- Z: Parches o cambios pequeños
 
 ## Contribuciones
 

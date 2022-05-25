@@ -277,6 +277,7 @@ def insert_lb_tab(tabWidget: object, section: object, window: object):
 
     # Create table widget
     tableWidget = TableWidget(tab)
+    tableWidget.clearEntryData()
     tableWidget.setTableType("leaderboard")
     tableWidget.setObjectName("tableWidget")
     tableWidget.setSortingEnabled(True)
@@ -462,7 +463,7 @@ def update_history(window: object, history: History):
 
         # Show error if no games
         if len(games) == 0:
-            show_popup_window("Info", "Player hasn't player any games recently",
+            show_popup_window("Info", "Player hasn't played any games recently",
                               "Info", window_icon=window.window_icon, icon=QMessageBox.Information)
 
 

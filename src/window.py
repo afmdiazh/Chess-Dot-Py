@@ -466,7 +466,7 @@ class Window(QObject, Ui_MainWindow):
         Jumps to a player's history
         """
         if username != "":
-            self.tabWidgetMain.setCurrentIndex(3)
+            self.tabWidgetMain.setCurrentIndex(1)
             self.lineEditPlayerHistory.setText(username)
             self.fetch_history_data(username)
 
