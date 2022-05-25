@@ -1,13 +1,13 @@
-<p align="center"><img src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/logo.png"
+<p align="center"><img src="https://raw.githubusercontent.com/afmdiazh/Chess-Dot-Py/main/resources/logo.png"
 height="130"></p>
 
 <p align="center">ChessDotPy es una aplicación simple que se comunica con la API de <a href="https://www.chess.com/">Chess.com</a></p>
 
-<p align="center"><a href="https://github.com/mgldz/Chess-Dot-Py/blob/main/README.md">README en inglés</a></p>
+<p align="center"><a href="https://github.com/afmdiazh/Chess-Dot-Py/blob/main/README.md">README en inglés</a></p>
 
-<p align="center"><img src="https://img.shields.io/github/languages/top/mgldz/Chess-Dot-Py" alt="Top Language Badge"/> <img src="https://img.shields.io/github/last-commit/mgldz/Chess-Dot-Py" alt="Last Commit Badge"/></p>
+<p align="center"><img src="https://img.shields.io/github/languages/top/afmdiazh/Chess-Dot-Py" alt="Top Language Badge"/> <img src="https://img.shields.io/github/last-commit/afmdiazh/Chess-Dot-Py" alt="Last Commit Badge"/></p>
 
-<p align="center"><a href="https://github.com/mgldz/Chess-Dot-Py/stargazers"><img src="https://img.shields.io/github/stars/mgldz/Chess-Dot-Py" alt="Stars Badge"/> <a href="https://github.com/mgldz/Chess-Dot-Py/network/members"><img src="https://img.shields.io/github/forks/mgldz/Chess-Dot-Py" alt="Forks Badge"/></a> <a href="https://github.com/mgldz/Chess-Dot-Py/pulls"><img  src="https://img.shields.io/github/issues-pr/mgldz/Chess-Dot-Py" alt="Pull Requests Badge"/></a> <a href="https://github.com/mgldz/Chess-Dot-Py/issues"> <img src="https://img.shields.io/github/issues/mgldz/Chess-Dot-Py" alt="Issues Badge"/></a> <a href="https://github.com/mgldz/Chess-Dot-Py/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/mgldz/Chess-Dot-Py?color=2b9348"></a> <a href="https://github.com/mgldz/Chess-Dot-Py/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mgldz/Chess-Dot-Py?color=2b9348" alt="License Badge"/></a></p>
+<p align="center"><a href="https://github.com/afmdiazh/Chess-Dot-Py/stargazers"><img src="https://img.shields.io/github/stars/afmdiazh/Chess-Dot-Py" alt="Stars Badge"/> <a href="https://github.com/afmdiazh/Chess-Dot-Py/network/members"><img src="https://img.shields.io/github/forks/afmdiazh/Chess-Dot-Py" alt="Forks Badge"/></a> <a href="https://github.com/afmdiazh/Chess-Dot-Py/pulls"><img  src="https://img.shields.io/github/issues-pr/afmdiazh/Chess-Dot-Py" alt="Pull Requests Badge"/></a> <a href="https://github.com/afmdiazh/Chess-Dot-Py/issues"> <img src="https://img.shields.io/github/issues/afmdiazh/Chess-Dot-Py" alt="Issues Badge"/></a> <a href="https://github.com/afmdiazh/Chess-Dot-Py/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/afmdiazh/Chess-Dot-Py?color=2b9348"></a> <a href="https://github.com/afmdiazh/Chess-Dot-Py/blob/master/LICENSE"><img src="https://img.shields.io/github/license/afmdiazh/Chess-Dot-Py?color=2b9348" alt="License Badge"/></a></p>
 
 ## Features
 
@@ -58,7 +58,7 @@ La interfaz está dividida en secciones:
 
 ### Opción 1: Ejecutable ( Solo Windows )
 
-Descarga un ejetuable generado automáticamente desde la [página de github actions](https://github.com/mgldz/Chess-Dot-Py/actions/workflows/pyinstaller.yml) o el último ejecutable publicado desde la [página de releases](https://github.com/mgldz/Chess-Dot-Py/releases) (preferiblemente este, ya que estas versiones están revisadas manualmente).
+Descarga un ejetuable generado automáticamente desde la [página de github actions](https://github.com/afmdiazh/Chess-Dot-Py/actions/workflows/pyinstaller.yml) o el último ejecutable publicado desde la [página de releases](https://github.com/afmdiazh/Chess-Dot-Py/releases) (preferiblemente este, ya que estas versiones están revisadas manualmente).
 
 Ten en cuenta que los ejecutables generados automáticamente pueden no ser siempre tan estables como los de la página de releases.
 
@@ -66,7 +66,7 @@ Ten en cuenta que los ejecutables generados automáticamente pueden no ser siemp
 
 1. Instala [Python](https://www.python.org/downloads/).
 
-2. Descarga el repositorio o ejecuta el comando `git clone https://github.com/mgldz/Chess-Dot-Py` (requiere [git](https://git-scm.com/downloads)) para clonar el repositorio localmente.
+2. Descarga el repositorio o ejecuta el comando `git clone https://github.com/afmdiazh/Chess-Dot-Py` (requiere [git](https://git-scm.com/downloads)) para clonar el repositorio localmente.
 
 3. Instala el gestor de paquetes [pip](https://pip.pypa.io/en/stable/) para instalar las librerías requeridas.
 
@@ -112,15 +112,15 @@ Para ver el historial de un jugador, dirígete a la pestaña Historial y escribe
 
 ## Capturas de pantalla
 
-<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s1.png"></p>
+<p  align="center"><img  src="https://raw.githubusercontent.com/afmdiazh/Chess-Dot-Py/main/resources/s1.png"></p>
 
-<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s2.png"></p>
+<p  align="center"><img  src="https://raw.githubusercontent.com/afmdiazh/Chess-Dot-Py/main/resources/s2.png"></p>
 
-<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s3.png"></p>
+<p  align="center"><img  src="https://raw.githubusercontent.com/afmdiazh/Chess-Dot-Py/main/resources/s3.png"></p>
 
-<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s4.png"></p>
+<p  align="center"><img  src="https://raw.githubusercontent.com/afmdiazh/Chess-Dot-Py/main/resources/s4.png"></p>
 
-<p  align="center"><img  src="https://raw.githubusercontent.com/mgldz/Chess-Dot-Py/main/resources/s5.png"></p>
+<p  align="center"><img  src="https://raw.githubusercontent.com/afmdiazh/Chess-Dot-Py/main/resources/s5.png"></p>
 
 ## Módulos usados
 
