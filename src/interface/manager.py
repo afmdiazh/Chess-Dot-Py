@@ -142,7 +142,7 @@ def update_sections(window: object, data: dict):
         # Update icon to show cross
         window.update_loading_icon(window.loadingPlayer, False, False, True)
         # Show error message
-        show_popup_window("Error", "Couldn't load player",
+        show_popup_window("Error", "No se pudo cargar el jugador",
                           "Error", window_icon=window.window_icon)
     else:
         # Total stats
@@ -287,24 +287,24 @@ def insert_lb_tab(tabWidget: object, section: object, window: object):
 
     # Horizontal
     fields = [
-        "Rank",
-        "Image",
-        "Username",
-        "Name",
-        "Score",
-        "Stats",
-        "Country",
-        "Flair"
+        "Rango",
+        "Imagen",
+        "Usuario",
+        "Nombre",
+        "Puntuación",
+        "Estadísticas",
+        "País",
+        "Icono"
     ]
 
     # Column amount
     tableWidget.setColumnCount(len(fields))
 
     # Image index
-    image_index = fields.index("Image")
+    image_index = fields.index("Imagen")
 
     # Username index for clicking event
-    tableWidget.setUsernameIndex(fields.index("Username"))
+    tableWidget.setUsernameIndex(fields.index("Usuario"))
 
     # Add all the fields
     for field in fields:
@@ -407,7 +407,7 @@ def update_history(window: object, history: History):
         # Update icon to show cross
         window.update_loading_icon(window.loadingHistory, False, False, True)
         # Show error message
-        show_popup_window("Error", "Couldn't load history",
+        show_popup_window("Error", "No se pudo cargar el historial",
                           "Error", window_icon=window.window_icon)
     else:
         # Clear table
@@ -463,7 +463,7 @@ def update_history(window: object, history: History):
 
         # Show error if no games
         if len(games) == 0:
-            show_popup_window("Info", "Player hasn't played any games recently",
+            show_popup_window("Info", "El jugador no tiene ninguna partida reciente",
                               "Info", window_icon=window.window_icon, icon=QMessageBox.Information)
 
 

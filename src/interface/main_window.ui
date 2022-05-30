@@ -57,19 +57,19 @@
           </size>
          </property>
          <attribute name="title">
-          <string>Player</string>
+          <string>Jugador</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="2">
            <widget class="QPushButton" name="pushButtonPlayerSearch">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Buscar jugador&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="text">
-             <string>Search</string>
+             <string>Buscar</string>
             </property>
            </widget>
           </item>
@@ -86,26 +86,26 @@
           <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonPlayerClear">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clears all the data&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Borra todos los datos&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="text">
-             <string>Clear</string>
+             <string>Limpiar</string>
             </property>
            </widget>
           </item>
           <item row="0" column="3">
            <widget class="QPushButton" name="pushButtonPlayerReload">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reloads current player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Recargar perfil del jugador&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="text">
-             <string>Reload</string>
+             <string>Recargar</string>
             </property>
             <property name="shortcut">
              <string>F5</string>
@@ -129,7 +129,7 @@
                <locale language="English" country="UnitedStates"/>
               </property>
               <property name="title">
-               <string>Stats</string>
+               <string>Estadísticas</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -238,7 +238,7 @@
                        <locale language="English" country="UnitedStates"/>
                       </property>
                       <property name="text">
-                       <string>Wins</string>
+                       <string>Victorias</string>
                       </property>
                      </widget>
                     </item>
@@ -248,7 +248,7 @@
                        <locale language="English" country="UnitedStates"/>
                       </property>
                       <property name="text">
-                       <string>Games</string>
+                       <string>Partidas</string>
                       </property>
                      </widget>
                     </item>
@@ -305,7 +305,7 @@
                        <locale language="English" country="UnitedStates"/>
                       </property>
                       <property name="text">
-                       <string>Draws</string>
+                       <string>Empates</string>
                       </property>
                      </widget>
                     </item>
@@ -362,7 +362,7 @@
                        <locale language="English" country="UnitedStates"/>
                       </property>
                       <property name="text">
-                       <string>Losses</string>
+                       <string>Derrotas</string>
                       </property>
                      </widget>
                     </item>
@@ -382,7 +382,7 @@
                        <locale language="English" country="UnitedStates"/>
                       </property>
                       <property name="text">
-                       <string>Win %</string>
+                       <string>% de victorias</string>
                       </property>
                      </widget>
                     </item>
@@ -416,7 +416,7 @@
                   <locale language="English" country="UnitedStates"/>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>4</number>
                  </property>
                  <property name="usesScrollButtons">
                   <bool>false</bool>
@@ -477,7 +477,7 @@
                         <locale language="English" country="UnitedStates"/>
                        </property>
                        <property name="text">
-                        <string>Draws</string>
+                        <string>Empates</string>
                        </property>
                       </widget>
                      </item>
@@ -524,7 +524,7 @@
                         <locale language="English" country="UnitedStates"/>
                        </property>
                        <property name="text">
-                        <string>Wins</string>
+                        <string>Victorias</string>
                        </property>
                       </widget>
                      </item>
@@ -534,7 +534,7 @@
                         <locale language="English" country="UnitedStates"/>
                        </property>
                        <property name="text">
-                        <string>Win %</string>
+                        <string>% de victorias</string>
                        </property>
                       </widget>
                      </item>
@@ -544,7 +544,7 @@
                         <locale language="English" country="UnitedStates"/>
                        </property>
                        <property name="text">
-                        <string>Games</string>
+                        <string>Partidas</string>
                        </property>
                       </widget>
                      </item>
@@ -591,7 +591,7 @@
                         <locale language="English" country="UnitedStates"/>
                        </property>
                        <property name="text">
-                        <string>Losses</string>
+                        <string>Derrotas</string>
                        </property>
                       </widget>
                      </item>
@@ -641,7 +641,7 @@
                         <locale language="English" country="UnitedStates"/>
                        </property>
                        <property name="text">
-                        <string>Rating</string>
+                        <string>Puntuación</string>
                        </property>
                       </widget>
                      </item>
@@ -710,7 +710,7 @@
                      <item row="1" column="0">
                       <widget class="QLabel" name="labelRapidGames">
                        <property name="text">
-                        <string>Games</string>
+                        <string>Partidas</string>
                        </property>
                       </widget>
                      </item>
@@ -761,14 +761,14 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Draws</string>
+                        <string>Empates</string>
                        </property>
                       </widget>
                      </item>
                      <item row="6" column="0">
                       <widget class="QLabel" name="labelRapidWinrate">
                        <property name="text">
-                        <string>Win %</string>
+                        <string>% de victorias</string>
                        </property>
                       </widget>
                      </item>
@@ -812,7 +812,7 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Wins</string>
+                        <string>Victorias</string>
                        </property>
                       </widget>
                      </item>
@@ -856,14 +856,14 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Losses</string>
+                        <string>Derrotas</string>
                        </property>
                       </widget>
                      </item>
                      <item row="0" column="0">
                       <widget class="QLabel" name="labelRapidRating">
                        <property name="text">
-                        <string>Rating</string>
+                        <string>Puntuación</string>
                        </property>
                       </widget>
                      </item>
@@ -891,7 +891,7 @@
                      <item row="6" column="0">
                       <widget class="QLabel" name="labelBulletWinrate">
                        <property name="text">
-                        <string>Win %</string>
+                        <string>% de victorias</string>
                        </property>
                       </widget>
                      </item>
@@ -935,7 +935,7 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Draws</string>
+                        <string>Empates</string>
                        </property>
                       </widget>
                      </item>
@@ -979,14 +979,14 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Wins</string>
+                        <string>Victorias</string>
                        </property>
                       </widget>
                      </item>
                      <item row="1" column="0">
                       <widget class="QLabel" name="labelBulletGames">
                        <property name="text">
-                        <string>Games</string>
+                        <string>Partidas</string>
                        </property>
                       </widget>
                      </item>
@@ -1030,7 +1030,7 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Losses</string>
+                        <string>Derrotas</string>
                        </property>
                       </widget>
                      </item>
@@ -1072,7 +1072,7 @@
                      <item row="0" column="0">
                       <widget class="QLabel" name="labelBulletRating">
                        <property name="text">
-                        <string>Rating</string>
+                        <string>Puntuación</string>
                        </property>
                       </widget>
                      </item>
@@ -1137,14 +1137,14 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Draws</string>
+                        <string>Empates</string>
                        </property>
                       </widget>
                      </item>
                      <item row="6" column="0">
                       <widget class="QLabel" name="labelBlitzWinrate">
                        <property name="text">
-                        <string>Win %</string>
+                        <string>% de victorias</string>
                        </property>
                       </widget>
                      </item>
@@ -1188,7 +1188,7 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Wins</string>
+                        <string>Victorias</string>
                        </property>
                       </widget>
                      </item>
@@ -1232,7 +1232,7 @@
                         </palette>
                        </property>
                        <property name="text">
-                        <string>Losses</string>
+                        <string>Derrotas</string>
                        </property>
                       </widget>
                      </item>
@@ -1253,7 +1253,7 @@
                      <item row="1" column="0">
                       <widget class="QLabel" name="labelBlitzGames">
                        <property name="text">
-                        <string>Games</string>
+                        <string>Partidas</string>
                        </property>
                       </widget>
                      </item>
@@ -1281,7 +1281,7 @@
                      <item row="0" column="0">
                       <widget class="QLabel" name="labelBlitzRating">
                        <property name="text">
-                        <string>Rating</string>
+                        <string>Puntuación</string>
                        </property>
                       </widget>
                      </item>
@@ -1298,7 +1298,7 @@
                  </widget>
                  <widget class="QWidget" name="qWidgetNoData">
                   <attribute name="title">
-                   <string>Game-mode stats</string>
+                   <string>Estadísticas de modo de juego</string>
                   </attribute>
                   <layout class="QGridLayout" name="gridLayout_7">
                    <item row="0" column="0">
@@ -1330,7 +1330,7 @@
                <locale language="English" country="UnitedStates"/>
               </property>
               <property name="title">
-               <string>Profile</string>
+               <string>Perfil</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1442,7 +1442,7 @@
                     <locale language="English" country="UnitedStates"/>
                    </property>
                    <property name="text">
-                    <string>Name</string>
+                    <string>Nombre</string>
                    </property>
                   </widget>
                  </item>
@@ -1452,7 +1452,7 @@
                     <locale language="English" country="UnitedStates"/>
                    </property>
                    <property name="text">
-                    <string>Followers</string>
+                    <string>Seguidores</string>
                    </property>
                   </widget>
                  </item>
@@ -1462,7 +1462,7 @@
                     <locale language="English" country="UnitedStates"/>
                    </property>
                    <property name="text">
-                    <string>Last online</string>
+                    <string>Última conexión</string>
                    </property>
                   </widget>
                  </item>
@@ -1472,7 +1472,7 @@
                     <locale language="English" country="UnitedStates"/>
                    </property>
                    <property name="text">
-                    <string>Title</string>
+                    <string>Título</string>
                    </property>
                   </widget>
                  </item>
@@ -1512,7 +1512,7 @@
                     <locale language="English" country="UnitedStates"/>
                    </property>
                    <property name="text">
-                    <string>Username</string>
+                    <string>Nombre de usuario</string>
                    </property>
                   </widget>
                  </item>
@@ -1532,7 +1532,7 @@
                     <locale language="English" country="UnitedStates"/>
                    </property>
                    <property name="text">
-                    <string>Joined on</string>
+                    <string>Fecha de registro</string>
                    </property>
                   </widget>
                  </item>
@@ -1552,7 +1552,7 @@
                     <locale language="English" country="UnitedStates"/>
                    </property>
                    <property name="text">
-                    <string>Status</string>
+                    <string>Estado</string>
                    </property>
                   </widget>
                  </item>
@@ -1596,7 +1596,7 @@
         </widget>
         <widget class="QWidget" name="qWidgetHistory">
          <attribute name="title">
-          <string>History</string>
+          <string>Historial</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_15">
           <item row="1" column="0" colspan="6">
@@ -1613,7 +1613,7 @@
               </row>
               <column>
                <property name="text">
-                <string>Opponent</string>
+                <string>Oponente</string>
                </property>
               </column>
               <column>
@@ -1623,32 +1623,32 @@
               </column>
               <column>
                <property name="text">
-                <string>Result</string>
+                <string>Resultado</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Accuracy</string>
+                <string>Precisión</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Rating</string>
+                <string>Puntuación</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Format</string>
+                <string>Formato</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Rules</string>
+                <string>Reglas</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Date</string>
+                <string>Fecha</string>
                </property>
               </column>
              </widget>
@@ -1687,20 +1687,20 @@
           <item row="0" column="2">
            <widget class="QPushButton" name="pushButtonHistorySearch">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Search player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Buscar jugador&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
-             <string>Search</string>
+             <string>Buscar</string>
             </property>
            </widget>
           </item>
           <item row="0" column="3">
            <widget class="QPushButton" name="pushButtonHistoryReload">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reloads current player&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Recargar historial del jugador&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
-             <string>Reload</string>
+             <string>Recargar</string>
             </property>
             <property name="shortcut">
              <string>F5</string>
@@ -1710,10 +1710,10 @@
           <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonHistoryClear">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Clear section&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Borrar todos los datos&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
-             <string>Clear</string>
+             <string>Limpiar</string>
             </property>
            </widget>
           </item>
@@ -1721,7 +1721,7 @@
         </widget>
         <widget class="QWidget" name="qWidgetLeaderboard">
          <attribute name="title">
-          <string>Leaderboard</string>
+          <string>Clasificación</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="3" column="0">
@@ -1742,10 +1742,10 @@
             <item>
              <widget class="QPushButton" name="pushButtonLBUpdate">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Obtains the latest leaderboard data&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Obtiene los últimos datos de clasificación&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
-               <string>Update</string>
+               <string>Actualizar</string>
               </property>
               <property name="shortcut">
                <string>F5</string>
@@ -1783,7 +1783,7 @@
         </widget>
         <widget class="QWidget" name="qWidgetPuzzle">
          <attribute name="title">
-          <string>Puzzle</string>
+          <string>Rompecabezas</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="2" column="0" colspan="2">
@@ -1837,7 +1837,7 @@
                   <item>
                    <widget class="QLabel" name="labelPuzzleExtraData">
                     <property name="text">
-                     <string>No extra data</string>
+                     <string>Sin datos extra</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>
@@ -1871,7 +1871,7 @@
                <bool>true</bool>
               </property>
               <property name="placeholderText">
-               <string>Solution</string>
+               <string>Solución</string>
               </property>
              </widget>
             </item>
@@ -1893,7 +1893,7 @@
                <bool>true</bool>
               </property>
               <property name="placeholderText">
-               <string>Title</string>
+               <string>Título</string>
               </property>
              </widget>
             </item>
@@ -1911,10 +1911,10 @@
              <item>
               <widget class="QPushButton" name="pushButtonGetDailyPuzzle">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Loads the daily puzzle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Carga el rompecabezas diario&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>Get Daily Puzzle</string>
+                <string>Obtener Rompecabezas Diario</string>
                </property>
               </widget>
              </item>
@@ -1943,20 +1943,20 @@
              <item>
               <widget class="QPushButton" name="pushButtonRevealSolution">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reveals the puzzle's solution&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Muestra la solución del rompecabezas&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>Reveal Solution</string>
+                <string>Revelar Solución</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonGetRandomPuzzle">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Loads a random puzzle&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Random puzzle updates every 15 seconds)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Carga un rompecabezas aleatorio&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;(Se actualiza cada 15 segundos)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>Get Random Puzzle</string>
+                <string>Obtener Rompecabezas Aleatorio</string>
                </property>
               </widget>
              </item>
@@ -1967,7 +1967,7 @@
         </widget>
         <widget class="QWidget" name="qWidgetAbout">
          <attribute name="title">
-          <string>About</string>
+          <string>Acerca de</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_11">
           <item row="0" column="0">
@@ -1982,7 +1982,7 @@
              <item>
               <widget class="QLabel" name="labelAbout">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;ChessDotPy, by MD&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;a simple app to access the &lt;a href=&quot;Chess.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#ffad20;&quot;&gt;Chess.com&lt;/span&gt;&lt;/a&gt; api&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Built Using&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.python.org/about/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Python&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://pypi.org/project/PyQt5/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://pypi.org/project/chess.com/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Chess.com API&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Other&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/afmdiazh/Chess-Dot-Py&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;ChessDotPy, por MD&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;una aplicación simple para comunicarse con la api de &lt;a href=&quot;Chess.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#ffad20;&quot;&gt;Chess.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Creado Utilizando&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.python.org/about/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Python&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://pypi.org/project/PyQt5/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://pypi.org/project/chess.com/&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Chess.com API&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Otros&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/afmdiazh/Chess-Dot-Py&quot;&gt;&lt;span style=&quot; font-size:12pt; text-decoration: underline; color:#ffad20;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>

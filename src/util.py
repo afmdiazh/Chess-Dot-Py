@@ -32,7 +32,7 @@ def format_date(ms: int):
         date = datetime.datetime.fromtimestamp(ms)
         return date.strftime("%m/%d/%Y")
     except:
-        return "Error parsing date"
+        return "Error procesando fecha"
 
 
 def format_date_time(ms: int):
@@ -44,7 +44,7 @@ def format_date_time(ms: int):
         date = datetime.datetime.fromtimestamp(ms)
         return date.strftime("%m/%d/%Y, %H:%M:%S")
     except:
-        return "Error parsing date"
+        return "Error procesando fecha"
 
 
 def get_resource_path(relative_path: str):

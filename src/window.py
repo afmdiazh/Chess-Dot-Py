@@ -295,7 +295,8 @@ class Window(QObject, Ui_MainWindow):
         if not leaderboard:
             self.update_loading_icon(self.loadingLeaderboard, False, True)
             m.show_popup_window(
-                "Error", "Couldn't load leaderboard", "Error", window_icon=self.window_icon)
+                "Error", "No se pudo cargar la tabla de clasificación",
+                "Error", window_icon=self.window_icon)
         else:
             # Store index
             last_index = self.tabWidgetLeaderboard.currentIndex()
@@ -337,7 +338,7 @@ class Window(QObject, Ui_MainWindow):
             # Update loading icon
             self.update_loading_icon(self.loadingPuzzle, False, False, True)
             # Show error
-            m.show_popup_window("Error", "Couldn't load puzzle",
+            m.show_popup_window("Error", "No se pudo cargar el rompecabezas",
                                 "Error", window_icon=self.window_icon)
         else:
             # Update loading icon
@@ -428,13 +429,13 @@ class Window(QObject, Ui_MainWindow):
         self.menu.addSeparator()
 
         # Go to profile
-        go_to_profile = QtWidgets.QAction('Profile', self)
+        go_to_profile = QtWidgets.QAction('Perfil', self)
         go_to_profile.triggered.connect(
             lambda: self.go_to_profile(username))
         self.menu.addAction(go_to_profile)
 
         # Go to history
-        go_to_history = QtWidgets.QAction('History', self)
+        go_to_history = QtWidgets.QAction('Historial', self)
         go_to_history.triggered.connect(
             lambda: self.go_to_history(username))
         self.menu.addAction(go_to_history)
@@ -444,7 +445,7 @@ class Window(QObject, Ui_MainWindow):
 
         # Only open if extra data exists and table has a type
         if extra_data != None and parent_table.tableType() != None:
-            open_detail_window = QtWidgets.QAction('Detail', self)
+            open_detail_window = QtWidgets.QAction('Detalle', self)
             open_detail_window.triggered.connect(
                 lambda: self.open_detail_window(extra_data))
             self.menu.addAction(open_detail_window)

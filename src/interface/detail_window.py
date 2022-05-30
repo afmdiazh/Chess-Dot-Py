@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Detailed text"))
+        self.label.setText(_translate("MainWindow", "Texto detallado"))
 
 
 if __name__ == "__main__":
